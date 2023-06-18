@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="collisionLine">#FF00FF</color>
+    <color name="collisionLine1">#8080FF</color>
+    <color name="collisionLine2">#80FF80</color>
+    <color name="collisionLine3">#808080</color>
+    <color name="collideingLine">#F9800F</color>
+    <color name="black">#000000</color>
+    <color name="ng">#0000FF</color>
+    <color name="ok">#000000</color>
+    <color name="red">#Ff0000</color>
+    <color name="bgred">#80Ff0000</color>
+
+
+</resources>
