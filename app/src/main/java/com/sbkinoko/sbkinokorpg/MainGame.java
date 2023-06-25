@@ -154,7 +154,7 @@ public class MainGame extends AppCompatActivity {
         LL.addView(controllerFrame.getControllerFL());
         LL.addView(fpsView);
 
-        mapFrame.roadMap(roadPoint);
+        mapFrame.loadMap(roadPoint);
         player.setRelativePoint(relativeCenter);
         mapFrame.checkNPCPosition();
 
