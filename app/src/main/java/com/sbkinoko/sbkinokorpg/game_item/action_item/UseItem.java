@@ -22,9 +22,9 @@ public class UseItem {
      *
      * @param target 対象
      */
-    static public boolean useInField(GroupOfWindows groupOfWindows,
-                                     int[] target,
-                                     MapEvent mapEvent) {
+    static public void useInField(GroupOfWindows groupOfWindows,
+                                  int[] target,
+                                  MapEvent mapEvent) {
         Log.d("msg", groupOfWindows.getFromPlayer() + "が使用");
 
         Status _fromPlayer = groupOfWindows.getFromPlayerStatus();
@@ -55,8 +55,6 @@ public class UseItem {
                 groupOfWindows.getPlayer(),
                 false,
                 groupOfWindows.getSelectedItemPosition());
-
-        return false;
     }
 
     public void useInBattle(int nowPlayerID,
@@ -66,7 +64,7 @@ public class UseItem {
 
         doMainProcess(nowPlayer, allies, enemies);
 
-        doAfterProcess(nowPlayer);
+        doAfterProcessInBattle(nowPlayer);
     }
 
     private void doMainProcess(Status nowPlayer,
@@ -87,7 +85,7 @@ public class UseItem {
         }
     }
 
-    private void doAfterProcess(Status nowPlayer) {
+    private void doAfterProcessInBattle(Status nowPlayer) {
         //　道具を使った時に消す必要があるから
         int itemPosition = nowPlayer.getActionItemPosition();
         nowPlayer.getActionItem().doAfterProcess(
