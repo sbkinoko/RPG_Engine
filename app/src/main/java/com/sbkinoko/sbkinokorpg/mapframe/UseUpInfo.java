@@ -1,8 +1,8 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
 public class UseUpInfo {
-    String txt;
-    boolean useUp;
+    private final String txt;
+    private final boolean useUp;
 
     public UseUpInfo(String txt, boolean useUp) {
         this.txt = txt;

@@ -21,9 +21,11 @@ public class N_ATK extends ActionItem {
         return status;
     }
 
-    public boolean doAfterProcess(Status status, Player player, int itemPosition) {
+    public void doAfterProcess(Status status,
+                               Player mapPlayer,
+                               boolean isInBattle,
+                               int itemPosition) {
         //通常攻撃なので何もなし
-        return false;
     }
 
     @Override

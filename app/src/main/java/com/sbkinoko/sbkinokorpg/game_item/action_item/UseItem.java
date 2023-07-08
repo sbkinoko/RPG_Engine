@@ -50,10 +50,13 @@ public class UseItem {
             }
         }
 
-        return actionItem.doAfterProcess(
+        actionItem.doAfterProcess(
                 groupOfWindows.getFromPlayerStatus(),
                 groupOfWindows.getPlayer(),
+                false,
                 groupOfWindows.getSelectedItemPosition());
+
+        return false;
     }
 
     public void useInBattle(int nowPlayerID,
@@ -90,6 +93,7 @@ public class UseItem {
         nowPlayer.getActionItem().doAfterProcess(
                 nowPlayer,
                 null,
+                true,
                 itemPosition);
     }
 

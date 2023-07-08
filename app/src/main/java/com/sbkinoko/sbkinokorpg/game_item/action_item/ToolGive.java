@@ -2,6 +2,7 @@ package com.sbkinoko.sbkinokorpg.game_item.action_item;
 
 import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.Tool;
 import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.UseUpInfo;
@@ -20,10 +21,10 @@ public class ToolGive {
         _from_player = from_player;
         _to_player = to_player;
         if (give(usedItemPosition, player, status)) {
-            boolean useUp = checkDecrease(usedItemPosition, player, status);
+            checkDecrease(usedItemPosition, player, status);
             return new UseUpInfo(
                     getGiveText(status),
-                    useUp);
+                    LastItemUseUpDate.isLastItemUseUp());
         } else {
             return new UseUpInfo("アイテムがいっぱいです", false);
         }
@@ -50,11 +51,13 @@ public class ToolGive {
         return true;
     }
 
-    static private boolean checkDecrease(int useItemPosition, Player player, PlayerStatus[] status) {
+    static private void checkDecrease(int useItemPosition,
+                                      Player player,
+                                      PlayerStatus[] status) {
         if (_from_player < GameParams.PLAYER_NUM) {
-            return Tool.decrease(status[_from_player].getHaveTool(), useItemPosition);
+            Tool.decreasePlayerTool(status[_from_player].getHaveTool(), useItemPosition);
         } else {
-            return Tool.decrease(player.getHaveItem(), useItemPosition);
+            Tool.decreaseBagTool(player.getHaveItem(), useItemPosition);
         }
     }
 

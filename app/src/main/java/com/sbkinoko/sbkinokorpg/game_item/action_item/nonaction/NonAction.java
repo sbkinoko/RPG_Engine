@@ -26,7 +26,10 @@ public class NonAction extends ActionItem {
     }
 
     @Override
-    public boolean doAfterProcess(Status status, Player player, int itemPosition) {
-        return false;
+    public void doAfterProcess(Status status,
+                               Player mapPlayer,
+                               boolean isInBattle,
+                               int itemPosition) {
+        //NonActionなのでなにもなし
     }
 }
