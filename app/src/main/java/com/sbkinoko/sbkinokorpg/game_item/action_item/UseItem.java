@@ -56,15 +56,20 @@ public class UseItem {
                 groupOfWindows.getSelectedItemPosition());
     }
 
-
-    public void useInBattle(int nowPlayerID, Status[] allies,
+    public void useInBattle(int nowPlayerID,
+                            Status[] allies,
                             Status[] enemies) {
         Status nowPlayer = allies[nowPlayerID];
 
-        //itemPositionは必要　→　道具を使った時に消す必要があるから
-        int itemPosition = nowPlayer.getActionItemPosition();
-        ActionItem actionItem = nowPlayer.getActionItem();
+        doMainProcess(nowPlayer, allies, enemies);
 
+        doAfterProcess(nowPlayer);
+    }
+
+    private void doMainProcess(Status nowPlayer,
+                               Status[] allies,
+                               Status[] enemies) {
+        ActionItem actionItem = nowPlayer.getActionItem();
         if (canSelectEnm(nowPlayer.getEffectType())) {
             nowPlayer.correctChooseEnm(enemies);
             doAttack(nowPlayer, enemies);
@@ -77,9 +82,13 @@ public class UseItem {
         } else {
             doEscape(nowPlayer);
         }
+    }
 
-        actionItem.doAfterProcess(
-                allies[nowPlayerID],
+    private void doAfterProcess(Status nowPlayer) {
+        //　道具を使った時に消す必要があるから
+        int itemPosition = nowPlayer.getActionItemPosition();
+        nowPlayer.getActionItem().doAfterProcess(
+                nowPlayer,
                 null,
                 itemPosition);
     }

@@ -70,7 +70,6 @@ public class Tool extends ActionItem {
         }
 
         return Tool.decrease(((PlayerStatus) status).getHaveTool(), itemPosition);
-
     }
 
     @Override
