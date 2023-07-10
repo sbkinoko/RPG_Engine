@@ -87,9 +87,13 @@ public class PlayerStatus extends Status {
         return haveTool;
     }
 
+    public boolean canReceiveTool() {
+        //最後の道具が埋まっていなければ受け取れる
+        return haveTool[haveTool.length - 1] == 0;
+    }
+
     public boolean addHaveItem(int itemNumber) {
-        int i;
-        for (i = 0; i < haveTool.length; i++) {
+        for (int i = 0; i < haveTool.length; i++) {
             if (haveTool[i] == 0) {
                 haveTool[i] = itemNumber;//アイテムの種類はitemNumber
                 return true;
