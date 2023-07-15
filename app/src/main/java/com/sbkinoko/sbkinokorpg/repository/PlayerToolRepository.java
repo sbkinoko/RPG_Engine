@@ -2,11 +2,13 @@ package com.sbkinoko.sbkinokorpg.repository;
 
 import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 
 public class PlayerToolRepository {
     private static final PlayerToolRepository playerToolRepository = new PlayerToolRepository();
 
-    private final int[][] playersItemList = new int[GameParams.PLAYER_NUM][PlayerStatus.canHaveToolNum];
+    private final int[][] playersItemList =
+            new int[GameParams.PLAYER_NUM][PlayerStatus.canHaveToolNum];
 
     private PlayerToolRepository() {
 
@@ -40,5 +42,21 @@ public class PlayerToolRepository {
         }
     }
 
+    public void decreasePlayerTool(int playerId, int usedItemPos) {
+        int[] playerItemList = playersItemList[playerId];
+        playerItemList[usedItemPos] = 0;//アイテムを消去
+        LastItemUseUpDate.setIsLastItemUseUp(true);
+        siftPlayerTools(playerItemList, usedItemPos);
+    }
 
+    private void siftPlayerTools(int[] items, int usedItemNum) {
+        for (int i = usedItemNum; i < items.length - 1; i++) {
+            items[i] = items[i + 1];
+            if (items[i + 1] == 0) {
+                break;
+            }
+        }
+        //最後まで来たので一番下を空欄に
+        items[items.length - 1] = 0;
+    }
 }

@@ -19,24 +19,6 @@ public class Tool extends ActionItem {
         return BattleConst.Action_Tool;
     }
 
-    static public void decreasePlayerTool(int[] items, int usedItemNum) {
-        items[usedItemNum] = 0;//アイテムを消去
-        LastItemUseUpDate.setIsLastItemUseUp(true);
-        siftPlayerTools(items, usedItemNum);
-    }
-
-    static private void siftPlayerTools(int[] items, int usedItemNum) {
-        for (int i = usedItemNum; i < items.length - 1; i++) {
-            items[i] = items[i + 1];
-            if (items[i + 1] == 0) {
-                return;
-            }
-        }
-        //最後まで来たので一番下を空欄に
-        items[items.length - 1] = 0;
-    }
-
-
     static public void decreaseBagTool(int[][] items, int usedItemNum) {
         items[usedItemNum][1]--;//アイテムを一個減らす
 
@@ -97,8 +79,8 @@ public class Tool extends ActionItem {
 
         int playerId = ((PlayerStatus) status).getPlayerID();
 
-        decreasePlayerTool(
-                PlayerToolRepository.getPlayerToolRepository().getAllItem(playerId),
+        PlayerToolRepository.getPlayerToolRepository().decreasePlayerTool(
+                playerId,
                 itemPosition);
     }
 

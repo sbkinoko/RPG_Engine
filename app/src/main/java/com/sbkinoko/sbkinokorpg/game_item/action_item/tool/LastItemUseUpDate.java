@@ -8,7 +8,7 @@ public class LastItemUseUpDate {
         return _isLastItemUseUp;
     }
 
-    static void setIsLastItemUseUp(boolean isLastItemUseUp) {
+    public static void setIsLastItemUseUp(boolean isLastItemUseUp) {
         _isLastItemUseUp = isLastItemUseUp;
     }
 }
