@@ -9,8 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInField;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapGameWindow;
 import com.sbkinoko.sbkinokorpg.mapframe.window.WindowIdList;
@@ -54,7 +54,7 @@ public class WindowExplanation extends MapGameWindow {
     public void useItem() {
         ActionItem actionItem = groupOfWindows.getActionItem();
 
-        int[] target = UseItem.getTarget(actionItem);
+        int[] target = UseItemInField.getTarget(actionItem);
 
         if (target == null) {//ターゲットの設定が必要
             hideMsg();
@@ -248,7 +248,7 @@ public class WindowExplanation extends MapGameWindow {
                 //フィールドで使えるならばターゲットの数によって今後の動作を変更する
                 ActionItem actionItem = groupOfWindows.getActionItem();
 
-                if (UseItem.canUseInField(actionItem)) {
+                if (UseItemInField.canUseInField(actionItem)) {
                     useItem();
                 } else {
                     mapFrame.getMapTextBoxWindow().canNotUse();

@@ -20,8 +20,9 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.HP;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MP;
 import com.sbkinoko.sbkinokorpg.dataList.List_Monster;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Skill;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.nonaction.NonAction;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
 import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 
 import java.util.ArrayList;
@@ -160,10 +161,10 @@ public class MonsterStatus extends Status {
         int skillTargetNum = new List_Skill().getTargetNum(skillID);
 
         //todo ランダムじゃなくすならここで実装
-        if (UseItem.canSelectEnm(getEffectType())) {
+        if (UseItemInBattle.canSelectEnm(getEffectType())) {
             setChooseEnm(
                     getTargetArray(GameParams.PLAYER_NUM, skillTargetNum));
-        } else if (UseItem.canSelectAly(getEffectType())) {
+        } else if (UseItem.isTargetAly(getEffectType())) {
             setChooseAly(
                     getTargetArray(getMonsterNum(), skillTargetNum));
         }
