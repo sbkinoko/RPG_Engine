@@ -5,7 +5,6 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.mapframe.Player;
-import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class Tool extends ActionItem {
 
@@ -77,11 +76,7 @@ public class Tool extends ActionItem {
             status.setLastSelectedTool(0);//アイテムを使ったから先頭を選ぶ
         }
 
-        int playerId = ((PlayerStatus) status).getPlayerID();
-
-        PlayerToolRepository.getPlayerToolRepository().decreasePlayerTool(
-                playerId,
-                itemPosition);
+        ((PlayerStatus) status).decreaseItem(itemPosition);
     }
 
     @Override

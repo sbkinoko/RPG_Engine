@@ -90,16 +90,26 @@ public class PlayerStatus extends Status {
         return playerToolRepository.getAllItem(playerID);
     }
 
+    public int getToolId(int itemPos) {
+        return playerToolRepository.getItem(playerID, itemPos);
+    }
+
     public boolean canReceiveTool() {
         //最後の道具が埋まっていなければ受け取れる
         return playerToolRepository.canReceiveTool(playerID);
     }
 
     public void addHaveItem(int itemNumber) {
-        playerToolRepository.addItem(playerID,
+        playerToolRepository.addItem(
+                playerID,
                 itemNumber);
     }
 
+    public void decreaseItem(int itemPosition) {
+        PlayerToolRepository.getPlayerToolRepository().decreasePlayerTool(
+                playerID,
+                itemPosition);
+    }
 
     public void setEqp(int eqpId, int where) {
         EQP[where] = eqpId;
