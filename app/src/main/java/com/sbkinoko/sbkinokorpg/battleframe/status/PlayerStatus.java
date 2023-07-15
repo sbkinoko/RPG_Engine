@@ -14,10 +14,11 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MP;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
+import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class PlayerStatus extends Status {
     List_JobStatus listPlayerStatus;
-    int playerID;
+    private final int playerID;
     ATK atk;
     DEF def;
     MINT mint;
@@ -92,14 +93,16 @@ public class PlayerStatus extends Status {
         return haveTool[haveTool.length - 1] == 0;
     }
 
-    public boolean addHaveItem(int itemNumber) {
+    public void addHaveItem(int itemNumber) {
+        PlayerToolRepository.getPlayerToolRepository().addItem(playerID,
+                itemNumber);
+        
         for (int i = 0; i < haveTool.length; i++) {
             if (haveTool[i] == 0) {
                 haveTool[i] = itemNumber;//アイテムの種類はitemNumber
-                return true;
+                return;
             }
         }
-        return false;
     }
 
 

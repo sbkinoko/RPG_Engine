@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status;
 
-import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class StrategyForUseItem extends StrategyForNeedStatus {
 
@@ -36,17 +36,10 @@ public class StrategyForUseItem extends StrategyForNeedStatus {
             }
             return nowList;
         }
-
-        PlayerStatus tmpStatus = groupOfWindows.getFromPlayerStatus();
-        nowList = new int[tmpStatus.getHaveTool().length];
-        System.arraycopy(
-                tmpStatus.getHaveTool(),
-                0,
-                nowList,
-                0,
-                nowList.length);
-
-        return nowList;
+        
+        return PlayerToolRepository.getPlayerToolRepository().getAllItem(
+                groupOfWindows.getFromPlayer()
+        );
     }
 
     @Override

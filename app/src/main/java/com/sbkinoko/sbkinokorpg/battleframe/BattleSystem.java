@@ -28,7 +28,6 @@ public class BattleSystem {
         this.mapFrame = mapFrame;
         this.battleFrame = battleFrame;
         this.context = context;
-
     }
 
     int whoseTurn = 0;
