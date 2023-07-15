@@ -6,13 +6,11 @@ import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
-import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class ToolPlayerActionList extends PlayerActionList {
     @Override
     public int[] getActionItemList(Status nowPlayer) {
-        int playerId = ((PlayerStatus) nowPlayer).getPlayerID();
-        return PlayerToolRepository.getPlayerToolRepository().getAllItem(playerId);
+        return ((PlayerStatus) nowPlayer).getAllTool();
     }
 
     @Override

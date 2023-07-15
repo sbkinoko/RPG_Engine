@@ -494,30 +494,31 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         int tmpValue;
 
         for (int playerID = 0; playerID < statuses.length; playerID++) {
-            statuses[playerID] = new PlayerStatus("てすとちゃん" + (playerID + 1), playerID);
+
+            PlayerStatus status = new PlayerStatus("てすとちゃん" + (playerID + 1), playerID);
+            statuses[playerID] = status;
 
             colID = cursor.getColumnIndex(MyDataBaseHelper.EXP);
             tmpValue = cursor.getInt(colID);
-            statuses[playerID].setExp(tmpValue);
+            status.setExp(tmpValue);
 
             colID = cursor.getColumnIndex(MyDataBaseHelper.STATUS_HP);
             tmpValue = cursor.getInt(colID);
-            statuses[playerID].setHP(tmpValue);
+            status.setHP(tmpValue);
 
             colID = cursor.getColumnIndex(MyDataBaseHelper.STATUS_MP);
             tmpValue = cursor.getInt(colID);
-            statuses[playerID].setMP(tmpValue);
+            status.setMP(tmpValue);
 
             for (int j = 0; j < Status.EQP_NUM; j++) {
                 colID = cursor.getColumnIndex(MyDataBaseHelper.STATUS_EQP + j);
                 tmpValue = cursor.getInt(colID);
-                statuses[playerID].setEqp(tmpValue, j);
+                status.setEqp(tmpValue, j);
             }
-
             for (int j = 0; j < PlayerStatus.canHaveToolNum; j++) {
                 colID = cursor.getColumnIndex(MyDataBaseHelper.STATUS_ITEM + j);
                 tmpValue = cursor.getInt(colID);
-                statuses[playerID].addHaveItem(tmpValue);
+                status.addHaveItem(tmpValue);
             }
             cursor.moveToNext();
         }
