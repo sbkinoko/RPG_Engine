@@ -10,9 +10,9 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MINT;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MP;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.battleframe.status.resistance.ResistanceList;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATK;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
 
 public abstract class Status {
     HP hp;
@@ -87,7 +87,7 @@ public abstract class Status {
     public void setTotalSpeed(int speed1) {
         this.totalSpeed = new SPD(speed1);
     }
-    
+
     final static public int PARAM_NUM = 8;
 
     final public static int EQP_NUM = 4;

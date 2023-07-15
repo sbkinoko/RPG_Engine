@@ -10,8 +10,8 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.MonsterStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
 
@@ -379,12 +379,12 @@ public class BattleSystem {
 
     }
 
-    UseItem useItem;
+    UseItemInBattle useItem;
 
     void atkStep(int actingID, Status[] atkStatus, Status[] defStatus, boolean isWin) {
         Status nowStatus = atkStatus[actingID];
         battleFrame.battleAttackWindow.openMenu(nowStatus.getActionTxt());
-        useItem = new UseItem();
+        useItem = new UseItemInBattle();
         Log.d("msg", nowStatus.getName() + "のターン");
         useItem.useInBattle(actingID, atkStatus, defStatus);
 

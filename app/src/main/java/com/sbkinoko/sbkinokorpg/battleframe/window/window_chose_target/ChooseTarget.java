@@ -16,7 +16,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.battleframe.status.MonsterStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.UseItem;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
 
 public class ChooseTarget extends Window_ChooseTarget {
     private int enmNum;
@@ -161,7 +161,7 @@ public class ChooseTarget extends Window_ChooseTarget {
     }
 
     private void checkTargetType() {
-        canSelectEnm = UseItem.canSelectEnm(nowPlayer.getEffectType());
+        canSelectEnm = UseItemInBattle.canSelectEnm(nowPlayer.getEffectType());
         //todo 敵味方全体を追加するならここの処理
         if (canSelectEnm) {
             chooseEnm();

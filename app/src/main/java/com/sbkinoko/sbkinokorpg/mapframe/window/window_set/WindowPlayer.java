@@ -14,8 +14,9 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.ToolGive;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInField;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.UseUpInfo;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
@@ -101,17 +102,14 @@ public class WindowPlayer extends MapGameWindow implements MenuWindowInterface {
         //使用後にプレイヤー以外を選択する場合
         if (groupOfWindows.getActionItem().getEffect()
                 == GameParams.EFFECT_TYPE_WARP) {
-
-            new MapEvent(mapFrame).warp();
-
+            new MapEvent(mapFrame).openWarpMenu();
             return;
         }
 
         //使うとアイテムの位置かずれる恐れがあるため先に文字列を取得しておく
         final String txt1 = getUseTxt(selectedPlayer);
 
-
-        UseItem.useInField(
+        UseItemInField.useInField(
                 groupOfWindows,
                 selectedPlayer,
                 new MapEvent(mapFrame));
