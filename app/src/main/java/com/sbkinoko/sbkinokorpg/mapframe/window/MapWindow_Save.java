@@ -372,15 +372,15 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
             tableName = MyDataBaseHelper.ITEM_TABLE_NAME;
         }
 
-        for (int i = 0; i < player.getHaveItem().length; i++) {
+        for (int toolPosition = 0; toolPosition < player.getAllItem().length; toolPosition++) {
             ContentValues values = new ContentValues();
-            values.put(MyDataBaseHelper.ITEM_NUM, player.getHaveItem()[i][1]);
-            values.put(MyDataBaseHelper.ITEM_ID, player.getHaveItem()[i][0]);
+            values.put(MyDataBaseHelper.ITEM_NUM, player.getToolNumAt(toolPosition));
+            values.put(MyDataBaseHelper.ITEM_ID, player.getToolIdAt(toolPosition));
             MainGame.DataBase.update(
                     tableName,
                     values,
                     MyDataBaseHelper.ITEM_POSITION + " =?",
-                    new String[]{i + ""}
+                    new String[]{toolPosition + ""}
             );
         }
     }

@@ -298,9 +298,10 @@ public class GroupOfWindows {
         if (getList_item().getAction() == BattleConst.Action_Tool) {
             int itemID;
             if (getFromPlayerStatus() == null) {
-                itemID = getPlayer().getHaveItem()[
-                        getSelectedItemPosition()][0];
+                itemID = getPlayer().getToolIdAt(getSelectedItemPosition());
+                ;
             } else {
+                //fixme toolrepoを使わない
                 itemID = playerToolRepository.getItem(
                         getFromPlayerStatus().getPlayerID(),
                         getSelectedItemPosition());
@@ -322,7 +323,7 @@ public class GroupOfWindows {
                             playerStatus.getPlayerID(),
                             getSelectedItemPosition());
                 }
-                return player.getHaveItem()[getSelectedItemPosition()][0];
+                return player.getToolIdAt(getSelectedItemPosition());
 
             case NUM_MapMenu_SKILL_USE:
                 if (playerStatus != null) {
