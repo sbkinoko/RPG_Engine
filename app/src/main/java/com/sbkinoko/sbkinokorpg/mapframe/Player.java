@@ -24,6 +24,7 @@ import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
+import com.sbkinoko.sbkinokorpg.repository.BagRepository;
 
 import java.util.Arrays;
 
@@ -58,7 +59,7 @@ public class Player {
         return this.touchActionView;
     }
 
-    private final int[][] haveItem;
+    private int[][] haveItem;
     private final int[][] EQP = new int[][]{
             {1, 1},
             {2, 1},
@@ -109,11 +110,7 @@ public class Player {
                 playerSize,
                 playerSize
         ));
-        touchActionView.setOnTouchListener(new
-
-                PlayerImageTouchListener());
-
-        haveItem = new int[new List_Tool().getItemNum()][2];
+        touchActionView.setOnTouchListener(new PlayerImageTouchListener());
 
     }
 
@@ -477,16 +474,7 @@ public class Player {
     public static final int MAX_ITEM_NUM = 99;
 
     public void addItem(int ItemNumber, int quantity) {
-        for (int i = 0; i < new List_Tool().getItemNum(); i++) {
-            if (haveItem[i][0] == ItemNumber) {
-                haveItem[i][1] += quantity;
-                break;
-            } else if (haveItem[i][0] == 0) {
-                haveItem[i][0] = ItemNumber;
-                haveItem[i][1] = quantity;
-                break;
-            }
-        }
+        BagRepository.getBagRepository().addTool(ItemNumber, quantity);
     }
 
     public boolean haveManyItem(int itemID) {
