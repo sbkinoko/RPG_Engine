@@ -193,7 +193,7 @@ public class MapEvent {
     }
 
     public void roadMap(int cellType) {
-        mapFrame.changeNowMap(MapChangeDataList.getMapChangeData(cellType).getDataForRoad());
+        mapFrame.moveMap(MapChangeDataList.getMapChangeData(cellType).getDataForRoad());
     }
 
     public void goSky() {

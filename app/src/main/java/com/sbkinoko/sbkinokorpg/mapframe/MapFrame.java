@@ -248,22 +248,37 @@ public class MapFrame {
         return nowMap.getMapID();
     }
 
+    public void loadMap(int[] roadPoint) {
+        loadFinishFlag = false;
+        cantMove = true;
+        setBlack();
+        setLoadingText();
+        MainGame.tapHandler().post(() -> roadBackGround(roadPoint));
+    }
+
     TextView loadingMessage;
     Runnable loadingRunnable;
 
+    Runnable removeBlackOutRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (loadFinishFlag) {
+                frameLayout.removeView(black);
+                frameLayout.removeView(loadingMessage);
+                MainGame.tapHandler().removeCallbacks(loadingRunnable);
+                cantMove = false;
+            } else {
+                MainGame.tapHandler().postDelayed(this, 100);
+            }
+        }
+    };
+
     private void setBlack() {
         frameLayout.addView(black);
+        MainGame.tapHandler().postDelayed(removeBlackOutRunnable, 1000);
+    }
 
-        cantMove = true;
-
-        Runnable blackOutRunnable = () -> {
-            cantMove = false;
-            frameLayout.removeView(black);
-            frameLayout.removeView(loadingMessage);
-            MainGame.tapHandler().removeCallbacks(loadingRunnable);
-        };
-
-        MainGame.tapHandler().postDelayed(blackOutRunnable, 2000);
+    private void setLoadingText() {
         loadingMessage = new TextView(context);
         loadingMessage.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -287,9 +302,9 @@ public class MapFrame {
                 100);
     }
 
+    private boolean loadFinishFlag = false;
 
-    public void roadMap(int[] roadPoint) {
-        setBlack();
+    private void roadBackGround(int[] roadPoint) {
         this.nowMap = MainGame.mapDataList[roadPoint[2]];
         mapBackGroundCellMatrix.setNowMap(nowMap);
         loopFlag = (nowMap instanceof TestField);
@@ -300,22 +315,30 @@ public class MapFrame {
 
         mapChangeTime = System.currentTimeMillis();
 
+        resetNPC();
+
+        loadFinishFlag = true;
+    }
+
+    private void resetNPC() {
         npcMatrix.remove();
 
         if (nowMap.getNpcData() == null) {
             return;
         }
 
-        npcMatrix.setNpcList(nowMap.getNpcData(), mapBackGroundCellMatrix.getBGC_player_in().getMapPoint());
-
+        npcMatrix.setNpcList(
+                nowMap.getNpcData(),
+                mapBackGroundCellMatrix.getBGC_player_in().getMapPoint()
+        );
     }
 
     public void checkNPCPosition() {
         npcMatrix.avoidPlayer();
     }
 
-    public void changeNowMap(int[] roadPoint) {
-        roadMap(roadPoint);
+    public void moveMap(int[] roadPoint) {
+        loadMap(roadPoint);
         mapSaveWindow.save(true);
     }
 
