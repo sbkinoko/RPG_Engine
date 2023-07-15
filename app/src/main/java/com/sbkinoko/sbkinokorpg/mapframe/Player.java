@@ -473,48 +473,37 @@ public class Player {
 
     public static final int MAX_ITEM_NUM = 99;
 
+    private BagRepository bagRepo() {
+        return BagRepository.getBagRepository();
+    }
+
+    public int[][] getAllItem() {
+        return bagRepo().getToolArray();
+    }
+
+    public int getToolIdAt(int itemPosition) {
+        return bagRepo().getToolIdAt(itemPosition);
+    }
+
+    public int getToolNumAt(int itemPosition) {
+        return bagRepo().getToolNumAt(itemPosition);
+    }
+
     public void addItem(int ItemNumber, int quantity) {
-        BagRepository.getBagRepository().addTool(ItemNumber, quantity);
+        bagRepo().addTool(ItemNumber, quantity);
     }
 
-    public boolean haveManyItem(int itemID) {
-        for (int i = 0; i < new List_Tool().getItemNum(); i++) {
-            if (haveItem[i][0] == itemID) {
-                return MAX_ITEM_NUM <= haveItem[i][1];
-            }
-
-            if (haveItem[i][0] == 0) {
-                break;
-            }
-        }
-        return false;
+    public boolean haveManyItem(int itemId) {
+        return bagRepo().isMany(itemId);
     }
 
-
-    public void decItem(int ItemNumber, int quantity) {
-        int i;
-        int itemNum = new List_Tool().getItemNum();
-        for (i = 0; i < itemNum; i++) {
-            if (haveItem[i][0] == ItemNumber) {
-                haveItem[i][1] -= quantity;
-                break;
-            }
-        }
-        if (haveItem[i][0] != 0) {
-            return;
-        }
-
-        for (; i < itemNum - 1; i++) {
-            haveItem[i][0] = haveItem[i + 1][0];
-            haveItem[i][1] = haveItem[i + 1][1];
-            if (haveItem[i + 1][0] == 0) {
-                return;
-            }
-        }
-        haveItem[itemNum - 1][0] = 0;
-        haveItem[itemNum - 1][1] = 0;
+    public void decItem(int itemPosition) {
+        bagRepo().decreaseBagTool(itemPosition);
     }
 
+    public void decItem(int itemId, int quantity) {
+        bagRepo().decreaseTool(itemId, quantity);
+    }
 
     public void addAllItem() {
         for (int i = 0; i < new List_Tool().getItemNum(); i++) {
@@ -526,10 +515,6 @@ public class Player {
         for (int[] ints : haveItem) {
             Arrays.fill(ints, 0);
         }
-    }
-
-    public int[][] getHaveItem() {
-        return haveItem;
     }
 
     public void addEQP(int EQP_ID, int num) {

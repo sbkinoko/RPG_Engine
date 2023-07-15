@@ -11,7 +11,7 @@ public abstract class StrategyForBagTool extends StrategyForList {
     public String _getText(int position) {
         int itemID = nowList[position];
         String txt = new List_Tool().getName(itemID);
-        int num = groupOfWindows.getPlayer().getHaveItem()[position][1];
+        int num = groupOfWindows.getPlayer().getToolNumAt(position);
         if (num <= Player.MAX_ITEM_NUM) {
             txt += "×" + num;
         } else {
@@ -23,7 +23,7 @@ public abstract class StrategyForBagTool extends StrategyForList {
     @Override
     public int[] getNowList() {
 
-        int[][] bagItemList = groupOfWindows.getPlayer().getHaveItem();
+        int[][] bagItemList = groupOfWindows.getPlayer().getAllItem();
         nowList = new int[bagItemList.length];
         for (int i = 0; i < nowList.length; i++) {
             nowList[i] = bagItemList[i][0];

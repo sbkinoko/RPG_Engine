@@ -18,35 +18,6 @@ public class Tool extends ActionItem {
         return BattleConst.Action_Tool;
     }
 
-    static public void decreaseBagTool(int[][] items, int usedItemNum) {
-        items[usedItemNum][1]--;//アイテムを一個減らす
-
-        //アイテムがなくなっていないので使い切ってない状態にする
-        if (items[usedItemNum][1] != 0) {
-            LastItemUseUpDate.setIsLastItemUseUp(false);
-            return;
-        }
-
-        siftTools(items, usedItemNum);
-        //Toolを使い切った状態にする
-        LastItemUseUpDate.setIsLastItemUseUp(true);
-    }
-
-    /**
-     * バッグのToolをシフト
-     */
-    static private void siftTools(int[][] items, int usedItemNum) {
-        for (int i = usedItemNum; i < items.length - 1; i++) {
-            items[i][0] = items[i + 1][0];
-            items[i][1] = items[i + 1][1];
-            if (items[i + 1][0] == 0) {
-                break;
-            }
-        }
-        //最後まで来たので一番下を空欄に
-        items[items.length - 1][0] = 0;
-        items[items.length - 1][1] = 0;
-    }
 
     @Override
     public int getManipulatedValue(int status) {
@@ -68,7 +39,7 @@ public class Tool extends ActionItem {
 
         //袋だったら
         if (status == null) {
-            decreaseBagTool(mapPlayer.getHaveItem(), itemPosition);
+            mapPlayer.decItem(itemPosition);
             return;
         }
 
