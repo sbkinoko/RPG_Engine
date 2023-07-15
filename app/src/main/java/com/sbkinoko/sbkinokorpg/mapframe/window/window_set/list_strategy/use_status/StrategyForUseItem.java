@@ -26,8 +26,6 @@ public class StrategyForUseItem extends StrategyForNeedStatus {
     public int[] _getNowList() {
         setStatusList();
         if (groupOfWindows.isFromPlayerBag()) {
-
-
             int[][] bagItemList = groupOfWindows.getPlayer().getHaveItem();
             nowList = new int[bagItemList.length];
             for (int i = 0; i < nowList.length; i++) {
@@ -36,7 +34,8 @@ public class StrategyForUseItem extends StrategyForNeedStatus {
             return nowList;
         }
 
-        return groupOfWindows.getFromPlayerStatus().getAllTool();
+        nowList = groupOfWindows.getFromPlayerStatus().getAllTool();
+        return nowList;
     }
 
     @Override
