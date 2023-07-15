@@ -48,6 +48,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shoppin
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForEQPTo;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseItem;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseSkill;
+import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class GroupOfWindows {
     private WindowDetail windowDetail;
@@ -286,6 +287,8 @@ public class GroupOfWindows {
         return WindowIdList.isWindowTypeFrom(windowType);
     }
 
+    PlayerToolRepository playerToolRepository = PlayerToolRepository.getPlayerToolRepository();
+
     public ActionItem getActionItem() {
         if (WindowIdList.isWindowTypeWarp(windowType)) {
             return ((StrategyForWarp) strategyForList).getWarpItem();
@@ -298,8 +301,9 @@ public class GroupOfWindows {
                 itemID = getPlayer().getHaveItem()[
                         getSelectedItemPosition()][0];
             } else {
-                itemID = (getFromPlayerStatus()).getHaveTool()[
-                        getSelectedItemPosition()];
+                itemID = playerToolRepository.getItem(
+                        getFromPlayerStatus().getPlayerID(),
+                        getSelectedItemPosition());
             }
             return List_Tool.getToolAt(itemID);
         } else {//スキル使用時の分岐
@@ -314,7 +318,9 @@ public class GroupOfWindows {
             case NUM_MapMenu_ITEM_GIVE:
             case NUM_MapMenu_ITEM_USE:
                 if (playerStatus != null) {
-                    return playerStatus.getHaveTool()[getSelectedItemPosition()];
+                    return playerToolRepository.getItem(
+                            playerStatus.getPlayerID(),
+                            getSelectedItemPosition());
                 }
                 return player.getHaveItem()[getSelectedItemPosition()][0];
 

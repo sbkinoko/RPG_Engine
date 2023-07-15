@@ -24,6 +24,7 @@ import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
+import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 import com.sbkinoko.sbkinokorpg.window.MenuWindowInterface;
 
 public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface {
@@ -392,23 +393,28 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         } else {
             tableName = MyDataBaseHelper.STATUS_TABLE_NAME;
         }
-        for (int i = 0; i < PLAYER_NUM; i++) {
+        for (int playerId = 0; playerId < PLAYER_NUM; playerId++) {
             ContentValues values = new ContentValues();
-            values.put(MyDataBaseHelper.EXP, statuses[i].getExp());
-            values.put(MyDataBaseHelper.STATUS_HP, statuses[i].getHP());
-            values.put(MyDataBaseHelper.STATUS_MP, statuses[i].getMP());
+            values.put(MyDataBaseHelper.EXP, statuses[playerId].getExp());
+            values.put(MyDataBaseHelper.STATUS_HP, statuses[playerId].getHP());
+            values.put(MyDataBaseHelper.STATUS_MP, statuses[playerId].getMP());
 
             for (int j = 0; j < Status.EQP_NUM; j++) {
-                values.put(MyDataBaseHelper.STATUS_EQP + j, statuses[i].getEQP(j));
+                values.put(MyDataBaseHelper.STATUS_EQP + j, statuses[playerId].getEQP(j));
             }
-            for (int j = 0; j < PlayerStatus.canHaveToolNum; j++) {
-                values.put(MyDataBaseHelper.STATUS_ITEM + j, statuses[i].getHaveTool()[j]);
+            PlayerToolRepository playerToolRepository =
+                    PlayerToolRepository.getPlayerToolRepository();
+            for (int toolPos = 0; toolPos < PlayerStatus.canHaveToolNum; toolPos++) {
+                values.put(
+                        MyDataBaseHelper.STATUS_ITEM + toolPos,
+                        playerToolRepository.getItem(playerId, toolPos)
+                );
             }
             MainGame.DataBase.update(
                     tableName,
                     values,
                     MyDataBaseHelper.STATUS_ID + " =?",
-                    new String[]{i + ""}
+                    new String[]{playerId + ""}
             );
         }
     }
@@ -507,6 +513,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
                 tmpValue = cursor.getInt(colID);
                 statuses[playerID].setEqp(tmpValue, j);
             }
+
             for (int j = 0; j < PlayerStatus.canHaveToolNum; j++) {
                 colID = cursor.getColumnIndex(MyDataBaseHelper.STATUS_ITEM + j);
                 tmpValue = cursor.getInt(colID);

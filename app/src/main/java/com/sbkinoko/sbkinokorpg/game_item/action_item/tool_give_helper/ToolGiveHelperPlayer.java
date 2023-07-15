@@ -2,22 +2,29 @@ package com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give_helper;
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.Tool;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give_helper.IToolGiveHelper;
+import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class ToolGiveHelperPlayer implements IToolGiveHelper {
-    private final  PlayerStatus fromPlayer;
+    private final int fromPlayerId;
+    private final PlayerToolRepository playerToolRepository =
+            PlayerToolRepository.getPlayerToolRepository();
 
     public ToolGiveHelperPlayer(PlayerStatus fromPlayer) {
-        this.fromPlayer = fromPlayer;
+        fromPlayerId = fromPlayer.getPlayerID();
     }
 
     @Override
     public int getToolId(int selectedItemPosition) {
-        return fromPlayer.getHaveTool()[selectedItemPosition];
+        return playerToolRepository.getItem(
+                fromPlayerId,
+                selectedItemPosition
+        );
     }
 
     @Override
     public void decreaseTool(int selectedItemPosition) {
-        Tool.decreasePlayerTool(fromPlayer.getHaveTool(), selectedItemPosition);
+        Tool.decreasePlayerTool(
+                playerToolRepository.getAllItem(fromPlayerId),
+                selectedItemPosition);
     }
 }
