@@ -39,9 +39,10 @@ public abstract class ActionItem implements GameItem {
 
     public abstract int getManipulatedValue(int status);
 
-    public abstract boolean doAfterProcess(Status status,
-                                           Player player,
-                                           int itemPosition);
+    public abstract void doAfterProcess(Status status,
+                                        Player mapPlayer,
+                                        boolean isInBattle,
+                                        int itemPosition);
 
     public abstract String getActionTxt(Status nowPlayer);
 

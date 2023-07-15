@@ -12,10 +12,11 @@ public class AmountSell extends WindowAmount {
 
     int maxNum = 0;
 
+    //todo itemPositionにする
     public void openMenu(int itemID) {
         this.itemID = itemID;
-        maxNum = groupOfWindows.getPlayer().getHaveItem()[
-                groupOfWindows.getSelectedItemPosition()][1];
+        int itemPosition = groupOfWindows.getSelectedItemPosition();
+        maxNum = groupOfWindows.getPlayer().getToolNumAt(itemPosition);
         groupOfWindows.getWindowDetail().setIsClosed();
         setSelectedTv(menuTV.length - 1);
         resetAmount();

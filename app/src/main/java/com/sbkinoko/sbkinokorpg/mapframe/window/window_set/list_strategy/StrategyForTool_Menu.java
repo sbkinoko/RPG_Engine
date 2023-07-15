@@ -1,6 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy;
 
-import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.item_list.StrategyForBagTool;
 
@@ -36,15 +35,7 @@ public class StrategyForTool_Menu extends StrategyForBagTool {
             return super.getNowList();
         }
 
-        PlayerStatus tmpStatus = groupOfWindows.getIdStatus();
-        nowList = new int[tmpStatus.getHaveTool().length];
-        System.arraycopy(
-                tmpStatus.getHaveTool(),
-                0,
-                nowList,
-                0,
-                nowList.length);
-
+        nowList = groupOfWindows.getIdStatus().getAllTool();
         return nowList;
     }
 }

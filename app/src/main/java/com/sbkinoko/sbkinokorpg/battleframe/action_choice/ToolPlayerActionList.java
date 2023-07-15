@@ -10,9 +10,7 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 public class ToolPlayerActionList extends PlayerActionList {
     @Override
     public int[] getActionItemList(Status nowPlayer) {
-        int[] _nowList = new int[((PlayerStatus) nowPlayer).getHaveTool().length];//null回避
-        System.arraycopy(((PlayerStatus) nowPlayer).getHaveTool(), 0, _nowList, 0, _nowList.length);
-        return _nowList;
+        return ((PlayerStatus) nowPlayer).getAllTool();
     }
 
     @Override

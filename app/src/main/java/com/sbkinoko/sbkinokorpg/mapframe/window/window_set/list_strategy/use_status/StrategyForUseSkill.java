@@ -2,7 +2,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_st
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Skill;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.UseItem;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.StrategyForSkill;
 
 public class StrategyForUseSkill extends StrategyForNeedStatus {

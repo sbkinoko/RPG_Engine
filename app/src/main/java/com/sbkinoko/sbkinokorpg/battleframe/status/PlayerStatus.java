@@ -14,10 +14,11 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MP;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
+import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class PlayerStatus extends Status {
     List_JobStatus listPlayerStatus;
-    int playerID;
+    private final int playerID;
     ATK atk;
     DEF def;
     MINT mint;
@@ -80,24 +81,35 @@ public class PlayerStatus extends Status {
         return playerActionList.getThisTurnAction();
     }
 
-    final public static int canHaveToolNum = 12;
-    protected final int[] haveTool = new int[canHaveToolNum];
+    public static final int canHaveToolNum = 12;
 
-    public int[] getHaveTool() {
-        return haveTool;
+    private final PlayerToolRepository playerToolRepository =
+            PlayerToolRepository.getPlayerToolRepository();
+
+    public int[] getAllTool() {
+        return playerToolRepository.getAllItem(playerID);
     }
 
-    public boolean addHaveItem(int itemNumber) {
-        int i;
-        for (i = 0; i < haveTool.length; i++) {
-            if (haveTool[i] == 0) {
-                haveTool[i] = itemNumber;//アイテムの種類はitemNumber
-                return true;
-            }
-        }
-        return false;
+    public int getToolId(int itemPos) {
+        return playerToolRepository.getItem(playerID, itemPos);
     }
 
+    public boolean canReceiveTool() {
+        //最後の道具が埋まっていなければ受け取れる
+        return playerToolRepository.canReceiveTool(playerID);
+    }
+
+    public void addHaveItem(int itemNumber) {
+        playerToolRepository.addItem(
+                playerID,
+                itemNumber);
+    }
+
+    public void decreaseItem(int itemPosition) {
+        PlayerToolRepository.getPlayerToolRepository().decreasePlayerTool(
+                playerID,
+                itemPosition);
+    }
 
     public void setEqp(int eqpId, int where) {
         EQP[where] = eqpId;

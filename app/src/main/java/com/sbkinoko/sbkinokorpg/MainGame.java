@@ -24,6 +24,8 @@ import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
+import com.sbkinoko.sbkinokorpg.repository.BagRepository;
+import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class MainGame extends AppCompatActivity {
     public static int playWindowSize;
@@ -115,6 +117,8 @@ public class MainGame extends AppCompatActivity {
     private void callGame() {
         Resources resources = getResources();
         config = resources.getConfiguration();
+
+        setRepositories();
 
         measureFrameSize();
 
@@ -321,5 +325,10 @@ public class MainGame extends AppCompatActivity {
 
     public static int getAutoSaveRow() {
         return autoSaveRow;
+    }
+
+    private void setRepositories() {
+        PlayerToolRepository.setPlayerToolRepository();
+        BagRepository.setBagRepository();
     }
 }

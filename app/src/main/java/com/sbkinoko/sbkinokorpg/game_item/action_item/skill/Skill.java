@@ -25,10 +25,11 @@ public class Skill extends ActionItem {
         return status * getPower() / 10;
     }
 
-    public boolean doAfterProcess(Status status, Player player,
-                                  int itemPosition) {
+    public void doAfterProcess(Status status,
+                               Player mapPlayer,
+                               boolean isInBattle,
+                               int itemPosition) {
         status.decMP(getNeedMP());
-        return false;
     }
 
     @Override
