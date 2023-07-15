@@ -59,4 +59,8 @@ public class PlayerToolRepository {
         //最後まで来たので一番下を空欄に
         items[items.length - 1] = 0;
     }
+
+    public boolean canReceiveTool(int playerId) {
+        return playersItemList[playerId][PlayerStatus.canHaveToolNum - 1] == 0;
+    }
 }

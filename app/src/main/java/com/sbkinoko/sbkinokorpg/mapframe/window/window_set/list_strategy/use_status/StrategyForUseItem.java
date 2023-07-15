@@ -1,7 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status;
 
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
-import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class StrategyForUseItem extends StrategyForNeedStatus {
 
@@ -36,10 +35,8 @@ public class StrategyForUseItem extends StrategyForNeedStatus {
             }
             return nowList;
         }
-        
-        return PlayerToolRepository.getPlayerToolRepository().getAllItem(
-                groupOfWindows.getFromPlayer()
-        );
+
+        return groupOfWindows.getFromPlayerStatus().getAllTool();
     }
 
     @Override

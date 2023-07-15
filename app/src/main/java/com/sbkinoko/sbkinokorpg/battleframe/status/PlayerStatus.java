@@ -81,28 +81,23 @@ public class PlayerStatus extends Status {
         return playerActionList.getThisTurnAction();
     }
 
-    final public static int canHaveToolNum = 12;
-    protected final int[] haveTool = new int[canHaveToolNum];
+    public static final int canHaveToolNum = 12;
 
-    public int[] getHaveTool() {
-        return haveTool;
+    private final PlayerToolRepository playerToolRepository =
+            PlayerToolRepository.getPlayerToolRepository();
+
+    public int[] getAllTool() {
+        return playerToolRepository.getAllItem(playerID);
     }
 
     public boolean canReceiveTool() {
         //最後の道具が埋まっていなければ受け取れる
-        return haveTool[haveTool.length - 1] == 0;
+        return playerToolRepository.canReceiveTool(playerID);
     }
 
     public void addHaveItem(int itemNumber) {
-        PlayerToolRepository.getPlayerToolRepository().addItem(playerID,
+        playerToolRepository.addItem(playerID,
                 itemNumber);
-        
-        for (int i = 0; i < haveTool.length; i++) {
-            if (haveTool[i] == 0) {
-                haveTool[i] = itemNumber;//アイテムの種類はitemNumber
-                return;
-            }
-        }
     }
 
 
