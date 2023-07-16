@@ -15,7 +15,7 @@ public class StrategyForEQPList extends StrategyForBagEQP {
 
         nowList = new int[3];
         for (int i = 0; i < 3; i++) {
-            nowList[i] = groupOfWindows.getIdStatus().getEQP(i);
+            nowList[i] = groupOfWindows.getSelectedIdPlayerStatus().getEQP(i);
         }
         return nowList;
     }
@@ -38,7 +38,7 @@ public class StrategyForEQPList extends StrategyForBagEQP {
 
         groupOfWindows.setEQPPosition(getSelectedItemPosition());
         groupOfWindows.setWindowType(EQP_FROM_EQP_LIST);
-        groupOfWindows.getWindowDetail().openMenu(groupOfWindows.getPlayerID());
+        groupOfWindows.getWindowDetail().openMenu(groupOfWindows.getSelectedPlayerID());
     }
 
     @Override

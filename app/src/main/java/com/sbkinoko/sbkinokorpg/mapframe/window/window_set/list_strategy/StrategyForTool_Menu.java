@@ -35,7 +35,7 @@ public class StrategyForTool_Menu extends StrategyForBagTool {
             return super.getNowList();
         }
 
-        nowList = groupOfWindows.getIdStatus().getAllTool();
+        nowList = groupOfWindows.getSelectedIdPlayerStatus().getAllTool();
         return nowList;
     }
 }

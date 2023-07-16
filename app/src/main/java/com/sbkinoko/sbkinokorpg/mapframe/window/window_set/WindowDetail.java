@@ -139,7 +139,7 @@ public class WindowDetail extends MapGameWindow implements MenuWindowInterface {
     public void showMenu(int playerID) {
         super.openMenu();
         this.isOpen = false;
-        groupOfWindows.setPlayerID(playerID);
+        groupOfWindows.setSelectedPlayerID(playerID);
 
         selectedTV = -1;
         topItemPosition = 0;
@@ -151,7 +151,7 @@ public class WindowDetail extends MapGameWindow implements MenuWindowInterface {
 
     public void openMenu(int playerId) {
         super.openMenu();
-        groupOfWindows.setPlayerID(playerId);
+        groupOfWindows.setSelectedPlayerID(playerId);
 
         groupOfWindows.setDetailOpen();
         setNowList();

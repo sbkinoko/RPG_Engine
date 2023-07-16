@@ -14,5 +14,4 @@ public abstract class MainMenuItem {
         this.mapFrame = mapFrame;
     }
     
-
 }
