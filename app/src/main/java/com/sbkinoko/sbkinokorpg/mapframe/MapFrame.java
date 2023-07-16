@@ -308,6 +308,7 @@ public class MapFrame {
 
     private boolean loadFinishFlag = false;
 
+    //todo loadPointクラスを作る
     private void loadBackGround(int[] roadPoint) {
         this.nowMap = MainGame.mapDataList[roadPoint[2]];
         mapBackGroundCellMatrix.setNowMap(nowMap);
