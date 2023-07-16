@@ -37,7 +37,8 @@ public class StrategyForSkill extends StrategyForList {
 
     @Override
     public int[] getNowList() {
-        PlayerStatus nowPlayer = groupOfWindows.getIdStatus();
-        return nowList = nowPlayer.getSkills();
+        PlayerStatus nowPlayer = groupOfWindows.getSelectedIdPlayerStatus();
+        nowList = nowPlayer.getSkills();
+        return nowList;
     }
 }

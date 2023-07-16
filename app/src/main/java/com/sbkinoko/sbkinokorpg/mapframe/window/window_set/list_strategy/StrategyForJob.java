@@ -6,11 +6,10 @@ import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;
 
 public class StrategyForJob extends StrategyForList {
 
-
     @Override
     public int[] getNowList() {
         int jobNUM = 0;
-        PlayerStatus status = groupOfWindows.getIdStatus();
+        PlayerStatus status = groupOfWindows.getSelectedIdPlayerStatus();
         nowList = new int[List_JobStatus.JOB_NUM];
         for (int i = 1; i <= List_JobStatus.JOB_NUM; i++) {
             if (List_JobStatus.getStatusList(i).canChangeJob(status)) {
@@ -29,7 +28,7 @@ public class StrategyForJob extends StrategyForList {
     @Override
     public void use_Detail() {
         List_JobStatus job = List_JobStatus.getStatusList(getSelectedItemId());
-        groupOfWindows.getIdStatus().changeJob(job);
+        groupOfWindows.getSelectedIdPlayerStatus().changeJob(job);
         groupOfWindows.getWindowText().openMenu(new String[]{job.getName() + "に転職した"});
     }
 
@@ -54,6 +53,7 @@ public class StrategyForJob extends StrategyForList {
 
     @Override
     public void setGroupOfWindows(GroupOfWindows groupOfWindows) {
+        groupOfWindows.setSelectedPlayerID(0);
         super.setGroupOfWindows(groupOfWindows);
         getNowList();
     }

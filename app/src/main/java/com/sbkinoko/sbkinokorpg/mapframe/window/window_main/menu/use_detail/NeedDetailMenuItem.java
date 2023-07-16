@@ -8,8 +8,7 @@ public abstract class NeedDetailMenuItem extends MainMenuItem {
 
     @Override
     public void useBtA() {
-        mapFrame.window_player.openMenu(
-                getMenuID());
+        mapFrame.window_player.openMenu(getMenuID());
         mapFrame.getMapWindow_list_detail().setNowList();
     }
 }

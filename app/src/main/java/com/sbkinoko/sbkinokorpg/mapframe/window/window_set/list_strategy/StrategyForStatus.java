@@ -17,7 +17,7 @@ public class StrategyForStatus extends StrategyForList {
         groupOfWindows.setEQPPosition(
                 getSelectedItemPosition() - Status.PARAM_NUM);
         groupOfWindows.setWindowType(EQP_FROM_STATUS);
-        groupOfWindows.getWindowDetail().openMenu(groupOfWindows.getPlayerID());
+        groupOfWindows.getWindowDetail().openMenu(groupOfWindows.getSelectedPlayerID());
     }
 
     @Override
@@ -32,11 +32,11 @@ public class StrategyForStatus extends StrategyForList {
 
     @Override
     protected boolean canGetText(int index) {
-        return index < groupOfWindows.getIdStatus().getStatuses().length;
+        return index < groupOfWindows.getSelectedIdPlayerStatus().getStatuses().length;
     }
 
     public void setStatusList() {
-        PlayerStatus tmpStatus = groupOfWindows.getIdStatus();
+        PlayerStatus tmpStatus = groupOfWindows.getSelectedIdPlayerStatus();
         statusList = tmpStatus.getStatuses();
     }
 

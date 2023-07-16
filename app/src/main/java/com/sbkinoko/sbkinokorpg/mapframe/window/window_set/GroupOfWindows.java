@@ -97,7 +97,7 @@ public class GroupOfWindows {
     }
 
     public boolean isIdBag() {
-        return playerID == GameParams.PLAYER_NUM;
+        return selectedPlayerID == GameParams.PLAYER_NUM;
     }
 
     public boolean isFromPlayerBag() {
@@ -216,18 +216,18 @@ public class GroupOfWindows {
         return toPlayer;
     }
 
-    private int playerID;
+    private int selectedPlayerID;
 
-    public int getPlayerID() {
-        return playerID;
+    public int getSelectedPlayerID() {
+        return selectedPlayerID;
     }
 
-    public void setPlayerID(int playerID) {
-        this.playerID = playerID;
+    public void setSelectedPlayerID(int playerID) {
+        this.selectedPlayerID = playerID;
     }
 
-    public PlayerStatus getIdStatus() {
-        return playerStatuses[playerID];
+    public PlayerStatus getSelectedIdPlayerStatus() {
+        return playerStatuses[selectedPlayerID];
     }
 
     public PlayerStatus getFromPlayerStatus() {
