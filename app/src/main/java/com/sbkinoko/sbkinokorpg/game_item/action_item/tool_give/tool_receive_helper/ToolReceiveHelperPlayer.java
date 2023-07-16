@@ -1,4 +1,4 @@
-package com.sbkinoko.sbkinokorpg.game_item.action_item.tool_receive_helper;
+package com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.tool_receive_helper;
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 

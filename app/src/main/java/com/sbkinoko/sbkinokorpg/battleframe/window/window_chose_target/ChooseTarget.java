@@ -16,7 +16,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.battleframe.status.MonsterStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
+import com.sbkinoko.sbkinokorpg.game_item.use_item.UseItemInBattle;
 
 public class ChooseTarget extends Window_ChooseTarget {
     private int enmNum;

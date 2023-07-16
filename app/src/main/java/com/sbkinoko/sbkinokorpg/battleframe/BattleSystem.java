@@ -11,7 +11,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
+import com.sbkinoko.sbkinokorpg.game_item.use_item.UseItemInBattle;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
 
