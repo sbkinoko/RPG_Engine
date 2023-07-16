@@ -12,6 +12,9 @@ import com.sbkinoko.sbkinokorpg.mapframe.UseUpInfo;
 
 public class ToolGive {
 
+    static IToolGiveHelper toolGiveHelper;
+    static IToolReceiveHelper toolReceiveHelper;
+
     public static UseUpInfo giveProcess(int from_player,
                                         int to_player,
                                         int usedItemPosition,
@@ -21,10 +24,10 @@ public class ToolGive {
             return new UseUpInfo("移動しないよ", false);
         }
 
-        IToolGiveHelper toolGiveHelper = GiveHelperFactory.createGiveHelper(
+        toolGiveHelper = GiveHelperFactory.createGiveHelper(
                 getPlayerStatus(from_player, status),
                 player);
-        IToolReceiveHelper toolReceiveHelper = ReceiveHelperFactory.createReceiveHelper(
+        toolReceiveHelper = ReceiveHelperFactory.createReceiveHelper(
                 getPlayerStatus(to_player, status),
                 player);
 
