@@ -1,6 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy;
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
+import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;
 
@@ -27,7 +28,7 @@ public class StrategyForJob extends StrategyForList {
 
     @Override
     public void use_Detail() {
-        List_JobStatus job = List_JobStatus.getStatusList(getSelectedItemId());
+        JobStatus job = List_JobStatus.getStatusList(getSelectedItemId());
         groupOfWindows.getSelectedIdPlayerStatus().changeJob(job);
         groupOfWindows.getWindowText().openMenu(new String[]{job.getName() + "に転職した"});
     }

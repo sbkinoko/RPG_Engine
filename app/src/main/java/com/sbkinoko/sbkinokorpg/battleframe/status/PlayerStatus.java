@@ -13,18 +13,19 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MINT;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MP;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
+import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
 import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
 
 public class PlayerStatus extends Status {
-    List_JobStatus listPlayerStatus;
+    JobStatus listPlayerStatus;
     private final int playerID;
     ATK atk;
     DEF def;
     MINT mint;
     SPD spd;
 
-    public void changeJob(List_JobStatus job) {
+    public void changeJob(JobStatus job) {
         listPlayerStatus = job;
         setExp(exp);
     }
