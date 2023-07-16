@@ -248,12 +248,16 @@ public class MapFrame {
         return nowMap.getMapID();
     }
 
-    public void loadMap(int[] roadPoint) {
+    public void loadMap(int[] loadPoint) {
+        beforeLoadBackground();
+        MainGame.tapHandler().post(() -> loadBackGround(loadPoint));
+    }
+
+    private void beforeLoadBackground() {
         loadFinishFlag = false;
         cantMove = true;
         setBlack();
         setLoadingText();
-        MainGame.tapHandler().post(() -> roadBackGround(roadPoint));
     }
 
     TextView loadingMessage;
@@ -304,7 +308,8 @@ public class MapFrame {
 
     private boolean loadFinishFlag = false;
 
-    private void roadBackGround(int[] roadPoint) {
+    //todo loadPointクラスを作る
+    private void loadBackGround(int[] roadPoint) {
         this.nowMap = MainGame.mapDataList[roadPoint[2]];
         mapBackGroundCellMatrix.setNowMap(nowMap);
         loopFlag = (nowMap instanceof TestField);
@@ -318,6 +323,12 @@ public class MapFrame {
         resetNPC();
 
         loadFinishFlag = true;
+
+    }
+
+    private void loadBackGroundWithSave(int[] roadPoint) {
+        loadBackGround(roadPoint);
+        mapSaveWindow.save(true);
     }
 
     private void resetNPC() {
@@ -337,9 +348,10 @@ public class MapFrame {
         npcMatrix.avoidPlayer();
     }
 
-    public void moveMap(int[] roadPoint) {
-        loadMap(roadPoint);
-        mapSaveWindow.save(true);
+    //必ずせーぶされるのでどうするか考える
+    public void moveMap(int[] loadPoint) {
+        beforeLoadBackground();
+        MainGame.tapHandler().post(() -> loadBackGroundWithSave(loadPoint));
     }
 
     public MapData getNowMap() {
