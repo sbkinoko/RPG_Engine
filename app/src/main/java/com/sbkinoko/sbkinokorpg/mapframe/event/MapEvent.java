@@ -11,7 +11,7 @@ import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
-import com.sbkinoko.sbkinokorpg.game_item.use_item.UseItemInField;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInField;
 import com.sbkinoko.sbkinokorpg.mapframe.MapBackgroundCell;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.Player;

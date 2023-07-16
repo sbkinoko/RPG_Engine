@@ -12,7 +12,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.battleframe.status.resistance.ResistanceList;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATK;
-import com.sbkinoko.sbkinokorpg.game_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
 
 public abstract class Status {
     HP hp;
