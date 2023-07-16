@@ -1,4 +1,4 @@
-package com.sbkinoko.sbkinokorpg.game_item.action_item.use_item;
+package com.sbkinoko.sbkinokorpg.game_item.use_item;
 
 import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.condition.ConditionData;

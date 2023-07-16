@@ -21,8 +21,8 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.MP;
 import com.sbkinoko.sbkinokorpg.dataList.List_Monster;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Skill;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.nonaction.NonAction;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
-import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
+import com.sbkinoko.sbkinokorpg.game_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.game_item.use_item.UseItemInBattle;
 import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 
 import java.util.ArrayList;

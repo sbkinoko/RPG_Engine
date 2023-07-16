@@ -1,6 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status;
 
-import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.game_item.use_item.UseItem;
 
 public class StrategyForUseItem extends StrategyForNeedStatus {
 
