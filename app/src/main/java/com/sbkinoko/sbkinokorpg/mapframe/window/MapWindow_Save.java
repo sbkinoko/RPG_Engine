@@ -20,6 +20,7 @@ import com.sbkinoko.sbkinokorpg.MyDataBaseHelper;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
+import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.Player;
@@ -240,7 +241,8 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
             ContentValues values = new ContentValues();
             values.put(MyDataBaseHelper.STATUS_ID, playerID);
             values.put(MyDataBaseHelper.EXP, 0);
-            List_JobStatus playerStatus = List_JobStatus.getStatusList(playerID);
+
+            JobStatus playerStatus = List_JobStatus.getStatusList(playerID);
 
             values.put(MyDataBaseHelper.STATUS_HP, playerStatus.getHP(1));
             values.put(MyDataBaseHelper.STATUS_MP, playerStatus.getMP(1));
