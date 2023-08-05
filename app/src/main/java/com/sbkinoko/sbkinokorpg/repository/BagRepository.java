@@ -5,13 +5,16 @@ import static com.sbkinoko.sbkinokorpg.mapframe.Player.MAX_ITEM_NUM;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 
+import javax.inject.Inject;
+
 public class BagRepository {
     private static BagRepository bagRepository;
 
     private final int[][] toolArray;
     private final int arrayLength = new List_Tool().getItemNum();
 
-    private BagRepository() {
+    @Inject
+    public BagRepository() {
         toolArray = new int[arrayLength][2];
     }
 
