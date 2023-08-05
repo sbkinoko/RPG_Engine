@@ -29,8 +29,6 @@ import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
 
 import java.util.Arrays;
 
-import javax.inject.Inject;
-
 import dagger.hilt.EntryPoints;
 
 public class Player {
@@ -87,8 +85,7 @@ public class Player {
     }
 
     BagRepository bagRepository;
-
-    @Inject
+    
     public Player(int cellLength, Context context) {
         this.v[Y_axis] = 0;
         this.v[X_axis] = 0;
