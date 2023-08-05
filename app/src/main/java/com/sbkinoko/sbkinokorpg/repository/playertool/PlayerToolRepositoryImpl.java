@@ -1,24 +1,24 @@
-package com.sbkinoko.sbkinokorpg.repository;
+package com.sbkinoko.sbkinokorpg.repository.playertool;
 
 import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 
-public class PlayerToolRepository {
-    private static PlayerToolRepository playerToolRepository;
+public class PlayerToolRepositoryImpl implements PlayerToolRepository {
+    private static PlayerToolRepositoryImpl playerToolRepository;
 
     private final int[][] playersItemList =
             new int[GameParams.PLAYER_NUM][PlayerStatus.canHaveToolNum];
 
-    private PlayerToolRepository() {
+    private PlayerToolRepositoryImpl() {
 
     }
 
     public static void setPlayerToolRepository() {
-        playerToolRepository = new PlayerToolRepository();
+        playerToolRepository = new PlayerToolRepositoryImpl();
     }
 
-    public static PlayerToolRepository getPlayerToolRepository() {
+    public static PlayerToolRepositoryImpl getPlayerToolRepository() {
         return playerToolRepository;
     }
 

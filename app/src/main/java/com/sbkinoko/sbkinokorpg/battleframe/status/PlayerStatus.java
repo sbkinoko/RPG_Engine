@@ -15,7 +15,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
-import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
+import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepositoryImpl;
 
 public class PlayerStatus extends Status {
     JobStatus listPlayerStatus;
@@ -84,8 +84,8 @@ public class PlayerStatus extends Status {
 
     public static final int canHaveToolNum = 12;
 
-    private final PlayerToolRepository playerToolRepository =
-            PlayerToolRepository.getPlayerToolRepository();
+    private final PlayerToolRepositoryImpl playerToolRepository =
+            PlayerToolRepositoryImpl.getPlayerToolRepository();
 
     public int[] getAllTool() {
         return playerToolRepository.getAllItem(playerID);
@@ -107,7 +107,7 @@ public class PlayerStatus extends Status {
     }
 
     public void decreaseItem(int itemPosition) {
-        PlayerToolRepository.getPlayerToolRepository().decreasePlayerTool(
+        PlayerToolRepositoryImpl.getPlayerToolRepository().decreasePlayerTool(
                 playerID,
                 itemPosition);
     }

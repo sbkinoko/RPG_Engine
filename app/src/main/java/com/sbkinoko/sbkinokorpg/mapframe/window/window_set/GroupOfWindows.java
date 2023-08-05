@@ -48,7 +48,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shoppin
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForEQPTo;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseItem;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseSkill;
-import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
+import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepositoryImpl;
 
 public class GroupOfWindows {
     private WindowDetail windowDetail;
@@ -287,7 +287,7 @@ public class GroupOfWindows {
         return WindowIdList.isWindowTypeFrom(windowType);
     }
 
-    PlayerToolRepository playerToolRepository = PlayerToolRepository.getPlayerToolRepository();
+    PlayerToolRepositoryImpl playerToolRepository = PlayerToolRepositoryImpl.getPlayerToolRepository();
 
     public ActionItem getActionItem() {
         if (WindowIdList.isWindowTypeWarp(windowType)) {
