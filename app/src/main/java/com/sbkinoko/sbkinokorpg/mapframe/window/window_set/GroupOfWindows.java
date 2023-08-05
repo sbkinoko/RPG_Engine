@@ -352,7 +352,7 @@ public class GroupOfWindows {
                 strategyForList = new StrategyForEQP();
                 break;
             case NUM_MapMenu_BUY:
-                strategyForList = new StrategyForBuy();
+                strategyForList = new StrategyForBuy(context);
                 break;
             case SELL_TOOL:
                 strategyForList = new StrategyForSellTool();
