@@ -5,18 +5,10 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 
 public class PlayerToolRepositoryImpl implements PlayerToolRepository {
-    private static PlayerToolRepositoryImpl playerToolRepository;
 
     private final int[][] playersItemList =
             new int[GameParams.PLAYER_NUM][PlayerStatus.canHaveToolNum];
-
-    public static void setPlayerToolRepository() {
-        playerToolRepository = new PlayerToolRepositoryImpl();
-    }
-
-    public static PlayerToolRepositoryImpl getPlayerToolRepository() {
-        return playerToolRepository;
-    }
+    
 
     public int[] getAllItem(int playerId) {
         //同じものを参照して上書きする可能性を排除するためコピーを返却
