@@ -25,8 +25,11 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.repository.BagRepository;
+import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
 
 import java.util.Arrays;
+
+import dagger.hilt.EntryPoints;
 
 public class Player {
     private final int cellLength;
@@ -81,6 +84,8 @@ public class Player {
         this.mapFrame = mapFrame1;
     }
 
+    BagRepository bagRepository;
+    
     public Player(int cellLength, Context context) {
         this.v[Y_axis] = 0;
         this.v[X_axis] = 0;
@@ -111,6 +116,9 @@ public class Player {
                 playerSize
         ));
         touchActionView.setOnTouchListener(new PlayerImageTouchListener());
+
+        bagRepository = EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class)
+                .bagRepository();
 
     }
 
@@ -473,36 +481,32 @@ public class Player {
 
     public static final int MAX_ITEM_NUM = 99;
 
-    private BagRepository bagRepo() {
-        return BagRepository.getBagRepository();
-    }
-
     public int[][] getAllItem() {
-        return bagRepo().getToolArray();
+        return bagRepository.getToolArray();
     }
 
     public int getToolIdAt(int itemPosition) {
-        return bagRepo().getToolIdAt(itemPosition);
+        return bagRepository.getToolIdAt(itemPosition);
     }
 
     public int getToolNumAt(int itemPosition) {
-        return bagRepo().getToolNumAt(itemPosition);
+        return bagRepository.getToolNumAt(itemPosition);
     }
 
     public void addItem(int ItemNumber, int quantity) {
-        bagRepo().addTool(ItemNumber, quantity);
+        bagRepository.addTool(ItemNumber, quantity);
     }
 
     public boolean haveManyItem(int itemId) {
-        return bagRepo().isMany(itemId);
+        return bagRepository.isMany(itemId);
     }
 
     public void decItem(int itemPosition) {
-        bagRepo().decreaseBagTool(itemPosition);
+        bagRepository.decreaseBagTool(itemPosition);
     }
 
     public void decItem(int itemId, int quantity) {
-        bagRepo().decreaseTool(itemId, quantity);
+        bagRepository.decreaseTool(itemId, quantity);
     }
 
     public void addAllItem() {
