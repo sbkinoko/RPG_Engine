@@ -24,8 +24,8 @@ import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
-import com.sbkinoko.sbkinokorpg.repository.BagRepository;
 import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.repository.bagrepository.BagRepository;
 
 import java.util.Arrays;
 
@@ -85,7 +85,7 @@ public class Player {
     }
 
     BagRepository bagRepository;
-    
+
     public Player(int cellLength, Context context) {
         this.v[Y_axis] = 0;
         this.v[X_axis] = 0;

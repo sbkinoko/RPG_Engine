@@ -1,4 +1,4 @@
-package com.sbkinoko.sbkinokorpg.repository;
+package com.sbkinoko.sbkinokorpg.repository.bagrepository;
 
 import static com.sbkinoko.sbkinokorpg.mapframe.Player.MAX_ITEM_NUM;
 
@@ -7,19 +7,19 @@ import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 
 import javax.inject.Inject;
 
-public class BagRepository {
+public class BagRepositoryImpl implements BagRepository {
 
     private final int[][] toolArray;
     private final int arrayLength = new List_Tool().getItemNum();
 
     @Inject
-    public BagRepository() {
+    public BagRepositoryImpl() {
         toolArray = new int[arrayLength][2];
     }
 
     private final int INDEX_ITEM_ID = 0;
     private final int INDEX_ITEM_NUM = 1;
-    
+
 
     public int[][] getToolArray() {
         return toolArray;

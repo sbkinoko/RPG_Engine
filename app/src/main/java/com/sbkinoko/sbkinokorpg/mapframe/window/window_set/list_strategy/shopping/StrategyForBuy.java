@@ -1,14 +1,26 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shopping;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.amount.AmountBuy;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.StrategyForList;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shopping.for_sell.sell_item.ShoppingItemData;
+import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.repository.bagrepository.BagRepository;
+
+import dagger.hilt.EntryPoints;
 
 public class StrategyForBuy extends StrategyForList {
 
+    BagRepository bagRepository;
+
+    public StrategyForBuy(Context context) {
+        MyEntryPoints myEntryPoints =
+                EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class);
+        bagRepository = myEntryPoints.bagRepository();
+    }
 
     @Override
     public void setGroupOfWindows(GroupOfWindows groupOfWindows) {
@@ -46,7 +58,7 @@ public class StrategyForBuy extends StrategyForList {
 
         int itemPrice = getShoppingItemData(itemID).getBuyPrice(itemID);
 
-        if (groupOfWindows.getPlayer().haveManyItem(itemID)) {
+        if (bagRepository.isMany(itemID)) {
             groupOfWindows.getMapFrame().getMapTextBoxWindow().openMenu(new String[]{"もう十分もってるんじゃないか?"});
         } else if (itemPrice <= groupOfWindows.getPlayer().getMoney()) {
             groupOfWindows.getWindowAmount().openMenu(itemID);
