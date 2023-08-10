@@ -92,6 +92,10 @@ public class GroupOfWindows {
 
     private final Context context;
 
+    public Context getContext() {
+        return context;
+    }
+
     public GroupOfWindows(Context context) {
         this.context = context;
     }

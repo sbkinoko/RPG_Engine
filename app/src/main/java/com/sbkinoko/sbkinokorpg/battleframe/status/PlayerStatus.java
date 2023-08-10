@@ -3,6 +3,8 @@ package com.sbkinoko.sbkinokorpg.battleframe.status;
 import static com.sbkinoko.sbkinokorpg.dataList.ResistanceDataList.defaultAtrResistance;
 import static com.sbkinoko.sbkinokorpg.dataList.ResistanceDataList.defaultConditionResistance;
 
+import android.content.Context;
+
 import com.sbkinoko.sbkinokorpg.battleframe.action_choice.NormalAtkPlayerActionList;
 import com.sbkinoko.sbkinokorpg.battleframe.action_choice.PlayerActionList;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.ATK;
@@ -15,7 +17,10 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
-import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepositoryImpl;
+import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
+
+import dagger.hilt.EntryPoints;
 
 public class PlayerStatus extends Status {
     JobStatus listPlayerStatus;
@@ -30,10 +35,16 @@ public class PlayerStatus extends Status {
         setExp(exp);
     }
 
-    public PlayerStatus(String name, int playerID) {
+    private final PlayerToolRepository playerToolRepository;
+
+    public PlayerStatus(String name, int playerID, Context context) {
         this.playerID = playerID;
         listPlayerStatus = List_JobStatus.getStatusList(playerID + 1);
         this.NAME = name;
+
+        MyEntryPoints myEntryPoints
+                = EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class);
+        playerToolRepository = myEntryPoints.playerToolRepository();
     }
 
     public int getPlayerID() {
@@ -84,9 +95,6 @@ public class PlayerStatus extends Status {
 
     public static final int canHaveToolNum = 12;
 
-    private final PlayerToolRepositoryImpl playerToolRepository =
-            PlayerToolRepositoryImpl.getPlayerToolRepository();
-
     public int[] getAllTool() {
         return playerToolRepository.getAllItem(playerID);
     }
@@ -107,7 +115,7 @@ public class PlayerStatus extends Status {
     }
 
     public void decreaseItem(int itemPosition) {
-        PlayerToolRepositoryImpl.getPlayerToolRepository().decreasePlayerTool(
+        playerToolRepository.decreasePlayerTool(
                 playerID,
                 itemPosition);
     }

@@ -477,7 +477,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
     }
 
 
-    public static PlayerStatus[] getStatusData() {
+    public static PlayerStatus[] getStatusData(Context context) {
         statuses = new PlayerStatus[GameParams.PLAYER_NUM];
 
         Cursor cursor;
@@ -497,7 +497,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
 
         for (int playerID = 0; playerID < statuses.length; playerID++) {
 
-            PlayerStatus status = new PlayerStatus("てすとちゃん" + (playerID + 1), playerID);
+            PlayerStatus status = new PlayerStatus("てすとちゃん" + (playerID + 1), playerID, context);
             statuses[playerID] = status;
 
             colID = cursor.getColumnIndex(MyDataBaseHelper.EXP);

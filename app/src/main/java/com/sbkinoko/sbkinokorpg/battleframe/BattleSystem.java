@@ -24,7 +24,7 @@ public class BattleSystem {
     private final MapFrame mapFrame;
 
     public BattleSystem(MapFrame mapFrame, BattleFrame battleFrame, Context context) {
-        players = MapWindow_Save.getStatusData();
+        players = MapWindow_Save.getStatusData(context);
         this.mapFrame = mapFrame;
         this.battleFrame = battleFrame;
         this.context = context;
@@ -178,7 +178,7 @@ public class BattleSystem {
         battleFrame.battleEndWindow.addItem(dropItem);
 
         if (!winFlag) {
-            players = MapWindow_Save.getStatusData();
+            players = MapWindow_Save.getStatusData(context);
             //ゲームオーバーになったときの処理
             //そのまま完全復活かセーブデータからか
         }
