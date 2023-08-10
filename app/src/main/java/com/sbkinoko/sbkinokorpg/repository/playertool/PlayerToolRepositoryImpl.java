@@ -10,10 +10,6 @@ public class PlayerToolRepositoryImpl implements PlayerToolRepository {
     private final int[][] playersItemList =
             new int[GameParams.PLAYER_NUM][PlayerStatus.canHaveToolNum];
 
-    private PlayerToolRepositoryImpl() {
-
-    }
-
     public static void setPlayerToolRepository() {
         playerToolRepository = new PlayerToolRepositoryImpl();
     }
