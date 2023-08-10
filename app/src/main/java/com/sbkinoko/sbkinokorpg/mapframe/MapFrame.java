@@ -26,8 +26,6 @@ import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.TestField;
-import com.sbkinoko.sbkinokorpg.mapframe.npc.NPC;
-import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCMatrix;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Choice;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_TextBox;
@@ -86,17 +84,12 @@ public class MapFrame {
     }
 
     public ControllerFrame controllerFrame;
-    private final NPCMatrix npcMatrix;
+
 
     private final ImageView black;
 
-    public NPCMatrix getNpcMatrix() {
-        return npcMatrix;
-    }
 
-    public NPC[] getNpcList() {
-        return npcMatrix.getNpcList();
-    }
+    private final MapViewModel mapViewModel;
 
     public MapFrame(Context context,
                     Configuration config, Player player1,
@@ -122,7 +115,7 @@ public class MapFrame {
         mapBackGroundCellMatrix = new MapBackGroundCellMatrix(context, frameLayout, player, this);
         mapBackGroundCellMatrix.resetBackGroundCellText();
 
-        npcMatrix = new NPCMatrix(player, context, frameLayout);
+
         black = new ImageView(context);
         black.setLayoutParams(
                 new ViewGroup.LayoutParams(
@@ -131,6 +124,8 @@ public class MapFrame {
                 )
         );
         black.setBackground(ResourcesCompat.getDrawable(res, R.drawable.black_image, null));
+
+        mapViewModel = new MapViewModel(context, player, frameLayout);
 
     }
 
@@ -320,7 +315,10 @@ public class MapFrame {
 
         mapChangeTime = System.currentTimeMillis();
 
-        resetNPC();
+        mapViewModel.resetNPC(
+                nowMap.getNpcData(),
+                mapBackGroundCellMatrix.getBGC_player_in().getMapPoint()
+        );
 
         loadFinishFlag = true;
 
@@ -331,22 +329,6 @@ public class MapFrame {
         mapSaveWindow.save(true);
     }
 
-    private void resetNPC() {
-        npcMatrix.remove();
-
-        if (nowMap.getNpcData() == null) {
-            return;
-        }
-
-        npcMatrix.setNpcList(
-                nowMap.getNpcData(),
-                mapBackGroundCellMatrix.getBGC_player_in().getMapPoint()
-        );
-    }
-
-    public void checkNPCPosition() {
-        npcMatrix.avoidPlayer();
-    }
 
     //必ずせーぶされるのでどうするか考える
     public void moveMap(int[] loadPoint) {
@@ -366,7 +348,7 @@ public class MapFrame {
         if (cantMove) return;
         boolean _cantMove = !(lastCallTime - mapChangeTime > GameParams.canMoveTime);
 
-        npcMatrix.moveNPC(mapTextBoxWindow.isOpen());
+        mapViewModel.getNpcMatrix().moveNPC(mapTextBoxWindow.isOpen());
 
         if (!_cantMove && (player.canMove() || player.getAutoMovingFlag())) {
             movePlayer();
@@ -403,7 +385,7 @@ public class MapFrame {
         }
 
         if (isFlagTrue(scroll)) {
-            npcMatrix.scrollNPC(scroll);
+            mapViewModel.getNpcMatrix().scrollNPC(scroll);
             scrollBGC(scroll);
         }
 
@@ -494,7 +476,7 @@ public class MapFrame {
     public void checkAfterPosition() {
         player.resetCanMoveDir();
         boolean reCheckFlag = mapBackGroundCellMatrix.checkCellsCollision();
-        int npc_ID = npcMatrix.getNPCCollision();
+        int npc_ID = mapViewModel.getNpcMatrix().getNPCCollision();
 
         if (player.getCanMoveDir()[X_axis] && player.getCanMoveDir()[Y_axis]) {
             if (isColliding(reCheckFlag, npc_ID)) {
@@ -511,7 +493,7 @@ public class MapFrame {
 
         if (npc_ID != -1) {
             //斜めには行けないのはnpcのせい
-            return !npcMatrix.isColliding(npc_ID);//斜めに移動できるからそのまま斜めに移動
+            return !mapViewModel.getNpcMatrix().isColliding(npc_ID);//斜めに移動できるからそのまま斜めに移動
         }
 
         return false;
@@ -608,7 +590,7 @@ public class MapFrame {
     }
 
     public void checkAction() {
-        player.setCanAction(canAction() || npcMatrix.canAction());
+        player.setCanAction(canAction() || mapViewModel.getNpcMatrix().canAction());
     }
 
     public boolean canAction() {
@@ -654,7 +636,7 @@ public class MapFrame {
 
     public void checkNextEvent() {
         if (player.isNextEventFlag()) {
-            new MapEvent(this).nextEvent(npcMatrix.getTalkingNPC());
+            new MapEvent(this).nextEvent(mapViewModel.getNpcMatrix().getTalkingNPC());
         }
     }
 
