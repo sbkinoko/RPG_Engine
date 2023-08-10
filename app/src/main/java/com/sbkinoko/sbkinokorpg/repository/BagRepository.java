@@ -8,7 +8,6 @@ import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 import javax.inject.Inject;
 
 public class BagRepository {
-    private static BagRepository bagRepository;
 
     private final int[][] toolArray;
     private final int arrayLength = new List_Tool().getItemNum();
@@ -20,14 +19,7 @@ public class BagRepository {
 
     private final int INDEX_ITEM_ID = 0;
     private final int INDEX_ITEM_NUM = 1;
-
-    public static void setBagRepository() {
-        bagRepository = new BagRepository();
-    }
-
-    public static BagRepository getBagRepository() {
-        return bagRepository;
-    }
+    
 
     public int[][] getToolArray() {
         return toolArray;
