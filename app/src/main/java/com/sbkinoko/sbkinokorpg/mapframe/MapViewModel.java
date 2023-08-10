@@ -29,11 +29,11 @@ public class MapViewModel {
 
     }
 
-    NPCMatrix getNpcMatrix() {
+    public NPCMatrix getNpcMatrix() {
         return npcMatrix;
     }
 
-    NPC[] getNpcList() {
+    public NPC[] getNpcList() {
         return npcMatrix.getNpcList();
     }
 

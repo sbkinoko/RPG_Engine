@@ -91,6 +91,10 @@ public class MapFrame {
 
     private final MapViewModel mapViewModel;
 
+    public MapViewModel getMapViewModel() {
+        return mapViewModel;
+    }
+
     public MapFrame(Context context,
                     Configuration config, Player player1,
                     int frameWidth, int frameHeight) {
@@ -241,6 +245,12 @@ public class MapFrame {
 
     public int getMapID() {
         return nowMap.getMapID();
+    }
+
+    public void loadFirstMap(int[] roadPoint, float[] relativeCenter) {
+        loadMap(roadPoint);
+        player.setRelativePoint(relativeCenter);
+        mapViewModel.checkNPCPosition();
     }
 
     public void loadMap(int[] loadPoint) {
