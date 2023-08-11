@@ -3,6 +3,7 @@ package com.sbkinoko.sbkinokorpg.mapframe;
 import android.content.Context;
 import android.widget.FrameLayout;
 
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPC;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCMatrix;
@@ -15,6 +16,8 @@ public class MapViewModel {
     private final Context context;
 
     private final NPCMatrix npcMatrix;
+
+    private MapData nowMap;
 
     MapViewModel(Context context,
                  Player player,
@@ -41,9 +44,9 @@ public class MapViewModel {
         npcMatrix.avoidPlayer();
     }
 
-    void resetNPC(NPCData[] npcData,
-                  int[] playerMapPoint) {
+    void resetNPC(int[] playerMapPoint) {
         npcMatrix.remove();
+        NPCData[] npcData = nowMap.getNpcData();
 
         if (npcData == null) {
             return;
@@ -53,5 +56,25 @@ public class MapViewModel {
                 npcData,
                 playerMapPoint
         );
+    }
+
+    public int getMapWidth() {
+        return nowMap.getWidth();
+    }
+
+    public int getMapHeight() {
+        return nowMap.getHeight();
+    }
+
+    public int getMapID() {
+        return nowMap.getMapID();
+    }
+
+    void setNowMap(MapData mapData) {
+        nowMap = mapData;
+    }
+
+    MapData getNowMap() {
+        return nowMap;
     }
 }

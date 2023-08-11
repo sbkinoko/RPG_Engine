@@ -45,7 +45,6 @@ public class MapFrame {
     private final MapBackGroundCellMatrix mapBackGroundCellMatrix;
 
     public Player player;
-    private MapData nowMap;
     public long mapChangeTime;
     public static boolean cantMove;
     private static boolean loopFlag = true;
@@ -143,14 +142,6 @@ public class MapFrame {
         }
     }
 
-    int getMapWidth() {
-        return nowMap.getWidth();
-    }
-
-    int getHeight() {
-        return nowMap.getHeight();
-    }
-
     public MapBackGroundCellMatrix getBgcMatrix() {
         return mapBackGroundCellMatrix;
     }
@@ -243,10 +234,6 @@ public class MapFrame {
         return loopFlag;
     }
 
-    public int getMapID() {
-        return nowMap.getMapID();
-    }
-
     public void loadFirstMap(int[] roadPoint, float[] relativeCenter) {
         loadMap(roadPoint);
         player.setRelativePoint(relativeCenter);
@@ -315,22 +302,24 @@ public class MapFrame {
 
     //todo loadPointクラスを作る
     private void loadBackGround(int[] roadPoint) {
-        this.nowMap = MainGame.mapDataList[roadPoint[2]];
-        mapBackGroundCellMatrix.setNowMap(nowMap);
-        loopFlag = (nowMap instanceof TestField);
+        mapViewModel.setNowMap(MainGame.mapDataList[roadPoint[2]]);
+        mapBackGroundCellMatrix.setNowMap(mapViewModel.getNowMap());
+
+        //fixme mapDataにループの情報を持たせる
+        loopFlag = (mapViewModel.getNowMap() instanceof TestField);
 
         mapBackGroundCellMatrix.roadBackGround(roadPoint[Y_axis], roadPoint[X_axis]);
-
+        
         player.goCenter();
 
         mapChangeTime = System.currentTimeMillis();
 
         mapViewModel.resetNPC(
-                nowMap.getNpcData(),
                 mapBackGroundCellMatrix.getBGC_player_in().getMapPoint()
         );
 
         loadFinishFlag = true;
+
 
     }
 
@@ -347,7 +336,7 @@ public class MapFrame {
     }
 
     public MapData getNowMap() {
-        return nowMap;
+        return mapViewModel.getNowMap();
     }
 
 
@@ -527,7 +516,7 @@ public class MapFrame {
             return;
         }
 
-        if (mapBackGroundCellMatrix.getBGC_player_in().isOutOfMapRange(nowMap)) {
+        if (mapBackGroundCellMatrix.getBGC_player_in().isOutOfMapRange(mapViewModel.getNowMap())) {
             return;//範囲外なのでイベントはない
         }
 
@@ -544,17 +533,17 @@ public class MapFrame {
         int mapX = mapBackGroundCellMatrix.getPlayerMapXY()[X_axis];
         int mapY = mapBackGroundCellMatrix.getPlayerMapXY()[Y_axis];
         if (mapX < 0
-                || nowMap.getMap()[0].length <= mapX
+                || mapViewModel.getNowMap().getMap()[0].length <= mapX
                 || mapY < 0
-                || nowMap.getMap().length <= mapY) {
+                || mapViewModel.getNowMap().getMap().length <= mapY) {
             return;
         }
-        int monsType = nowMap.getMonsType(mapY, mapX);
+        int monsType = mapViewModel.getNowMap().getMonsType(mapY, mapX);
         if (monsType == 0) {
             return;
         }
 
-        int cellType = nowMap.getCellType(mapY, mapX);
+        int cellType = mapViewModel.getNowMap().getCellType(mapY, mapX);
         if (isAppMons(cellType)) {
             startBattle(cellType,
                     monsType,
@@ -583,18 +572,18 @@ public class MapFrame {
     private int[] getAppMonsData(int battleID) {
         int _battleID = battleID - 1;
         int[] appMonsData;
-        if (nowMap.canBeSkyMonster(_battleID)) {
+        if (mapViewModel.getNowMap().canBeSkyMonster(_battleID)) {
             _battleID -= MapData.SKY_MONS;
             if (player.getMoveState() == GameParams.MoveState_Sky) {
-                appMonsData = nowMap.getAppSkyMonster(_battleID).getMonsterIDs();
+                appMonsData = mapViewModel.getNowMap().getAppSkyMonster(_battleID).getMonsterIDs();
             } else {
-                appMonsData = nowMap.getAppGroundMonsterFromSky(_battleID).getMonsterIDs();
+                appMonsData = mapViewModel.getNowMap().getAppGroundMonsterFromSky(_battleID).getMonsterIDs();
             }
         } else {
             if (player.getMoveState() == GameParams.MoveState_Sky) {
                 return null;
             }
-            appMonsData = nowMap.getAppGroundMonster(_battleID).getMonsterIDs();
+            appMonsData = mapViewModel.getNowMap().getAppGroundMonster(_battleID).getMonsterIDs();
         }
         return appMonsData;
     }
