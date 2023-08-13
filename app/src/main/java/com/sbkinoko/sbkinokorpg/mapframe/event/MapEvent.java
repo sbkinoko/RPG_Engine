@@ -219,11 +219,11 @@ public class MapEvent {
 
     private int getDirAxis() {
         switch (player.getDir()) {
-            case GameParams.dir_left://左右を向いている時
-            case GameParams.dir_right:
+            case Left://左右を向いている時
+            case Right:
                 return Y_axis;
-            case GameParams.dir_up://上下を向いている時
-            case GameParams.dir_down:
+            case Up://上下を向いている時
+            case Down:
                 return X_axis;
         }
         throw new RuntimeException();
@@ -259,19 +259,19 @@ public class MapEvent {
     private void getGoal_d(int[] goal, int[] d) {
         int dist = (int) (player.getPlayerSize() * (1 + GameParams.actionOffset));
         switch (player.getDir()) {
-            case GameParams.dir_right:
+            case Right:
                 goal[X_axis] = dist;
                 d[X_axis] = goal[X_axis];
                 break;
-            case GameParams.dir_down:
+            case Down:
                 goal[Y_axis] = dist;
                 d[Y_axis] = goal[Y_axis];
                 break;
-            case GameParams.dir_left:
+            case Left:
                 goal[X_axis] = -dist;
                 d[X_axis] = goal[X_axis];
                 break;
-            case GameParams.dir_up:
+            case Up:
                 goal[Y_axis] = -dist;
                 d[Y_axis] = goal[Y_axis];
                 break;

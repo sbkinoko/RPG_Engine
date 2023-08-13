@@ -16,6 +16,7 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
+import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
@@ -287,41 +288,37 @@ public class Player {
         return collisionPoints[Y_axis][0] + playerSize / 2;
     }
 
-    private int dir = 0;
+    private Dir dir = Dir.Down;
 
     private void setDir() {
         if (v[Y_axis] >= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Y_axis])) {
-            dir = GameParams.dir_down;
+            dir = Dir.Down;
         } else if (v[X_axis] >= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Y_axis])) {
-            dir = GameParams.dir_right;
+            dir = Dir.Right;
         } else if (v[X_axis] <= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Y_axis])) {
-            dir = GameParams.dir_left;
+            dir = Dir.Left;
         } else if (v[X_axis] <= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Y_axis])) {
-            dir = GameParams.dir_up;
+            dir = Dir.Up;
         }
-
-        playerView.setCanAction(OptionConst.collisionDrawFlag && canAction);
-
-        playerView.setActionViewPosition(getActionViewPosition());
     }
 
     int[] getActionViewPosition() {
         int[] touchActionViewPosition = new int[2];
 
         switch (dir) {
-            case GameParams.dir_right:
+            case Right:
                 touchActionViewPosition[X_axis] = points[X_axis][0] + playerSize;
                 touchActionViewPosition[Y_axis] = points[Y_axis][0];
                 break;
-            case GameParams.dir_down:
+            case Down:
                 touchActionViewPosition[X_axis] = points[X_axis][0];
                 touchActionViewPosition[Y_axis] = points[Y_axis][0] + playerSize;
                 break;
-            case GameParams.dir_left:
+            case Left:
                 touchActionViewPosition[X_axis] = points[X_axis][0] - playerSize;
                 touchActionViewPosition[Y_axis] = points[Y_axis][0];
                 break;
-            case GameParams.dir_up:
+            case Up:
                 touchActionViewPosition[X_axis] = points[X_axis][0];
                 touchActionViewPosition[Y_axis] = points[Y_axis][0] - playerSize;
                 break;
@@ -330,7 +327,7 @@ public class Player {
         return touchActionViewPosition;
     }
 
-    public int getDir() {
+    public Dir getDir() {
         return this.dir;
     }
 
@@ -590,9 +587,13 @@ public class Player {
 
     public void changeImage() {
         setDir();
+
+        playerView.setCanAction(OptionConst.collisionDrawFlag && canAction);
+        playerView.setActionViewPosition(getActionViewPosition());
+
         imageType = (imageType + 1) % 2;
         playerView.setImageResourceId(
-                dir,
+                getDir(),
                 imageType
         );
     }
@@ -637,16 +638,16 @@ public class Player {
         double[] offset = {0, 0};
         //主人公の向いてる方向で場合分け
         switch (getDir()) {
-            case GameParams.dir_right:
+            case Right:
                 offset[X_axis] = GameParams.actionOffset;
                 break;
-            case GameParams.dir_down:
+            case Down:
                 offset[Y_axis] = GameParams.actionOffset;
                 break;
-            case GameParams.dir_left:
+            case Left:
                 offset[X_axis] = -GameParams.actionOffset;
                 break;
-            case GameParams.dir_up:
+            case Up:
                 offset[Y_axis] = -GameParams.actionOffset;
                 break;
         }

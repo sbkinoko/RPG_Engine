@@ -24,12 +24,6 @@ public class GameParams {
     public final static float sellRatio = (float) 0.8;
 
     public final static int
-            dir_right = 0,
-            dir_down = 1,
-            dir_left = 2,
-            dir_up = 3;
-
-    public final static int
             whereMap = 0,
             whereBattle = 1;
 

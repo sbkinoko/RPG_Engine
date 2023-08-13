@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
+import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 
@@ -30,7 +31,7 @@ public class PlayerView {
     }
 
     void setImageResourceId(
-            int dir,
+            Dir dir,
             int imageType
     ) {
         imageView.setImageResource(
@@ -70,7 +71,7 @@ public class PlayerView {
                Player.PlayerImageTouchListener playerImageTouchListener) {
         imageView = new ImageView(context);
         int firstImage =
-                playerImageFactory.getPlayerImageResourceId(0, 0);
+                playerImageFactory.getPlayerImageResourceId(Dir.Down, 0);
         imageView.setImageResource(firstImage);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setLayoutParams(new ViewGroup.LayoutParams(

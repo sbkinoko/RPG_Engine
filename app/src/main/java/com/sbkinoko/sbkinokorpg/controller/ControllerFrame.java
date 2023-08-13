@@ -20,6 +20,7 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
@@ -287,7 +288,7 @@ public class ControllerFrame {
     }
 
 
-    int dir = -1;
+    Dir dir = Dir.None;
 
     MotionEvent event_down = MotionEvent.obtain(
             0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0);
@@ -310,62 +311,62 @@ public class ControllerFrame {
         }
 
         switch (checkDir(sin, cos, moveRatio)) {
-            case GameParams.dir_up:
-                if (dir != GameParams.dir_up) {
-                    dir = GameParams.dir_up;
+            case Up:
+                if (dir != Dir.Up) {
+                    dir = Dir.Up;
                     removeRunnable();
                     useBtUp(event_down);
                 }
                 break;
-            case GameParams.dir_down:
-                if (dir != GameParams.dir_down) {
-                    dir = GameParams.dir_down;
+            case Down:
+                if (dir != Dir.Down) {
+                    dir = Dir.Down;
                     removeRunnable();
                     useBtDown(event_down);
                 }
                 break;
-            case GameParams.dir_left:
-                if (dir != GameParams.dir_left) {
-                    dir = GameParams.dir_left;
+            case Left:
+                if (dir != Dir.Left) {
+                    dir = Dir.Left;
                     removeRunnable();
                     useBtLeft(event_down);
                 }
                 break;
-            case GameParams.dir_right:
-                if (dir != GameParams.dir_right) {
-                    dir = GameParams.dir_right;
+            case Right:
+                if (dir != Dir.Right) {
+                    dir = Dir.Right;
                     removeRunnable();
                     useBtRight(event_down);
                 }
                 break;
-            default:
+            case None:
                 removeRunnable();
-                dir = -1;
+                dir = Dir.None;
                 break;
         }
 
     }
 
-    private int checkDir(float sin, float cos, float moveRatio) {
+    private Dir checkDir(float sin, float cos, float moveRatio) {
         float bound = (float) 0.7;
 
         if (moveRatio <= 0.5) {
-            return -1;
+            return Dir.None;
         }
 
         if (cos > bound) {
-            return GameParams.dir_right;
+            return Dir.Right;
         }
         if (cos < -bound) {
-            return GameParams.dir_left;
+            return Dir.Left;
         }
         if (bound < sin) {
-            return GameParams.dir_down;
+            return Dir.Down;
         }
         if (sin < -bound) {
-            return GameParams.dir_up;
+            return Dir.Up;
         }
 
-        return -1;
+        return Dir.None;
     }
 }
