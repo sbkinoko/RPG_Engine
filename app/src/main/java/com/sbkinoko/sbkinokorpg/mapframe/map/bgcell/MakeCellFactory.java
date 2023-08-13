@@ -2,7 +2,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.map.bgcell;
 
 import android.content.Context;
 
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 //todo 一個上のパッケージ
 public class MakeCellFactory {

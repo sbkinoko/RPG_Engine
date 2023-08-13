@@ -14,7 +14,6 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInField;
 import com.sbkinoko.sbkinokorpg.mapframe.MapBackgroundCell;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapChangeDataList;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPC;
@@ -24,6 +23,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventItemGet;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventShopping;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventTalk;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.WindowDetail;
 

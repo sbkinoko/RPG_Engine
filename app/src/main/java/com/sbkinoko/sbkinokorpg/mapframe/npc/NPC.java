@@ -14,10 +14,10 @@ import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionView;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventData;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class NPC {
     private String name;

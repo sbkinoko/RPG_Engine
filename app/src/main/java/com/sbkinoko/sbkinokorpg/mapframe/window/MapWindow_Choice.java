@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.ChoiceData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventChoice;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class MapWindow_Choice extends MapGameWindow {
     Player player;

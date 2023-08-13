@@ -26,7 +26,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.window.window_text.BattleWindow_End;
 import com.sbkinoko.sbkinokorpg.battleframe.window.window_text.BattleWindow_Escape;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.window.GameWindow;
 
 public class BattleFrame {

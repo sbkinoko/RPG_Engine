@@ -1,6 +1,6 @@
 package com.sbkinoko.sbkinokorpg.repository.bagrepository;
 
-import static com.sbkinoko.sbkinokorpg.mapframe.Player.MAX_ITEM_NUM;
+import static com.sbkinoko.sbkinokorpg.mapframe.player.Player.MAX_ITEM_NUM;
 
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;

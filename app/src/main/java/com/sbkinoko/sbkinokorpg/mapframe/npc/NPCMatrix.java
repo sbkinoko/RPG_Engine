@@ -3,9 +3,9 @@ package com.sbkinoko.sbkinokorpg.mapframe.npc;
 import android.content.Context;
 import android.widget.FrameLayout;
 
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionView;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class NPCMatrix {
     private NPC[] npcList;
@@ -161,7 +161,7 @@ public class NPCMatrix {
         if (npcList == null) {
             return;
         }
-        
+
         for (NPC npc : npcList) {
             npc.reDraw();
         }

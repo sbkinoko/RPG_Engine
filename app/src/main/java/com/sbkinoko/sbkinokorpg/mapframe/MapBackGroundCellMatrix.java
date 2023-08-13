@@ -12,6 +12,7 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class MapBackGroundCellMatrix {
 

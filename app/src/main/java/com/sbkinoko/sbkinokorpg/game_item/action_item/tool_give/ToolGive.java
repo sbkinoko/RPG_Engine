@@ -7,8 +7,8 @@ import com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.tool_give_helper
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.tool_give_helper.IToolGiveHelper;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.tool_receive_helper.IToolReceiveHelper;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.tool_receive_helper.ReceiveHelperFactory;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.UseUpInfo;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class ToolGive {
 

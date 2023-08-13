@@ -3,7 +3,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shoppi
 import static com.sbkinoko.sbkinokorpg.mapframe.window.WindowIdList.SELL_TOOL;
 
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class ShoppingToolData extends ShoppingItemData {
 
