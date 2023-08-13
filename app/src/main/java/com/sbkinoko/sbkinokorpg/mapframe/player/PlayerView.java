@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
+import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
@@ -98,5 +99,26 @@ public class PlayerView {
         }
     }
 
+    void setMoveStateImage(int moveState) {
+        getImageView().setBackground(
+                ResourcesCompat.getDrawable(
+                        res,
+                        getImageForMoveState(moveState),
+                        null
+                )
+        );
+    }
+
+    private int getImageForMoveState(int moveState) {
+        switch (moveState) {
+            case GameParams.MoveState_Ground:
+                return R.drawable.character_frame_1;
+            case GameParams.MoveState_Water:
+                return R.drawable.character_frame_2;
+            case GameParams.MoveState_Sky:
+                return R.drawable.character_frame_3;
+        }
+        throw new RuntimeException("moveStateが不適{" + moveState + "}");
+    }
 
 }

@@ -13,12 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.content.res.ResourcesCompat;
-
 import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
-import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
@@ -430,7 +427,7 @@ public class Player {
 
     public void setMoveState(int moveState) {
         this.moveState = moveState;
-        setImageForMoveState();
+        playerView.setMoveStateImage(moveState);
     }
 
     int[] distanceToGoal;
@@ -555,28 +552,6 @@ public class Player {
         return EQP;
     }
 
-
-    private void setImageForMoveState() {
-        playerView.getImageView().setBackground(
-                ResourcesCompat.getDrawable(
-                        res,
-                        getImageForMoveState(),
-                        null
-                )
-        );
-    }
-
-    private int getImageForMoveState() {
-        switch (moveState) {
-            case GameParams.MoveState_Ground:
-                return R.drawable.character_frame_1;
-            case GameParams.MoveState_Water:
-                return R.drawable.character_frame_2;
-            case GameParams.MoveState_Sky:
-                return R.drawable.character_frame_3;
-        }
-        throw new RuntimeException("moveStateが不適{" + moveState + "}");
-    }
 
     private void moveCellPoint() {
         if (!movedFlag) {
