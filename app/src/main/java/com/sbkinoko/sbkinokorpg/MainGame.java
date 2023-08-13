@@ -154,9 +154,7 @@ public class MainGame extends AppCompatActivity {
         LL.addView(controllerFrame.getControllerFL());
         LL.addView(fpsView);
 
-        mapFrame.loadMap(roadPoint);
-        player.setRelativePoint(relativeCenter);
-        mapFrame.checkNPCPosition();
+        mapFrame.loadFirstMap(roadPoint, relativeCenter);
 
         GameParams.setPlayerNum(battleSystem.getPlayerNum());
 
@@ -322,5 +320,5 @@ public class MainGame extends AppCompatActivity {
     public static int getAutoSaveRow() {
         return autoSaveRow;
     }
-    
+
 }

@@ -151,7 +151,7 @@ public class MapEvent {
 
             case MapAction_talk:
                 int npcId = player.getTalkNPC();
-                NPC[] npc = mapFrame.getNpcList();
+                NPC[] npc = mapFrame.getMapViewModel().getNpcList();
                 texts = npc[npcId].getActiveEvent().getTxt();
                 player.setNextEventFlag(npc[npcId].isNextEventFlag());
                 break;

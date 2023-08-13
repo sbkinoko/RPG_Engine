@@ -143,9 +143,9 @@ public class MapBackgroundCell {
 
     private int getMapLength(int axis) {
         if (axis == X_axis) {
-            return mapFrame.getMapWidth();
+            return mapFrame.getMapViewModel().getMapWidth();
         } else {
-            return mapFrame.getHeight();
+            return mapFrame.getMapViewModel().getMapHeight();
         }
     }
 
