@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
+import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 
 public class PlayerView {
 
@@ -33,7 +33,10 @@ public class PlayerView {
             int imageType
     ) {
         imageView.setImageResource(
-                getPlayerImageResourceId(dir, imageType)
+                playerImageFactory.getPlayerImageResourceId(
+                        dir,
+                        imageType
+                )
         );
     }
 
@@ -58,11 +61,15 @@ public class PlayerView {
 
     private final Resources res;
 
+
+    private final PlayerImageFactory playerImageFactory = new PlayerImageFactory();
+
     PlayerView(Context context,
                int playerSize,
-               Player.PlayerImageTouchListener playerImageTouchListener,
-               int firstImage) {
+               Player.PlayerImageTouchListener playerImageTouchListener) {
         imageView = new ImageView(context);
+        int firstImage =
+                playerImageFactory.getPlayerImageResourceId(0, 0);
         imageView.setImageResource(firstImage);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setLayoutParams(new ViewGroup.LayoutParams(
@@ -91,53 +98,5 @@ public class PlayerView {
         }
     }
 
-    private int getPlayerImageResourceId(
-            int dir,
-            int imageType) {
-        int
-                imageDown1 = R.drawable.player_0100,
-                imageDown2 = R.drawable.player_0101,
-                imageUp1 = R.drawable.player_0102,
-                imageUp2 = R.drawable.player_0103,
-                imageLeft1 = R.drawable.player_0104,
-                imageLeft2 = R.drawable.player_0105,
-                imageRight1 = R.drawable.player_0106,
-                imageRight2 = R.drawable.player_0107;
 
-        switch (dir) {
-            case GameParams.dir_right:
-                switch (imageType) {
-                    case 0:
-                        return imageRight1;
-                    case 1:
-                        return imageRight2;
-                }
-                break;
-            case GameParams.dir_down:
-                switch (imageType) {
-                    case 0:
-                        return imageDown1;
-                    case 1:
-                        return imageDown2;
-                }
-                break;
-            case GameParams.dir_left:
-                switch (imageType) {
-                    case 0:
-                        return imageLeft1;
-                    case 1:
-                        return imageLeft2;
-                }
-                break;
-            case GameParams.dir_up:
-                switch (imageType) {
-                    case 0:
-                        return imageUp1;
-                    case 1:
-                        return imageUp2;
-                }
-                break;
-        }
-        throw new RuntimeException("dir{" + dir + "} imageType{" + imageType + "}が正しくありません");
-    }
 }

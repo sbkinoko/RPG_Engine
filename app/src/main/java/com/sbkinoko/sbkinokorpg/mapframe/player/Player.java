@@ -39,9 +39,6 @@ public class Player {
     final double prm1;
     int movedDistSum = 0;
 
-    private final int
-            imageDown1 = R.drawable.player_0100;
-
     private final Resources res;
 
     private final int playerSize;
@@ -94,8 +91,7 @@ public class Player {
 
         playerView = new PlayerView(context,
                 playerSize,
-                new PlayerImageTouchListener(),
-                imageDown1
+                new PlayerImageTouchListener()
         );
 
         res = context.getResources();
@@ -624,7 +620,6 @@ public class Player {
     }
 
     public void changeImage() {
-
         setDir();
         imageType = (imageType + 1) % 2;
         playerView.setImageResourceId(
