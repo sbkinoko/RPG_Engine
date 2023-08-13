@@ -1,17 +1,17 @@
 package com.sbkinoko.sbkinokorpg.mapframe.player.image;
 
-import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 
 public class PlayerImageFactory {
 
     private final IPlayerImage playerImage = new PlayerImage1();
 
     public int getPlayerImageResourceId(
-            int dir,
+            Dir dir,
             int imageType) {
 
         switch (dir) {
-            case GameParams.dir_right:
+            case Right:
                 switch (imageType) {
                     case 0:
                         return playerImage.getImageRight1();
@@ -19,7 +19,7 @@ public class PlayerImageFactory {
                         return playerImage.getImageRight2();
                 }
                 break;
-            case GameParams.dir_down:
+            case Down:
                 switch (imageType) {
                     case 0:
                         return playerImage.getImageDown1();
@@ -27,7 +27,7 @@ public class PlayerImageFactory {
                         return playerImage.getImageDown2();
                 }
                 break;
-            case GameParams.dir_left:
+            case Left:
                 switch (imageType) {
                     case 0:
                         return playerImage.getImageLeft1();
@@ -35,7 +35,7 @@ public class PlayerImageFactory {
                         return playerImage.getImageLeft2();
                 }
                 break;
-            case GameParams.dir_up:
+            case Up:
                 switch (imageType) {
                     case 0:
                         return playerImage.getImageUp1();
