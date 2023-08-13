@@ -26,6 +26,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.TestField;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Choice;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_TextBox;
@@ -309,7 +310,7 @@ public class MapFrame {
         loopFlag = (mapViewModel.getNowMap() instanceof TestField);
 
         mapBackGroundCellMatrix.roadBackGround(roadPoint[Y_axis], roadPoint[X_axis]);
-        
+
         player.goCenter();
 
         mapChangeTime = System.currentTimeMillis();

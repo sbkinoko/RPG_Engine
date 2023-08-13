@@ -4,7 +4,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class Tool extends ActionItem {
 

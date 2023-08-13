@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.item_list;
 
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.StrategyForList;
 
 public abstract class StrategyForBagTool extends StrategyForList {

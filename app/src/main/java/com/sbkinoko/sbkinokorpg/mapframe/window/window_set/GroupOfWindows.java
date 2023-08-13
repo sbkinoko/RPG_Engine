@@ -27,7 +27,7 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Skill;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_TextBox;
 import com.sbkinoko.sbkinokorpg.mapframe.window.WindowIdList;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.amount.WindowAmount;

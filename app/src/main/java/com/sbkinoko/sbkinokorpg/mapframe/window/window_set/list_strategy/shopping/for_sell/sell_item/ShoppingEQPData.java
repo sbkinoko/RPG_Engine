@@ -3,7 +3,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shoppi
 import static com.sbkinoko.sbkinokorpg.mapframe.window.WindowIdList.SELL_EQP;
 
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class ShoppingEQPData extends ShoppingItemData {
     public ShoppingEQPData(Player player) {

@@ -8,7 +8,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.R;
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class WindowMoney extends androidx.appcompat.widget.AppCompatTextView {
     private final Player player;

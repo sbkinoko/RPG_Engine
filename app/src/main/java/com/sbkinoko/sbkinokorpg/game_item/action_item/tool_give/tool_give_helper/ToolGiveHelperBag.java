@@ -1,6 +1,6 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.tool_give_helper;
 
-import com.sbkinoko.sbkinokorpg.mapframe.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public class ToolGiveHelperBag implements IToolGiveHelper {
     private final Player player;
