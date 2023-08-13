@@ -25,8 +25,11 @@ import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
-import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
+import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
 import com.sbkinoko.sbkinokorpg.window.MenuWindowInterface;
+
+import dagger.hilt.EntryPoints;
 
 public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface {
 
@@ -41,6 +44,8 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         };
     }
 
+    private final PlayerToolRepository playerToolRepository;
+
     public MapWindow_Save(Context context, MapFrame mapFrame, Player player) {
         super(context, mapFrame);
 
@@ -48,6 +53,10 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         setMenuTvs();
         setSelectedTv(selectedTV);
         this.player = player;
+
+        MyEntryPoints myEntryPoints = EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class);
+
+        playerToolRepository = myEntryPoints.playerToolRepository();
     }
 
     @Override
@@ -404,8 +413,6 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
             for (int j = 0; j < Status.EQP_NUM; j++) {
                 values.put(MyDataBaseHelper.STATUS_EQP + j, statuses[playerId].getEQP(j));
             }
-            PlayerToolRepository playerToolRepository =
-                    PlayerToolRepository.getPlayerToolRepository();
             for (int toolPos = 0; toolPos < PlayerStatus.canHaveToolNum; toolPos++) {
                 values.put(
                         MyDataBaseHelper.STATUS_ITEM + toolPos,
@@ -477,7 +484,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
     }
 
 
-    public static PlayerStatus[] getStatusData() {
+    public static PlayerStatus[] getStatusData(Context context) {
         statuses = new PlayerStatus[GameParams.PLAYER_NUM];
 
         Cursor cursor;
@@ -497,7 +504,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
 
         for (int playerID = 0; playerID < statuses.length; playerID++) {
 
-            PlayerStatus status = new PlayerStatus("てすとちゃん" + (playerID + 1), playerID);
+            PlayerStatus status = new PlayerStatus("てすとちゃん" + (playerID + 1), playerID, context);
             statuses[playerID] = status;
 
             colID = cursor.getColumnIndex(MyDataBaseHelper.EXP);

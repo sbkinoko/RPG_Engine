@@ -22,7 +22,7 @@ public class UseItemInField {
 
         Status _fromPlayer = groupOfWindows.getFromPlayerStatus();
         if (_fromPlayer == null) {//fromPlayerが袋
-            _fromPlayer = new PlayerStatus("", 0);
+            _fromPlayer = new PlayerStatus("", 0, groupOfWindows.getContext());
         }
         _fromPlayer.setChooseAly(target);
         ActionItem actionItem = groupOfWindows.getActionItem();

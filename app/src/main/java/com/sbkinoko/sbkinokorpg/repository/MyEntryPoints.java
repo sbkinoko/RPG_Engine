@@ -1,6 +1,7 @@
 package com.sbkinoko.sbkinokorpg.repository;
 
 import com.sbkinoko.sbkinokorpg.repository.bagrepository.BagRepository;
+import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
 
 import javax.inject.Singleton;
 
@@ -15,4 +16,7 @@ import dagger.hilt.components.SingletonComponent;
 public interface MyEntryPoints {
     @Singleton
     BagRepository bagRepository();
+
+    @Singleton
+    PlayerToolRepository playerToolRepository();
 }

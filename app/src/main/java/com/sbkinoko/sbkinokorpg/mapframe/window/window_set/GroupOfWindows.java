@@ -48,7 +48,10 @@ import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shoppin
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForEQPTo;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseItem;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseSkill;
-import com.sbkinoko.sbkinokorpg.repository.PlayerToolRepository;
+import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
+
+import dagger.hilt.EntryPoints;
 
 public class GroupOfWindows {
     private WindowDetail windowDetail;
@@ -92,8 +95,17 @@ public class GroupOfWindows {
 
     private final Context context;
 
+    public Context getContext() {
+        return context;
+    }
+
+    private final PlayerToolRepository playerToolRepository;
+
     public GroupOfWindows(Context context) {
         this.context = context;
+        MyEntryPoints myEntryPoints = EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class);
+        playerToolRepository = myEntryPoints.playerToolRepository();
+
     }
 
     public boolean isIdBag() {
@@ -286,8 +298,6 @@ public class GroupOfWindows {
     public boolean isWindowTypeFrom() {
         return WindowIdList.isWindowTypeFrom(windowType);
     }
-
-    PlayerToolRepository playerToolRepository = PlayerToolRepository.getPlayerToolRepository();
 
     public ActionItem getActionItem() {
         if (WindowIdList.isWindowTypeWarp(windowType)) {
