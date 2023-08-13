@@ -6,7 +6,6 @@ import static com.sbkinoko.sbkinokorpg.GameParams.whereBattle;
 import static com.sbkinoko.sbkinokorpg.GameParams.whereMap;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,8 +34,6 @@ public class Player {
     final double cvSize;
     final double prm1;
     int movedDistSum = 0;
-
-    private final Resources res;
 
     private final int playerSize;
 
@@ -90,9 +87,6 @@ public class Player {
                 playerSize,
                 new PlayerImageTouchListener()
         );
-
-        res = context.getResources();
-
 
         this.where = GameParams.whereMap;
 
