@@ -13,6 +13,7 @@ import androidx.core.content.res.ResourcesCompat;
 
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
+import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 
 public class PlayerView {
 
@@ -27,8 +28,16 @@ public class PlayerView {
         imageView.setY(position[Y_axis]);
     }
 
-    void setImageResourceId(int resourceId) {
-        imageView.setImageResource(resourceId);
+    void setImageResourceId(
+            int dir,
+            int imageType
+    ) {
+        imageView.setImageResource(
+                playerImageFactory.getPlayerImageResourceId(
+                        dir,
+                        imageType
+                )
+        );
     }
 
     private final TextView touchActionView;
@@ -52,11 +61,15 @@ public class PlayerView {
 
     private final Resources res;
 
+
+    private final PlayerImageFactory playerImageFactory = new PlayerImageFactory();
+
     PlayerView(Context context,
                int playerSize,
-               Player.PlayerImageTouchListener playerImageTouchListener,
-               int firstImage) {
+               Player.PlayerImageTouchListener playerImageTouchListener) {
         imageView = new ImageView(context);
+        int firstImage =
+                playerImageFactory.getPlayerImageResourceId(0, 0);
         imageView.setImageResource(firstImage);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setLayoutParams(new ViewGroup.LayoutParams(
@@ -84,4 +97,6 @@ public class PlayerView {
             imageView.setBackground(null);
         }
     }
+
+
 }

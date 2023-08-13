@@ -39,9 +39,6 @@ public class Player {
     final double prm1;
     int movedDistSum = 0;
 
-    private final int
-            imageDown1 = R.drawable.player_0100;
-
     private final Resources res;
 
     private final int playerSize;
@@ -94,8 +91,7 @@ public class Player {
 
         playerView = new PlayerView(context,
                 playerSize,
-                new PlayerImageTouchListener(),
-                imageDown1
+                new PlayerImageTouchListener()
         );
 
         res = context.getResources();
@@ -624,62 +620,14 @@ public class Player {
     }
 
     public void changeImage() {
-
         setDir();
-        playerView.setImageResourceId(
-                getPlayerImageResourceId()
-        );
-
         imageType = (imageType + 1) % 2;
-
+        playerView.setImageResourceId(
+                dir,
+                imageType
+        );
     }
 
-    private int getPlayerImageResourceId() {
-        int
-                imageDown2 = R.drawable.player_0101,
-                imageUp1 = R.drawable.player_0102,
-                imageUp2 = R.drawable.player_0103,
-                imageLeft1 = R.drawable.player_0104,
-                imageLeft2 = R.drawable.player_0105,
-                imageRight1 = R.drawable.player_0106,
-                imageRight2 = R.drawable.player_0107;
-
-        switch (dir) {
-            case GameParams.dir_right:
-                switch (imageType) {
-                    case 0:
-                        return imageRight1;
-                    case 1:
-                        return imageRight2;
-                }
-                break;
-            case GameParams.dir_down:
-                switch (imageType) {
-                    case 0:
-                        return imageDown1;
-                    case 1:
-                        return imageDown2;
-                }
-                break;
-            case GameParams.dir_left:
-                switch (imageType) {
-                    case 0:
-                        return imageLeft1;
-                    case 1:
-                        return imageLeft2;
-                }
-                break;
-            case GameParams.dir_up:
-                switch (imageType) {
-                    case 0:
-                        return imageUp1;
-                    case 1:
-                        return imageUp2;
-                }
-                break;
-        }
-        throw new RuntimeException("dir{" + dir + "} imageType{" + imageType + "}が正しくありません");
-    }
 
     private final int[]
             BGC = new int[2],
