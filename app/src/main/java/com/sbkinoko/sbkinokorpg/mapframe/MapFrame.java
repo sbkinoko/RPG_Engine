@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.Y_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -16,12 +16,12 @@ import android.widget.Toast;
 
 import androidx.core.content.res.ResourcesCompat;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;

@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.bgcell;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.R;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 class MakeCell_Cloud extends MakeCell {
     @Override

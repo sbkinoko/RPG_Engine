@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapGameWindow;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;

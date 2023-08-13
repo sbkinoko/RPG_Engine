@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class BattleWindow_TOP extends Window_ChooseTarget {
     boolean allSelectFlag = false;

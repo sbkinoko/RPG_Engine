@@ -1,12 +1,12 @@
 package com.sbkinoko.sbkinokorpg.dataList.item;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_ATK;
-import static com.sbkinoko.sbkinokorpg.GameParams.canInBattle;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_ATK;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.canInBattle;
 
+import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATK;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATKData;
-import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 
 public class List_NormalATK extends List_Item {
     static private final N_ATKData[] normalATKDataList = {

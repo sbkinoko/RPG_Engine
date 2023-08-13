@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.collisionview;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.Y_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData.objectHeight_Non;
 
 import android.content.Context;
@@ -10,10 +10,10 @@ import android.graphics.Paint;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;

@@ -1,9 +1,9 @@
 package com.sbkinoko.sbkinokorpg.mapframe.player;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.Y_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.whereBattle;
-import static com.sbkinoko.sbkinokorpg.GameParams.whereMap;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.whereBattle;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.whereMap;
 
 import android.content.Context;
 import android.util.Log;
@@ -12,11 +12,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;

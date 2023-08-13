@@ -1,21 +1,21 @@
 package com.sbkinoko.sbkinokorpg.dataList.item;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_ATK;
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_BUFF;
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_CONDITION;
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_CONTINUE_ATK;
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_ESCAPE;
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_HEAL;
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_REVIVE;
-import static com.sbkinoko.sbkinokorpg.GameParams.EFFECT_TYPE_STEEL;
-import static com.sbkinoko.sbkinokorpg.GameParams.STATUS_ATK;
-import static com.sbkinoko.sbkinokorpg.GameParams.canInBattle;
-import static com.sbkinoko.sbkinokorpg.GameParams.canInBoth;
-import static com.sbkinoko.sbkinokorpg.GameParams.canInField;
-import static com.sbkinoko.sbkinokorpg.GameParams.canNotInBoth;
 import static com.sbkinoko.sbkinokorpg.battleframe.BattleConst.maxMonsNum;
 import static com.sbkinoko.sbkinokorpg.battleframe.condition.ConditionData.CON_PARALYZE;
 import static com.sbkinoko.sbkinokorpg.battleframe.condition.ConditionData.CON_POISON;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_ATK;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_BUFF;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_CONDITION;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_CONTINUE_ATK;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_ESCAPE;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_HEAL;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_REVIVE;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.EFFECT_TYPE_STEEL;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.STATUS_ATK;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.canInBattle;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.canInBoth;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.canInField;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.canNotInBoth;
 
 import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.condition.ConditionData;

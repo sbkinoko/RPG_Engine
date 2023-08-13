@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public abstract class GameWindow implements MenuWindowInterface {
 

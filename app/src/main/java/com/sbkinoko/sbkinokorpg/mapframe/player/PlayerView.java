@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.player;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.Y_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 
 public class PlayerView {

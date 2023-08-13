@@ -1,6 +1,6 @@
 package com.sbkinoko.sbkinokorpg;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.playerSize;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.playerSize;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -20,6 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleFrame;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;

@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.OptionConst;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class ArrowButton {
 

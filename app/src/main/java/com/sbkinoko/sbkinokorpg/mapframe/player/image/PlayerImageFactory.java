@@ -1,6 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe.player.image;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class PlayerImageFactory {
 

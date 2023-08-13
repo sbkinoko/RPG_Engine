@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.npc;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.Y_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveData;
