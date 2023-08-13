@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.skill;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.WarpItemData;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.window.WindowIdList;
 
 public class WarpSkillData extends SkillData implements WarpItemData {

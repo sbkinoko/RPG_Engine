@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.battleframe.condition.ConditionData;
 import com.sbkinoko.sbkinokorpg.battleframe.condition.DefaultCondition;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class StatusConditionWindow extends BattleGameWindow {
     int maxPageNum = 1;

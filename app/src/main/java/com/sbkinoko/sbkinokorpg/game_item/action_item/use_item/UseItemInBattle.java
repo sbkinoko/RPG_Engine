@@ -1,6 +1,5 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.use_item;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.condition.ConditionData;
 import com.sbkinoko.sbkinokorpg.battleframe.status.MonsterStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
@@ -8,6 +7,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ConditionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 import java.util.Random;
 

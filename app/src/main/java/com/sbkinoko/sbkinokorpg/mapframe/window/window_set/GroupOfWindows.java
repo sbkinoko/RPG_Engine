@@ -19,13 +19,13 @@ import static com.sbkinoko.sbkinokorpg.mapframe.window.WindowIdList.SELL_TOOL;
 
 import android.content.Context;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Item;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Skill;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_TextBox;

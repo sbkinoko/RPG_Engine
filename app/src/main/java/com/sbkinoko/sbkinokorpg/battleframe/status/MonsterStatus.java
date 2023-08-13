@@ -7,7 +7,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleFrame;
 import com.sbkinoko.sbkinokorpg.battleframe.condition.Escape;
@@ -23,6 +22,7 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Skill;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.nonaction.NonAction;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 
 import java.util.ArrayList;

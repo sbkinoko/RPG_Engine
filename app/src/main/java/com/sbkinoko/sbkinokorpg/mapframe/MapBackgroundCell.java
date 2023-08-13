@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.Y_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -9,8 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionView;
 import com.sbkinoko.sbkinokorpg.mapframe.event.AutoActionList;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;

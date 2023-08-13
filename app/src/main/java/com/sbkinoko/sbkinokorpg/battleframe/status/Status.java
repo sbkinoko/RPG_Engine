@@ -1,6 +1,5 @@
 package com.sbkinoko.sbkinokorpg.battleframe.status;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.condition.DefaultCondition;
 import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.ATK;
@@ -13,6 +12,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.resistance.ResistanceList;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATK;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public abstract class Status {
     HP hp;

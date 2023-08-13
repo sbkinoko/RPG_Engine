@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
@@ -17,6 +16,7 @@ import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.ToolGive;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInField;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.UseUpInfo;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;

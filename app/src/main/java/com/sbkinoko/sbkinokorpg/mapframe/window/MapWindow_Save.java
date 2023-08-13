@@ -1,9 +1,9 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window;
 
-import static com.sbkinoko.sbkinokorpg.GameParams.MoveState_Ground;
-import static com.sbkinoko.sbkinokorpg.GameParams.PLAYER_NUM;
-import static com.sbkinoko.sbkinokorpg.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.GameParams.Y_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.MoveState_Ground;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.PLAYER_NUM;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.MyDataBaseHelper;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
@@ -22,6 +21,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;

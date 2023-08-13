@@ -1,14 +1,14 @@
 package com.sbkinoko.sbkinokorpg.repository.playertool;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class PlayerToolRepositoryImpl implements PlayerToolRepository {
 
     private final int[][] playersItemList =
             new int[GameParams.PLAYER_NUM][PlayerStatus.canHaveToolNum];
-    
+
 
     public int[] getAllItem(int playerId) {
         //同じものを参照して上書きする可能性を排除するためコピーを返却

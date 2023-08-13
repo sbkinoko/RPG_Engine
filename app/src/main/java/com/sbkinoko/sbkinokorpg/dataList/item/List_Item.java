@@ -1,8 +1,8 @@
 package com.sbkinoko.sbkinokorpg.dataList.item;
 
-import com.sbkinoko.sbkinokorpg.GameParams;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItemData;
+import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public abstract class List_Item {
     ActionItemData[] dataList;
