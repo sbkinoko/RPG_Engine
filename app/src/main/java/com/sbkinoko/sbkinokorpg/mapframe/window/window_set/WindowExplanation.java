@@ -248,7 +248,7 @@ public class WindowExplanation extends MapGameWindow {
                 //フィールドで使えるならばターゲットの数によって今後の動作を変更する
                 ActionItem actionItem = groupOfWindows.getActionItem();
 
-                if (UseItemInField.canUseInField(actionItem)) {
+                if (actionItem.getWhereCanUse().canUseInField()) {
                     useItem();
                 } else {
                     mapFrame.getMapTextBoxWindow().canNotUse();

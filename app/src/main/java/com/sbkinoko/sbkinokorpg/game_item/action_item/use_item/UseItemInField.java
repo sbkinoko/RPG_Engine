@@ -1,11 +1,15 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.use_item;
 
+import static com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse.canInEither;
+import static com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse.canInField;
+
 import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;
 
@@ -48,13 +52,6 @@ public class UseItemInField {
                 groupOfWindows.getPlayer(),
                 false,
                 groupOfWindows.getSelectedItemPosition());
-    }
-
-    public static boolean canUseInField(ActionItem actionItem) {
-        int whereCanUse = actionItem.getWhereCanUse();
-
-        return whereCanUse == GameParams.canInBoth ||//フィールドとバトルで使える
-                whereCanUse == GameParams.canInField;//フィールドで使える
     }
 
     static public boolean canHaveTargetInField(int effectType) {

@@ -2,6 +2,7 @@ package com.sbkinoko.sbkinokorpg.game_item.action_item.item;
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.GameItem;
+import com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public abstract class ActionItem implements GameItem {
@@ -13,7 +14,7 @@ public abstract class ActionItem implements GameItem {
 
     public abstract int getActionType();
 
-    public int getWhereCanUse() {
+    public WhereCanUse getWhereCanUse() {
         return actionItemData.getWhereCanUse();
     }
 
