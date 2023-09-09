@@ -1,11 +1,14 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.use_item;
 
+import static com.sbkinoko.sbkinokorpg.gameparams.EffectType.EFFECT_TYPE_HEAL;
+import static com.sbkinoko.sbkinokorpg.gameparams.EffectType.EFFECT_TYPE_REVIVE;
+
 import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
-import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;
 
@@ -27,7 +30,7 @@ public class UseItemInField {
         _fromPlayer.setChooseAly(target);
         ActionItem actionItem = groupOfWindows.getActionItem();
 
-        int itemEffectType = actionItem.getEffect();
+        EffectType itemEffectType = actionItem.getEffect();
 
         //回復アイテムだったので回復を呼び出し
         if (canHaveTargetInField(itemEffectType)) {
@@ -37,7 +40,7 @@ public class UseItemInField {
                     actionItem);
         } else {
             switch (itemEffectType) {
-                case GameParams.EFFECT_TYPE_MOVE:
+                case EFFECT_TYPE_MOVE:
                     mapEvent.goSky();
                     break;
             }
@@ -50,9 +53,9 @@ public class UseItemInField {
                 groupOfWindows.getSelectedItemPosition());
     }
 
-    static public boolean canHaveTargetInField(int effectType) {
-        return effectType == GameParams.EFFECT_TYPE_REVIVE
-                || effectType == GameParams.EFFECT_TYPE_HEAL;
+    static public boolean canHaveTargetInField(EffectType effectType) {
+        return effectType == EFFECT_TYPE_REVIVE
+                || effectType == EFFECT_TYPE_HEAL;
     }
 
     public static int[] getTarget(ActionItem actionItem) {

@@ -12,11 +12,12 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class BattleWindow_TOP extends Window_ChooseTarget {
     boolean allSelectFlag = false;
-    int effectType = 0;
+    EffectType effectType = EffectType.EFFECT_TYPE_NULL;
     int LINE_NUM = 4;
     int[] target = {0};
 
@@ -138,7 +139,7 @@ public class BattleWindow_TOP extends Window_ChooseTarget {
         }
     }
 
-    public void openMenu(int[] subject, int effectType) {
+    public void openMenu(int[] subject, EffectType effectType) {
         this.isOpen = true;
         this.effectType = effectType;
         if (subject.length == 1) {

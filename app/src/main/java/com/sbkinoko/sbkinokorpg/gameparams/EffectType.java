@@ -1,0 +1,16 @@
+package com.sbkinoko.sbkinokorpg.gameparams;
+
+public enum EffectType {
+    EFFECT_TYPE_NULL,
+    EFFECT_TYPE_ATK,
+    EFFECT_TYPE_HEAL,
+    EFFECT_TYPE_MOVE,
+    EFFECT_TYPE_CONDITION,
+    EFFECT_TYPE_REVIVE,
+    EFFECT_TYPE_BUFF,
+    EFFECT_TYPE_ESCAPE,
+    EFFECT_TYPE_CONTINUE_ATK,
+    EFFECT_TYPE_WARP,
+    EFFECT_TYPE_STEEL;
+
+}

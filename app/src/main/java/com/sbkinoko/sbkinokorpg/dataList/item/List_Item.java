@@ -2,6 +2,7 @@ package com.sbkinoko.sbkinokorpg.dataList.item;
 
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItemData;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 
 public abstract class List_Item {
     ActionItemData[] dataList;
@@ -33,9 +34,9 @@ public abstract class List_Item {
         return dataList[itemID].getWhereCanUse().canUseInBattle();
     }
 
-    public int getEffect(int itemID) {
+    public EffectType getEffect(int itemID) {
         if (isDataNull()) {
-            return 0;
+            return EffectType.EFFECT_TYPE_NULL;
         }
         return dataList[itemID].getEffect();
     }

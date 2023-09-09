@@ -1,11 +1,11 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.item;
 
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse;
 
 public class ActionItemData {
 
     private final int
-            effect,
             targetNum,
             attribute,
             power;
@@ -13,9 +13,11 @@ public class ActionItemData {
     private final WhereCanUse
             whereCanUse;
 
+    private final EffectType effect;
+
     private final String name;
 
-    public ActionItemData(String name, WhereCanUse where, int effect, int attribute, int power,
+    public ActionItemData(String name, WhereCanUse where, EffectType effect, int attribute, int power,
                           int targetNum) {
         this.name = name;
         this.whereCanUse = where;
@@ -29,7 +31,7 @@ public class ActionItemData {
         return whereCanUse;
     }
 
-    public int getEffect() {
+    public EffectType getEffect() {
         return effect;
     }
 

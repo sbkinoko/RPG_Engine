@@ -2,6 +2,7 @@ package com.sbkinoko.sbkinokorpg.game_item.action_item.skill;
 
 import com.sbkinoko.sbkinokorpg.battleframe.condition.ConditionData;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ConditionItemData;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse;
 import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 
@@ -9,7 +10,7 @@ public class ConditionSkillData extends SkillData implements ConditionItemData {
     ConditionData conditionData;
     ArrayToProb arrayToProb;
 
-    public ConditionSkillData(String name, WhereCanUse where, int effect, ConditionData condition,
+    public ConditionSkillData(String name, WhereCanUse where, EffectType effect, ConditionData condition,
                               ArrayToProb arrayToProb,
                               int targetNum, int MP) {
         super(name, where, effect, 0, 0, targetNum, MP);

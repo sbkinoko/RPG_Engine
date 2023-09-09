@@ -11,6 +11,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
@@ -409,12 +410,12 @@ public class BattleSystem {
     }
 
     private boolean isSuccessiveItem(Status nowStatus) {
-        return nowStatus.getActionItem().getEffect() == GameParams.EFFECT_TYPE_CONTINUE_ATK;
+        return nowStatus.getActionItem().getEffect() == EffectType.EFFECT_TYPE_CONTINUE_ATK;
     }
 
     private boolean isSteelItem(Status nowStatus) {
         return nowStatus.getActionItem().getEffect()
-                == GameParams.EFFECT_TYPE_STEEL;
+                == EffectType.EFFECT_TYPE_STEEL;
     }
 
     boolean skipATKStep = false;
