@@ -22,6 +22,8 @@ import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
+import com.sbkinoko.sbkinokorpg.gameparams.MoveStateInt;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
@@ -513,7 +515,7 @@ public class MapFrame {
             return;
         }
 
-        if (player.getMoveState() == GameParams.MoveState_Sky) {
+        if (player.getMoveState() == MoveState.MoveState_Sky) {
             return;
         }
 
@@ -575,13 +577,13 @@ public class MapFrame {
         int[] appMonsData;
         if (mapViewModel.getNowMap().canBeSkyMonster(_battleID)) {
             _battleID -= MapData.SKY_MONS;
-            if (player.getMoveState() == GameParams.MoveState_Sky) {
+            if (player.getMoveState() == MoveState.MoveState_Sky) {
                 appMonsData = mapViewModel.getNowMap().getAppSkyMonster(_battleID).getMonsterIDs();
             } else {
                 appMonsData = mapViewModel.getNowMap().getAppGroundMonsterFromSky(_battleID).getMonsterIDs();
             }
         } else {
-            if (player.getMoveState() == GameParams.MoveState_Sky) {
+            if (player.getMoveState() == MoveState.MoveState_Sky) {
                 return null;
             }
             appMonsData = mapViewModel.getNowMap().getAppGroundMonster(_battleID).getMonsterIDs();
@@ -673,7 +675,7 @@ public class MapFrame {
                         player.setCanMove(false);
                         break;
                     case GameParams.ID_btB:
-                        if (player.getMoveState() == GameParams.MoveState_Sky) {
+                        if (player.getMoveState() == MoveState.MoveState_Sky) {
                             new MapEvent(this).goGround();
                         }
                         break;

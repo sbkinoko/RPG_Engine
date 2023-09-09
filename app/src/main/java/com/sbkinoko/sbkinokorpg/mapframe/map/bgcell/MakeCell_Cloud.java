@@ -2,6 +2,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.map.bgcell;
 
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 
 class MakeCell_Cloud extends MakeCell {
     @Override
@@ -11,7 +12,7 @@ class MakeCell_Cloud extends MakeCell {
 
     @Override
     public int[] getObjectImg() {
-        if (player.getMoveState() == GameParams.MoveState_Sky) {
+        if (player.getMoveState() == MoveState.MoveState_Sky) {
             return new int[]{R.drawable.ob_50};
         }
         return new int[]{0};

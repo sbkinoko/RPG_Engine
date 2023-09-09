@@ -1,6 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.MoveState_Ground;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.PLAYER_NUM;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
@@ -22,6 +21,7 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
@@ -114,7 +114,9 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         returnData[2] = cursor.getInt(colID);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.MOVE_STATE);
-        player.setMoveState(cursor.getInt(colID));
+        int intMoveState = cursor.getInt(colID);
+        MoveState moveState = MoveState.convertIntToMoveState(intMoveState);
+        player.setMoveState(moveState);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.MONEY);
         player.setMoney(cursor.getInt(colID));
@@ -194,7 +196,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         values.put(MyDataBaseHelper.PLAYER_Y, playerY);
         values.put(MyDataBaseHelper.MAP_NUMBER, GameParams.startMap);
         values.put(MyDataBaseHelper.MONEY, 1000);
-        values.put(MyDataBaseHelper.MOVE_STATE, MoveState_Ground);
+        values.put(MyDataBaseHelper.MOVE_STATE, MoveState.MoveState_Ground.getMoveStateInt());
         values.put(MyDataBaseHelper.UPDATE_TIME, System.currentTimeMillis());
 
         for (int i = 0; i < MapData.eventFlagNum; i++) {
@@ -352,7 +354,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         values.put(MyDataBaseHelper.PLAYER_Y, playerY);
         values.put(MyDataBaseHelper.MAP_NUMBER, mapNumber);
         values.put(MyDataBaseHelper.MONEY, player.getMoney());
-        values.put(MyDataBaseHelper.MOVE_STATE, player.getMoveState());
+        values.put(MyDataBaseHelper.MOVE_STATE, player.getMoveState().getMoveStateInt());
         values.put(MyDataBaseHelper.UPDATE_TIME, System.currentTimeMillis());
 
         for (int i = 0; i < MapData.eventFlagNum; i++) {

@@ -58,12 +58,6 @@ public class GameParams {
 
     public static int PLAYER_NUM = 2;//編成変更時
 
-
-    public final static int
-            MoveState_Water = 1,
-            MoveState_Ground = 2,
-            MoveState_Sky = 3;
-
     public static final int
             STATUS_ATK = 1;
 

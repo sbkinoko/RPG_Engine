@@ -14,6 +14,7 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
@@ -202,12 +203,13 @@ public class CollisionView extends View {
             return true;
         }
 
-        if (player.getMoveState() == GameParams.MoveState_Sky) {
+        if (player.getMoveState() == MoveState.MoveState_Sky) {
             //空を飛んでいるので衝突しない
             return false;
         }
         //同じ高さじゃなかったら衝突
-        return player.getMoveState() != objectHeight;
+        //todo objectHeightのenum化
+        return player.getMoveState().getMoveStateInt() != objectHeight;
     }
 
     private boolean checkCross(double x1, double x2, double y1, double y2) {
