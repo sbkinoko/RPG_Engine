@@ -7,6 +7,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ConditionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 import java.util.Random;
@@ -16,12 +17,12 @@ public class UseItemInBattle {
     /**
      * @return 戦闘中に敵を選べればtrueを返す
      */
-    public static boolean canSelectEnm(int actionEffectType) {
+    public static boolean canSelectEnm(EffectType actionEffectType) {
         switch (actionEffectType) {
-            case GameParams.EFFECT_TYPE_ATK:
-            case GameParams.EFFECT_TYPE_CONDITION:
-            case GameParams.EFFECT_TYPE_CONTINUE_ATK:
-            case GameParams.EFFECT_TYPE_STEEL:
+            case EFFECT_TYPE_ATK:
+            case EFFECT_TYPE_CONDITION:
+            case EFFECT_TYPE_CONTINUE_ATK:
+            case EFFECT_TYPE_STEEL:
                 return true;
             default:
                 return false;
@@ -51,15 +52,15 @@ public class UseItemInBattle {
         if (UseItem.isTargetAly(nowPlayer.getEffectType())) {
             nowPlayer.correctChooseAly(allies);
             switch (actionItem.getEffect()) {
-                case GameParams.EFFECT_TYPE_HEAL://味方のHPを増やす
-                case GameParams.EFFECT_TYPE_REVIVE:
+                case EFFECT_TYPE_HEAL://味方のHPを増やす
+                case EFFECT_TYPE_REVIVE:
                     UseItem.doCure(nowPlayer,
                             nowPlayer.getChooseAly(),
                             allies,
                             actionItem);
                     break;
 
-                case GameParams.EFFECT_TYPE_BUFF:
+                case EFFECT_TYPE_BUFF:
                     giveBuff(allies, nowPlayer.getChooseAly(), actionItem);
                     break;
             }
@@ -93,20 +94,21 @@ public class UseItemInBattle {
                 break;
             }
 
+            //　todo 理想はここで分岐をせずにenumにメソッドを持たせて処理すること
             switch (status1.getActionItem().getEffect()) {
-                case GameParams.EFFECT_TYPE_ATK://敵を対象として行う行動
+                case EFFECT_TYPE_ATK://敵を対象として行う行動
                     damageCal(status1, enemies[chooseID]);
                     break;
-                case GameParams.EFFECT_TYPE_CONDITION:
+                case EFFECT_TYPE_CONDITION:
                     changeCondition(status1, enemies[chooseID]);
                     break;
-                case GameParams.EFFECT_TYPE_CONTINUE_ATK://敵を対象として行う行動
+                case EFFECT_TYPE_CONTINUE_ATK://敵を対象として行う行動
                     //todo 全体攻撃を複数回やる時の処理
                     Status enemy =
                             ((SuccessiveItem) status1.getActionItem()).getTarget(enemies, chooseID);
                     damageCal(status1, enemy);
                     return;
-                case GameParams.EFFECT_TYPE_STEEL:
+                case EFFECT_TYPE_STEEL:
                     steelItem((PlayerStatus) status1, (MonsterStatus) enemies[chooseID]);
                     break;
             }

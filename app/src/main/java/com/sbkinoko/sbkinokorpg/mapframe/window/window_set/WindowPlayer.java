@@ -16,6 +16,7 @@ import com.sbkinoko.sbkinokorpg.game_item.action_item.tool.LastItemUseUpDate;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.tool_give.ToolGive;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInField;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.UseUpInfo;
@@ -101,7 +102,7 @@ public class WindowPlayer extends MapGameWindow implements MenuWindowInterface {
     public void useItem(int[] selectedPlayer) {
         //使用後にプレイヤー以外を選択する場合
         if (groupOfWindows.getActionItem().getEffect()
-                == GameParams.EFFECT_TYPE_WARP) {
+                == EffectType.EFFECT_TYPE_WARP) {
             new MapEvent(mapFrame).openWarpMenu();
             return;
         }

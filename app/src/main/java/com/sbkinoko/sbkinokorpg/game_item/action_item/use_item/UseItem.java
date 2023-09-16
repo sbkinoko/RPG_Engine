@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class UseItem {
@@ -25,8 +26,8 @@ public class UseItem {
                 break;
             }
             switch (actionItem.getEffect()) {
-                case GameParams.EFFECT_TYPE_HEAL://味方のHPを増やす
-                case GameParams.EFFECT_TYPE_REVIVE:
+                case EFFECT_TYPE_HEAL://味方のHPを増やす
+                case EFFECT_TYPE_REVIVE:
                     incHP(fromPlayer, allies[chooseID], actionItem);
                     break;
             }
@@ -52,13 +53,13 @@ public class UseItem {
     /**
      * その味方を選択できるかどうか
      */
-    static public boolean canSelectALY(int effectType,
+    static public boolean canSelectALY(EffectType effectType,
                                        Status status) {
         switch (effectType) {
-            case GameParams.EFFECT_TYPE_HEAL:
-            case GameParams.EFFECT_TYPE_BUFF:
+            case EFFECT_TYPE_HEAL:
+            case EFFECT_TYPE_BUFF:
                 return status.isAlive();
-            case GameParams.EFFECT_TYPE_REVIVE:
+            case EFFECT_TYPE_REVIVE:
                 return status.canRevive();
         }
         return false;
@@ -67,11 +68,11 @@ public class UseItem {
     /**
      * 特技が味方を対象にとるかどうか
      */
-    public static boolean isTargetAly(int actionEffectType) {
+    public static boolean isTargetAly(EffectType actionEffectType) {
         switch (actionEffectType) {
-            case GameParams.EFFECT_TYPE_HEAL:
-            case GameParams.EFFECT_TYPE_BUFF:
-            case GameParams.EFFECT_TYPE_REVIVE:
+            case EFFECT_TYPE_HEAL:
+            case EFFECT_TYPE_BUFF:
+            case EFFECT_TYPE_REVIVE:
                 return true;
         }
         return false;

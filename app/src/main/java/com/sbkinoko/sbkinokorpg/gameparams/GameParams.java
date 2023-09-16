@@ -34,19 +34,6 @@ public class GameParams {
 
     public final static int MONS_APP_DIST = 1;
 
-    public final static int
-
-            EFFECT_TYPE_ATK = 1,
-            EFFECT_TYPE_HEAL = 3,
-            EFFECT_TYPE_MOVE = 4,
-            EFFECT_TYPE_CONDITION = 5,
-            EFFECT_TYPE_REVIVE = 6,
-            EFFECT_TYPE_BUFF = 7,
-            EFFECT_TYPE_ESCAPE = 8,
-            EFFECT_TYPE_CONTINUE_ATK = 9,
-            EFFECT_TYPE_WARP = 10,
-            EFFECT_TYPE_STEEL = 11;
-
 
     public final static int
             startY = 5,

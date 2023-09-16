@@ -12,6 +12,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.resistance.ResistanceList;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATK;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItem;
+import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public abstract class Status {
@@ -170,7 +171,7 @@ public abstract class Status {
         return actionItem.getActionType() == BattleConst.Action_NON;
     }
 
-    public int getEffectType() {
+    public EffectType getEffectType() {
         return actionItem.getEffect();
     }
 
@@ -207,7 +208,7 @@ public abstract class Status {
     }
 
     public void correctChooseAly(Status[] allies) {
-        int effectType = getEffectType();
+        EffectType effectType = getEffectType();
         for (int i = 0; i < chooseAly.length; i++) {
             while (!UseItem.canSelectALY(effectType, allies[chooseAly[i]])) {
                 for (int j = i; j < chooseAly.length; j++) {
