@@ -50,13 +50,6 @@ public class UseItemInField {
                 groupOfWindows.getSelectedItemPosition());
     }
 
-    public static boolean canUseInField(ActionItem actionItem) {
-        int whereCanUse = actionItem.getWhereCanUse();
-
-        return whereCanUse == GameParams.canInBoth ||//フィールドとバトルで使える
-                whereCanUse == GameParams.canInField;//フィールドで使える
-    }
-
     static public boolean canHaveTargetInField(int effectType) {
         return effectType == GameParams.EFFECT_TYPE_REVIVE
                 || effectType == GameParams.EFFECT_TYPE_HEAL;

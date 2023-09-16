@@ -1,17 +1,21 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.item;
 
+import com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse;
+
 public class ActionItemData {
 
     private final int
-            whereCanUse,
             effect,
             targetNum,
             attribute,
             power;
 
+    private final WhereCanUse
+            whereCanUse;
+
     private final String name;
 
-    public ActionItemData(String name, int where, int effect, int attribute, int power,
+    public ActionItemData(String name, WhereCanUse where, int effect, int attribute, int power,
                           int targetNum) {
         this.name = name;
         this.whereCanUse = where;
@@ -21,7 +25,7 @@ public class ActionItemData {
         this.targetNum = targetNum;
     }
 
-    public int getWhereCanUse() {
+    public WhereCanUse getWhereCanUse() {
         return whereCanUse;
     }
 

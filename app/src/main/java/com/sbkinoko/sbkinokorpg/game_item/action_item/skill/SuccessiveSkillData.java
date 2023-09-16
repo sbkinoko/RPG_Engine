@@ -1,13 +1,14 @@
 package com.sbkinoko.sbkinokorpg.game_item.action_item.skill;
 
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItemData;
+import com.sbkinoko.sbkinokorpg.gameparams.WhereCanUse;
 import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 
 public class SuccessiveSkillData extends SkillData implements SuccessiveItemData {
     ArrayToProb arrayToProb;
     boolean isStoppable;
 
-    public SuccessiveSkillData(String name, int where, int effect,
+    public SuccessiveSkillData(String name, WhereCanUse where, int effect,
                                int attribute, int power,
                                int targetNum, int MP,
                                boolean stoppable, ArrayToProb arrayToProb) {

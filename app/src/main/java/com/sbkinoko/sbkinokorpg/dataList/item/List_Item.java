@@ -2,7 +2,6 @@ package com.sbkinoko.sbkinokorpg.dataList.item;
 
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItemData;
-import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public abstract class List_Item {
     ActionItemData[] dataList;
@@ -25,18 +24,13 @@ public abstract class List_Item {
 
     abstract public ActionItem getItemAt(int index);
 
-    public int getWhereCanUse(int itemID) {
-        if (isDataNull()) {
-            return 0;
-        }
-
-        return dataList[itemID].getWhereCanUse();
-    }
 
     public boolean canUseInBattle(int itemID) {
-        int whereCanUse = getWhereCanUse(itemID);
-        return (whereCanUse == GameParams.canInBoth
-                || whereCanUse == GameParams.canInBattle);
+        if (isDataNull()) {
+            return false;
+        }
+
+        return dataList[itemID].getWhereCanUse().canUseInBattle();
     }
 
     public int getEffect(int itemID) {
