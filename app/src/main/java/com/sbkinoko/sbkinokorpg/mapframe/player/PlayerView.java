@@ -15,6 +15,7 @@ import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 
 public class PlayerView {
@@ -100,7 +101,7 @@ public class PlayerView {
         }
     }
 
-    void setMoveStateImage(int moveState) {
+    void setMoveStateImage(MoveState moveState) {
         getImageView().setBackground(
                 ResourcesCompat.getDrawable(
                         res,
@@ -110,13 +111,13 @@ public class PlayerView {
         );
     }
 
-    private int getImageForMoveState(int moveState) {
+    private int getImageForMoveState(MoveState moveState) {
         switch (moveState) {
-            case GameParams.MoveState_Ground:
+            case MoveState_Ground:
                 return R.drawable.character_frame_1;
-            case GameParams.MoveState_Water:
+            case MoveState_Water:
                 return R.drawable.character_frame_2;
-            case GameParams.MoveState_Sky:
+            case MoveState_Sky:
                 return R.drawable.character_frame_3;
         }
         throw new RuntimeException("moveStateが不適{" + moveState + "}");

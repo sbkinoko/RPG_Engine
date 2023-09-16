@@ -18,6 +18,7 @@ import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
@@ -410,13 +411,13 @@ public class Player {
     /**
      * 移動状況
      */
-    private int moveState = GameParams.MoveState_Ground;
+    private MoveState moveState = MoveState.MoveState_Ground;
 
-    public int getMoveState() {
+    public MoveState getMoveState() {
         return this.moveState;
     }
 
-    public void setMoveState(int moveState) {
+    public void setMoveState(MoveState moveState) {
         this.moveState = moveState;
         playerView.setMoveStateImage(moveState);
     }
