@@ -21,7 +21,7 @@ public class PlayerView {
 
     private final ImageView imageView;
 
-    ImageView getImageView() {
+    public ImageView getImageView() {
         return imageView;
     }
 
@@ -66,9 +66,9 @@ public class PlayerView {
 
     private final PlayerImageFactory playerImageFactory = new PlayerImageFactory();
 
-    PlayerView(Context context,
-               int playerSize,
-               Player.PlayerImageTouchListener playerImageTouchListener) {
+    public PlayerView(Context context,
+                      int playerSize,
+                      PlayerImageTouchListener playerImageTouchListener) {
         imageView = new ImageView(context);
         int firstImage =
                 playerImageFactory.getPlayerImageResourceId(Dir.Down, 0);

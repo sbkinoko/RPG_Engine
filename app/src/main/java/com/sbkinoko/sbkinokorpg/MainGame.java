@@ -134,11 +134,11 @@ public class MainGame extends AppCompatActivity {
 
         mapData = mapDataList[roadPoint[2]];
 
-        mapFrame = new MapFrame(this, config, player, frameWidth, frameHeight);
+        controllerFrame = new ControllerFrame(player, this, config, frameWidth, frameHeight);
+
+        mapFrame = new MapFrame(this, config, player, frameWidth, frameHeight,controllerFrame);
 
         battleFrame = new BattleFrame(this, config, frameWidth, frameHeight);
-
-        controllerFrame = new ControllerFrame(player, this, config, frameWidth, frameHeight);
 
         battleSystem = new BattleSystem(mapFrame, battleFrame, this);
 
@@ -211,7 +211,6 @@ public class MainGame extends AppCompatActivity {
         mapFrame.setBattleSystem(battleSystem);
         mapFrame.setButtonsFrame(controllerFrame);
 
-        player.setButtonsFrame(controllerFrame);
         player.setMapFrame(mapFrame);
     }
 

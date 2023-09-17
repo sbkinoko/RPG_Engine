@@ -7,14 +7,9 @@ import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.whereMap;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
-import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
@@ -44,16 +39,7 @@ public class Player {
     }
 
 
-    private final PlayerView playerView;
-
-    public ImageView getImageView() {
-        return playerView.getImageView();
-    }
-
-
-    public TextView getTouchActionView() {
-        return playerView.getTouchActionView();
-    }
+    private PlayerView playerView;
 
     private int[][] haveItem;
     private final int[][] EQP = new int[][]{
@@ -64,12 +50,6 @@ public class Player {
             {5, 1},
             {6, 1},
     };
-
-    public ControllerFrame controllerFrame;
-
-    public void setButtonsFrame(ControllerFrame controllerFrame1) {
-        this.controllerFrame = controllerFrame1;
-    }
 
     public MapFrame mapFrame;
 
@@ -85,10 +65,6 @@ public class Player {
         imageType = 0;
         this.playerSize = (int) (cellLength * GameParams.playerSize);
 
-        playerView = new PlayerView(context,
-                playerSize,
-                new PlayerImageTouchListener()
-        );
 
         this.where = GameParams.whereMap;
 
@@ -97,10 +73,14 @@ public class Player {
         cvSize = 1 + 2 * GameParams.actionOffset;
         prm1 = (GameParams.actionOffset) / cvSize;
 
-
         bagRepository = EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class)
                 .bagRepository();
 
+    }
+
+    public void setPlayerView(PlayerView playerView) {
+        this.playerView = playerView;
+        playerView.setMoveStateImage(moveState);
     }
 
     public void reDraw() {
@@ -419,7 +399,9 @@ public class Player {
 
     public void setMoveState(MoveState moveState) {
         this.moveState = moveState;
-        playerView.setMoveStateImage(moveState);
+        if(playerView != null) {
+            playerView.setMoveStateImage(moveState);
+        }
     }
 
     int[] distanceToGoal;
@@ -610,29 +592,6 @@ public class Player {
 
     public int[] getBackGroundCell() {
         return this.BGC;
-    }
-
-    class PlayerImageTouchListener implements View.OnTouchListener {
-        @Override
-        public boolean onTouch(View v, MotionEvent e) {
-
-            if (!mapFrame.isAllMenuClosed()) {
-                return false;
-            }
-
-            if (e.getAction() != MotionEvent.ACTION_DOWN) {
-                return false;
-            }
-
-            if (canAction) {
-                controllerFrame.useBtA(e);
-            } else {
-                controllerFrame.useBtM(e);
-            }
-
-            return true;
-        }
-
     }
 
     public double[] getActionCollision() {

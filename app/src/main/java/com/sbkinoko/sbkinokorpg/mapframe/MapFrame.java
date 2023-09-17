@@ -28,6 +28,8 @@ import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.TestField;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
+import com.sbkinoko.sbkinokorpg.mapframe.player.PlayerImageTouchListener;
+import com.sbkinoko.sbkinokorpg.mapframe.player.PlayerView;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Choice;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_TextBox;
@@ -47,6 +49,7 @@ public class MapFrame {
     private final MapBackGroundCellMatrix mapBackGroundCellMatrix;
 
     public Player player;
+    private PlayerView playerView;
     public long mapChangeTime;
     public static boolean cantMove;
     private static boolean loopFlag = true;
@@ -86,7 +89,6 @@ public class MapFrame {
 
     public ControllerFrame controllerFrame;
 
-
     private final ImageView black;
 
 
@@ -97,8 +99,11 @@ public class MapFrame {
     }
 
     public MapFrame(Context context,
-                    Configuration config, Player player1,
-                    int frameWidth, int frameHeight) {
+                    Configuration config,
+                    Player player1,
+                    int frameWidth,
+                    int frameHeight,
+                    ControllerFrame controllerFrame) {
         this.context = context;
         frameLayout = new FrameLayout(context);
 
@@ -116,6 +121,18 @@ public class MapFrame {
                 ));
 
         this.player = player1;
+        this.playerView = new PlayerView(
+                context,
+                player.getPlayerSize(),
+                new PlayerImageTouchListener(
+                        player,
+                        this,
+                        controllerFrame
+                )
+        );
+        player.setPlayerView(playerView);
+
+        this.controllerFrame = controllerFrame;
 
         mapBackGroundCellMatrix = new MapBackGroundCellMatrix(context, frameLayout, player, this);
         mapBackGroundCellMatrix.resetBackGroundCellText();
@@ -149,8 +166,8 @@ public class MapFrame {
     }
 
     public void setPlayerImage() {
-        this.frameLayout.addView(player.getImageView());
-        this.frameLayout.addView(player.getTouchActionView());
+        this.frameLayout.addView(playerView.getImageView());
+        this.frameLayout.addView(playerView.getTouchActionView());
     }
 
     GroupOfWindows groupOfWindows;
