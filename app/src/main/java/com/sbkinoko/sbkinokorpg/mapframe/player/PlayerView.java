@@ -81,7 +81,7 @@ public class PlayerView {
         ));
 
         imageView.setOnTouchListener(playerImageTouchListener);
-        
+
         touchActionView = new TextView(context);
         touchActionView.setLayoutParams(new ViewGroup.LayoutParams(
                 playerSize,

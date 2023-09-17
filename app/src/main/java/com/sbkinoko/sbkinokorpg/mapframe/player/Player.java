@@ -35,7 +35,6 @@ public class Player {
         return playerSize;
     }
 
-
     private int[][] haveItem;
     private final int[][] EQP = new int[][]{
             {1, 1},
