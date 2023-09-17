@@ -1,7 +1,7 @@
 package com.sbkinoko.sbkinokorpg.gameparams;
 
 public enum WhereCanUse {
-    canInField{
+    canInField {
         @Override
         public boolean canUseInField() {
             return true;
@@ -11,8 +11,8 @@ public enum WhereCanUse {
         public boolean canUseInBattle() {
             return false;
         }
-    } ,
-    canInBattle{
+    },
+    canInBattle {
         @Override
         public boolean canUseInField() {
             return false;
@@ -24,7 +24,7 @@ public enum WhereCanUse {
         }
     },
 
-    canInEither{
+    canInEither {
         @Override
         public boolean canUseInField() {
             return true;
@@ -34,8 +34,8 @@ public enum WhereCanUse {
         public boolean canUseInBattle() {
             return true;
         }
-    } ,
-    canNotInEither{
+    },
+    canNotInEither {
         @Override
         public boolean canUseInField() {
             return false;

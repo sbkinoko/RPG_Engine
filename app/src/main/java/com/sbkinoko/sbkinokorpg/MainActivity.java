@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }
         cursor.close();
         button.setText(btText);
-        
+
         button = findViewById(R.id.startButton2);
         btText = getString(R.string.start_reset);
 

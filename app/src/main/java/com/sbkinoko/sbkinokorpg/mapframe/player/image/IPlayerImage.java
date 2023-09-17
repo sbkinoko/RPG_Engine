@@ -2,7 +2,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.player.image;
 
 
 public interface IPlayerImage {
-    
+
     int getImageDown1();
 
     int getImageDown2();

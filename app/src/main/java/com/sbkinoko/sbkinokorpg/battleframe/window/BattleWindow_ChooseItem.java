@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.sbkinoko.sbkinokorpg.MainGame;
+import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleConst;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
-import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Item;
-import com.sbkinoko.sbkinokorpg.MainGame;
+import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.window.MenuWindowInterface;
-import com.sbkinoko.sbkinokorpg.R;
 
 public class BattleWindow_ChooseItem extends BattleGameWindow implements MenuWindowInterface {
     int

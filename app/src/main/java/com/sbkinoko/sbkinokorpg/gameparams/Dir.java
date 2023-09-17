@@ -5,5 +5,5 @@ public enum Dir {
     Right,
     Up,
     Down,
-    None;
+    None
 }

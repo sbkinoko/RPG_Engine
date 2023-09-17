@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
-import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData;
@@ -25,7 +24,7 @@ public class CollisionView extends View {
     Paint paint;
     Player player;
     private int length;
-    private CollisionData collisionData;
+    private final CollisionData collisionData;
 
     public CollisionData getCollisionData() {
         return collisionData;
@@ -187,14 +186,9 @@ public class CollisionView extends View {
                 return true;
             }
         }
-        if (checkCross(
+        return checkCross(
                 corner[corner.length - 2], corner[0],
-                corner[corner.length - 1], corner[1])) {
-            return true;
-        }
-
-
-        return false;
+                corner[corner.length - 1], corner[1]);
     }
 
     private boolean checkState_Cell(int objectHeight) {

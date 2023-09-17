@@ -14,7 +14,6 @@ import androidx.core.content.res.ResourcesCompat;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
-import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 

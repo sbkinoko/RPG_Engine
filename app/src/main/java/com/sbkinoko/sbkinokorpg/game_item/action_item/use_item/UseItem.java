@@ -5,7 +5,6 @@ import android.util.Log;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.ActionItem;
 import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
-import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 
 public class UseItem {
 

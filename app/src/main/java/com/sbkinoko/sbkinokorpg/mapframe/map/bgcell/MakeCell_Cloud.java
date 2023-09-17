@@ -1,7 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.bgcell;
 
 import com.sbkinoko.sbkinokorpg.R;
-import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 
 class MakeCell_Cloud extends MakeCell {

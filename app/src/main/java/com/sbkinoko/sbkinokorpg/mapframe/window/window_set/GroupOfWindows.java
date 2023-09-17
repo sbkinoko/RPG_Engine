@@ -309,7 +309,6 @@ public class GroupOfWindows {
             int itemID;
             if (getFromPlayerStatus() == null) {
                 itemID = getPlayer().getToolIdAt(getSelectedItemPosition());
-                ;
             } else {
                 //fixme toolrepoを使わない
                 itemID = playerToolRepository.getItem(

@@ -5,6 +5,6 @@ public enum AutoActionList {
     mapChange,
     setGround,
     setWater,
-    startBattle;
+    startBattle
 
 }

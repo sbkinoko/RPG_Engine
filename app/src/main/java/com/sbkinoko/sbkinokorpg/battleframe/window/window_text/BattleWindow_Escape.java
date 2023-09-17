@@ -16,7 +16,7 @@ public class BattleWindow_Escape extends BattleTxtWindow {
 
 
     public BattleWindow_Escape(Context context, BattleSystem battleSystem) {
-        super(context,battleSystem);
+        super(context, battleSystem);
 
         this.menuTV = new TextView[1];
         setMenuTvs();
@@ -34,7 +34,7 @@ public class BattleWindow_Escape extends BattleTxtWindow {
 
     @Override
     public void useBtA() {
-        if(battleSystem.isNotEscapable()){
+        if (battleSystem.isNotEscapable()) {
             battleFrame.battleEscapeWindow.closeMenu();
             battleFrame.battleMenuWindow.openMenu();
             return;
@@ -52,7 +52,7 @@ public class BattleWindow_Escape extends BattleTxtWindow {
     public void openMenu() {
         super.openMenu();
 
-        if(battleSystem.isNotEscapable()){
+        if (battleSystem.isNotEscapable()) {
             this.menuTV[0].setText("この戦いは逃げられない!");
             return;
         }

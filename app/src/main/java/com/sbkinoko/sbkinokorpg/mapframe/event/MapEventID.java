@@ -6,5 +6,5 @@ public enum MapEventID {
     MapACTION_GO_WATER,
     MapACTION_GO_GROUND,
     MapAction_talk,
-    MapAction_Switch;
+    MapAction_Switch
 }

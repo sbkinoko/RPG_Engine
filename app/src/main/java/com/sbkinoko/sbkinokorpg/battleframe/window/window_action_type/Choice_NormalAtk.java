@@ -1,12 +1,12 @@
 package com.sbkinoko.sbkinokorpg.battleframe.window.window_action_type;
 
-import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATK;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.battleframe.action_choice.NormalAtkPlayerActionList;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_NormalATK;
+import com.sbkinoko.sbkinokorpg.game_item.action_item.n_atk.N_ATK;
 
-public class Choice_NormalAtk extends Choice{
+public class Choice_NormalAtk extends Choice {
     @Override
     String getTxt() {
         return "攻撃";

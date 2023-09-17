@@ -7,5 +7,5 @@ public enum EventIDList {
     OPEN_CHOICE,
     SHOPPING_EVENT,
     SELL_EVENT,
-    JOB_EVENT;
+    JOB_EVENT
 }
