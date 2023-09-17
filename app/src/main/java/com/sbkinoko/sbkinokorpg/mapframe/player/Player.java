@@ -9,7 +9,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
-import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
@@ -26,7 +25,6 @@ import dagger.hilt.EntryPoints;
 
 public class Player {
     private final int cellLength;
-    private int imageType;
 
     final double cvSize;
     final double prm1;
@@ -62,7 +60,6 @@ public class Player {
     public Player(int cellLength, Context context) {
         this.v[Y_axis] = 0;
         this.v[X_axis] = 0;
-        imageType = 0;
         this.playerSize = (int) (cellLength * GameParams.playerSize);
 
 
@@ -81,10 +78,6 @@ public class Player {
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
         playerView.setMoveStateImage(moveState);
-    }
-
-    public void reDraw() {
-        playerView.reDraw();
     }
 
     /**
@@ -271,7 +264,7 @@ public class Player {
 
     private Dir dir = Dir.Down;
 
-    private void setDir() {
+    public void setDir() {
         if (v[Y_axis] >= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Y_axis])) {
             dir = Dir.Down;
         } else if (v[X_axis] >= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Y_axis])) {
@@ -283,7 +276,7 @@ public class Player {
         }
     }
 
-    int[] getActionViewPosition() {
+    public int[] getActionViewPosition() {
         int[] touchActionViewPosition = new int[2];
 
         switch (dir) {
@@ -568,20 +561,6 @@ public class Player {
         imageViewPosition[Y_axis] = points[Y_axis][0];
         return imageViewPosition;
     }
-
-    public void changeImage() {
-        setDir();
-
-        playerView.setCanAction(OptionConst.collisionDrawFlag && canAction);
-        playerView.setActionViewPosition(getActionViewPosition());
-
-        imageType = (imageType + 1) % 2;
-        playerView.setImageResourceId(
-                getDir(),
-                imageType
-        );
-    }
-
 
     private final int[]
             BGC = new int[2],

@@ -122,4 +122,20 @@ public class PlayerView {
         throw new RuntimeException("moveStateが不適{" + moveState + "}");
     }
 
+    // todo booleanでもいいものをintにする理由を考える
+    private int imageType = 0;
+
+    public void changeImage(
+            Boolean canAction,
+                            int[] actionViewPosition,
+            Dir dir){
+        setCanAction(OptionConst.collisionDrawFlag && canAction);
+        setActionViewPosition(actionViewPosition);
+        imageType = (imageType + 1) % 2;
+        setImageResourceId(
+                dir,
+                imageType
+        );
+    }
+
 }

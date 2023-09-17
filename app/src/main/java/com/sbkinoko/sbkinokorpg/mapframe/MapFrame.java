@@ -364,7 +364,7 @@ public class MapFrame {
     private final int ImageChangeTime = GameParams.ImageChangeTime;
     private double lastImageChangeTime;
 
-    public void reDrawPlayer(){
+    public void reDrawPlayer() {
         playerView.reDraw();
     }
 
@@ -381,7 +381,12 @@ public class MapFrame {
 
         if (lastCallTime - lastImageChangeTime > ImageChangeTime
         ) {
-            player.changeImage();
+            player.setDir();
+            playerView.changeImage(
+                    player.canAction(),
+                    player.getActionViewPosition(),
+                    player.getDir()
+            );
             checkAction();
             lastImageChangeTime = lastCallTime;
         }
