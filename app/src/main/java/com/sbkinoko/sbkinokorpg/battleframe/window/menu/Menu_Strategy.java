@@ -10,6 +10,6 @@ public class Menu_Strategy extends MenuItem {
 
     @Override
     void useBtA(BattleWindow_Menu battleWindow_menu, BattleFrame battleFrame) {
-        
+
     }
 }

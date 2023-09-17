@@ -24,7 +24,7 @@ import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 public class List_Skill extends List_Item {
     static private final SkillData[] skillDataList = {
             //技タイプ　 どこで使えるか　技属性　威力　 対象　MP
-            new SkillData("NULL",  canNotInEither, EffectType.EFFECT_TYPE_NULL, 0, 0, 0, 0),
+            new SkillData("NULL", canNotInEither, EffectType.EFFECT_TYPE_NULL, 0, 0, 0, 0),
             new SkillData("一文字", canInBattle, EffectType.EFFECT_TYPE_ATK, 1, 10, maxMonsNum, 0),
             new ConditionSkillData("麻痺にする", canInBattle, EffectType.EFFECT_TYPE_CONDITION,
                     CON_PARALYZE,
@@ -64,7 +64,7 @@ public class List_Skill extends List_Item {
             new SkillData("うたう", canInBattle, EffectType.EFFECT_TYPE_HEAL, 0, 30, 1, 0),
             new SkillData("sample8", canNotInEither, EffectType.EFFECT_TYPE_ATK, 0, 15, 1, 0),
             new SkillData("sample9", canNotInEither, EffectType.EFFECT_TYPE_ATK, 0, 15, 1, 0),
-            new SkillData("sample10",canNotInEither, EffectType.EFFECT_TYPE_ATK, 0, 15, 1, 0),
+            new SkillData("sample10", canNotInEither, EffectType.EFFECT_TYPE_ATK, 0, 15, 1, 0),
 
             new SkillData("sample11", canNotInEither, EffectType.EFFECT_TYPE_ATK, 0, 15, 1, 0),//20
             new SkillData("sample12", canNotInEither, EffectType.EFFECT_TYPE_ATK, 0, 15, 1, 0),

@@ -23,7 +23,6 @@ import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
-import com.sbkinoko.sbkinokorpg.gameparams.MoveStateInt;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
@@ -343,7 +342,7 @@ public class MapFrame {
     }
 
 
-    private int ImageChangeTime = GameParams.ImageChangeTime;
+    private final int ImageChangeTime = GameParams.ImageChangeTime;
     private double lastImageChangeTime;
 
     public void reDraw(double lastCallTime) {

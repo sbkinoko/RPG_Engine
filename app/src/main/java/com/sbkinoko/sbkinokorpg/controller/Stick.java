@@ -126,7 +126,7 @@ class Stick extends View {
                         r = distance;
                     }
 
-                    float moveRatio = r / (float) rMax;
+                    float moveRatio = r / rMax;
 
                     controllerFrame.setSlant(sin, cos, moveRatio);
 

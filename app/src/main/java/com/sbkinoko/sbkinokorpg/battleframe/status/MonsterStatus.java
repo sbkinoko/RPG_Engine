@@ -274,13 +274,10 @@ public class MonsterStatus extends Status {
         }
 
         //点滅処理
-        switch (showedFrame % 3) {
-            case 1:
-                view.setVisibility(View.INVISIBLE);
-                break;
-            default:
-                view.setVisibility(View.VISIBLE);
-                break;
+        if (showedFrame % 3 == 1) {
+            view.setVisibility(View.INVISIBLE);
+        } else {
+            view.setVisibility(View.VISIBLE);
         }
     }
 

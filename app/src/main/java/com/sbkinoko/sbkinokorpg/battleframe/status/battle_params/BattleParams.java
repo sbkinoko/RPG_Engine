@@ -6,5 +6,5 @@ public enum BattleParams {
     ATK,
     DEF,
     SPD,
-    INT;
+    INT
 }

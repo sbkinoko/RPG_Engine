@@ -5,5 +5,5 @@ class MakeCell_HighMons extends MakeCell {
     public int getMonsRnd() {
         return MonsAppRnd.getHighMonsApp();
     }
-    
+
 }

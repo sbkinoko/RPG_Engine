@@ -15,7 +15,7 @@ public abstract class BattleGameWindow extends SelectableWindow {
     protected BattleSystem battleSystem;
     protected BattleFrame battleFrame;
 
-    public BattleGameWindow(Context context,BattleSystem battleSystem) {
+    public BattleGameWindow(Context context, BattleSystem battleSystem) {
         super(context);
 
         this.battleSystem = battleSystem;
@@ -62,7 +62,7 @@ public abstract class BattleGameWindow extends SelectableWindow {
     }
 
     void moveUpDown() {
-        switch (selectedTV/2) {
+        switch (selectedTV / 2) {
             case 0:
                 setSelectedTv(selectedTV + 2);
                 break;
@@ -73,7 +73,7 @@ public abstract class BattleGameWindow extends SelectableWindow {
     }
 
     protected void moveLeftRight() {
-        switch (selectedTV%2) {
+        switch (selectedTV % 2) {
             case 0:
                 setSelectedTv(++selectedTV);
                 break;

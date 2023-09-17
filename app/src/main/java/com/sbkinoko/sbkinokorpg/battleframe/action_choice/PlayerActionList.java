@@ -6,7 +6,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 
 public abstract class PlayerActionList {
 
-    abstract public int getThisTurnAction() ;
+    abstract public int getThisTurnAction();
 
     public abstract int[] getActionItemList(Status nowPlayer);
 
@@ -16,5 +16,5 @@ public abstract class PlayerActionList {
 
     }
 
-    abstract public void backFromTarget(BattleFrame battleFrame, BattleSystem battleSystem) ;
+    abstract public void backFromTarget(BattleFrame battleFrame, BattleSystem battleSystem);
 }

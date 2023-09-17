@@ -95,7 +95,7 @@ public class MapWindow_TextBox extends TextWindow {
         }
     }
 
-    public void changeTargetWindow(){
+    public void changeTargetWindow() {
         isOpen = false;
     }
 
@@ -105,7 +105,7 @@ public class MapWindow_TextBox extends TextWindow {
      * @param text 　表示する文章
      */
     public void openMenu(String[] text) {
-        if(text == null){
+        if (text == null) {
             return;
         }
         super.openMenu();

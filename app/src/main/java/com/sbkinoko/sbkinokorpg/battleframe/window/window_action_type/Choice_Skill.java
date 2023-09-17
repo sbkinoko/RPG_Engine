@@ -15,6 +15,6 @@ public class Choice_Skill extends Choice {
     @Override
     void gotoNextWindow(PlayerStatus status, BattleSystem battleSystem) {
         status.setActionList(new SkillPlayerActionList());
-        battleSystem.getBattleFrame().battleWindow_chooseItem.openMenu(status,new List_Skill());
+        battleSystem.getBattleFrame().battleWindow_chooseItem.openMenu(status, new List_Skill());
     }
 }

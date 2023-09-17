@@ -182,10 +182,8 @@ public class UseItemInBattle {
                          int[] targets,
                          ActionItem actionItem) {
         for (int target : targets) {
-            switch (actionItem.getAtr()) {
-                case GameParams.STATUS_ATK:
-                    allies[target].getTotalATK().changeRank(1);
-                    break;
+            if (actionItem.getAtr() == GameParams.STATUS_ATK) {
+                allies[target].getTotalATK().changeRank(1);
             }
         }
     }

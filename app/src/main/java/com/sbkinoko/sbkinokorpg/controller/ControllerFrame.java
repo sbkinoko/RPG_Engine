@@ -32,7 +32,8 @@ public class ControllerFrame {
     FrameLayout controllerFL;
     private final int controllerFrameHeight;
     private final int controllerFrameWidth;
-    private int btSize, btH_3;
+    private int btSize;
+    private final int btH_3;
     private final Player player;
     Resources res;
     Configuration config;
@@ -59,7 +60,7 @@ public class ControllerFrame {
             controllerFL.setY(0);
         }
         btSize = (int) (controllerFrameHeight / 3.1);
-        btH_3 = (int) (controllerFrameHeight / 3);
+        btH_3 = controllerFrameHeight / 3;
         controllerFL.setLayoutParams(new ViewGroup.LayoutParams(
                 frameWidth,
                 controllerFrameHeight

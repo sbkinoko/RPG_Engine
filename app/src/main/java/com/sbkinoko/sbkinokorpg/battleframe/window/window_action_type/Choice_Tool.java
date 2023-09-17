@@ -5,7 +5,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.action_choice.ToolPlayerActionList;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 
-public class Choice_Tool extends Choice{
+public class Choice_Tool extends Choice {
     @Override
     String getTxt() {
         return "アイテム";
@@ -13,7 +13,7 @@ public class Choice_Tool extends Choice{
 
     @Override
     void gotoNextWindow(PlayerStatus status, BattleSystem battleSystem) {
-        status.setActionList( new ToolPlayerActionList());
-        battleSystem.getBattleFrame().battleWindow_chooseItem.openMenu(status,new List_Tool());
+        status.setActionList(new ToolPlayerActionList());
+        battleSystem.getBattleFrame().battleWindow_chooseItem.openMenu(status, new List_Tool());
     }
 }

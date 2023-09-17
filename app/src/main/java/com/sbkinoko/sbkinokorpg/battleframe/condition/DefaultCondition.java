@@ -44,7 +44,7 @@ public class DefaultCondition {
             }
             return;
         }
-        
+
         //先頭で同じ状態異常がある場合
         if (sameTypeNextCondition != null) {
             if (preCondition != null) {

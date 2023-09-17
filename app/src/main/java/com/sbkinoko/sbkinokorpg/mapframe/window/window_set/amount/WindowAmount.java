@@ -59,7 +59,7 @@ public abstract class WindowAmount extends MapGameWindow {
                     if (event.getAction() != MotionEvent.ACTION_DOWN) {
                         return true;
                     }
-                    setSelectedTv((int) (i / 2) + maxDigitPosition);
+                    setSelectedTv((i / 2) + maxDigitPosition);
                     changeCount(1);
                     return true;
                 }
@@ -72,7 +72,7 @@ public abstract class WindowAmount extends MapGameWindow {
                     if (event.getAction() != MotionEvent.ACTION_DOWN) {
                         return true;
                     }
-                    setSelectedTv((int) (i / 2) + maxDigitPosition);
+                    setSelectedTv((i / 2) + maxDigitPosition);
                     changeCount(-1);
                     return true;
                 }

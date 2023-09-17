@@ -12,7 +12,7 @@ public class NormalAtkPlayerActionList extends PlayerActionList {
     }
 
     @Override
-    public int getItemPosition(Status nowPlayer){
+    public int getItemPosition(Status nowPlayer) {
         return 1;
     }
 

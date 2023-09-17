@@ -7,9 +7,9 @@ public enum MoveState {
     MoveState_Sky(MoveStateInt.Sky);
 
 
-    private int moveStateInt;
+    private final int moveStateInt;
 
-    MoveState(int moveStateInt){
+    MoveState(int moveStateInt) {
         this.moveStateInt = moveStateInt;
     }
 

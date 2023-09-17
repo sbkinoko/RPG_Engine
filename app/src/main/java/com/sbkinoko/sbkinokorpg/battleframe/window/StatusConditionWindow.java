@@ -180,7 +180,7 @@ public class StatusConditionWindow extends BattleGameWindow {
         if (isArrowButton(i)) {
             height = 0;
         } else {
-            height = (int) (i / 2);
+            height = i / 2;
         }
 
         menuTV[i].setY((float) MainGame.playWindowSize / 3 / 3 * (height));

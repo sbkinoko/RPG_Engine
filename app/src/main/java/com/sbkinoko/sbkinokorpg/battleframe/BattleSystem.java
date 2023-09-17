@@ -301,10 +301,7 @@ public class BattleSystem {
     }
 
     private boolean getIsWin() {
-        if (isPlayer(getActingID())) {
-            return true;
-        }
-        return false;
+        return isPlayer(getActingID());
     }
 
     private void changeAttacker() {

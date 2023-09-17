@@ -13,5 +13,5 @@ public abstract class MainMenuItem {
     public void setMapFrame(MapFrame mapFrame) {
         this.mapFrame = mapFrame;
     }
-    
+
 }
