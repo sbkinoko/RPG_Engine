@@ -9,12 +9,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
-import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
-import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
@@ -26,7 +24,6 @@ import dagger.hilt.EntryPoints;
 
 public class Player {
     private final int cellLength;
-    private int imageType;
 
     final double cvSize;
     final double prm1;
@@ -38,9 +35,6 @@ public class Player {
         return playerSize;
     }
 
-
-    private PlayerView playerView;
-
     private int[][] haveItem;
     private final int[][] EQP = new int[][]{
             {1, 1},
@@ -51,18 +45,11 @@ public class Player {
             {6, 1},
     };
 
-    public MapFrame mapFrame;
-
-    public void setMapFrame(MapFrame mapFrame1) {
-        this.mapFrame = mapFrame1;
-    }
-
     BagRepository bagRepository;
 
     public Player(int cellLength, Context context) {
         this.v[Y_axis] = 0;
         this.v[X_axis] = 0;
-        imageType = 0;
         this.playerSize = (int) (cellLength * GameParams.playerSize);
 
 
@@ -76,15 +63,6 @@ public class Player {
         bagRepository = EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class)
                 .bagRepository();
 
-    }
-
-    public void setPlayerView(PlayerView playerView) {
-        this.playerView = playerView;
-        playerView.setMoveStateImage(moveState);
-    }
-
-    public void reDraw() {
-        playerView.reDraw();
     }
 
     /**
@@ -271,7 +249,7 @@ public class Player {
 
     private Dir dir = Dir.Down;
 
-    private void setDir() {
+    public void setDir() {
         if (v[Y_axis] >= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Y_axis])) {
             dir = Dir.Down;
         } else if (v[X_axis] >= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Y_axis])) {
@@ -283,7 +261,7 @@ public class Player {
         }
     }
 
-    int[] getActionViewPosition() {
+    public int[] getActionViewPosition() {
         int[] touchActionViewPosition = new int[2];
 
         switch (dir) {
@@ -399,9 +377,6 @@ public class Player {
 
     public void setMoveState(MoveState moveState) {
         this.moveState = moveState;
-        if(playerView != null) {
-            playerView.setMoveStateImage(moveState);
-        }
     }
 
     int[] distanceToGoal;
@@ -539,7 +514,6 @@ public class Player {
     public void moveInMap(int[] moveDist) {
         setCollisionPoints(moveDist);//実際に動いた距離を入れる
         moveImage();
-
         movedDistSum += (int) Math.sqrt(Math.pow(moveDist[X_axis], 2) + Math.pow(moveDist[Y_axis], 2));
     }
 
@@ -561,26 +535,14 @@ public class Player {
         moveCellPoint();
 
         Log.d("msg", "CellY " + BGC[Y_axis] + " :CellX " + BGC[X_axis]);
+    }
+
+    public int[] getPlayerPosition() {
         int[] imageViewPosition = new int[2];
         imageViewPosition[X_axis] = points[X_axis][0];
         imageViewPosition[Y_axis] = points[Y_axis][0];
-
-        playerView.setImageViewPosition(imageViewPosition);
+        return imageViewPosition;
     }
-
-    public void changeImage() {
-        setDir();
-
-        playerView.setCanAction(OptionConst.collisionDrawFlag && canAction);
-        playerView.setActionViewPosition(getActionViewPosition());
-
-        imageType = (imageType + 1) % 2;
-        playerView.setImageResourceId(
-                getDir(),
-                imageType
-        );
-    }
-
 
     private final int[]
             BGC = new int[2],

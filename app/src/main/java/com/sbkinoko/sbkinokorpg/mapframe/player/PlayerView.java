@@ -25,7 +25,7 @@ public class PlayerView {
         return imageView;
     }
 
-    void setImageViewPosition(int[] position) {
+    public void setImageViewPosition(int[] position) {
         imageView.setX(position[X_axis]);
         imageView.setY(position[Y_axis]);
     }
@@ -68,6 +68,7 @@ public class PlayerView {
 
     public PlayerView(Context context,
                       int playerSize,
+                      MoveState moveState,
                       PlayerImageTouchListener playerImageTouchListener) {
         imageView = new ImageView(context);
         int firstImage =
@@ -89,9 +90,10 @@ public class PlayerView {
         touchActionView.setOnTouchListener(playerImageTouchListener);
 
         res = context.getResources();
+        setMoveStateImage(moveState);
     }
 
-    void reDraw() {
+    public void reDraw() {
         if (OptionConst.collisionDrawFlag) {
             imageView.setBackground(ResourcesCompat.getDrawable
                     (res, R.drawable.character_frame, null));
@@ -100,7 +102,7 @@ public class PlayerView {
         }
     }
 
-    void setMoveStateImage(MoveState moveState) {
+    public void setMoveStateImage(MoveState moveState) {
         getImageView().setBackground(
                 ResourcesCompat.getDrawable(
                         res,
@@ -120,6 +122,22 @@ public class PlayerView {
                 return R.drawable.character_frame_3;
         }
         throw new RuntimeException("moveStateが不適{" + moveState + "}");
+    }
+
+    // todo booleanでもいいものをintにする理由を考える
+    private int imageType = 0;
+
+    public void changeImage(
+            Boolean canAction,
+                            int[] actionViewPosition,
+            Dir dir){
+        setCanAction(OptionConst.collisionDrawFlag && canAction);
+        setActionViewPosition(actionViewPosition);
+        imageType = (imageType + 1) % 2;
+        setImageResourceId(
+                dir,
+                imageType
+        );
     }
 
 }

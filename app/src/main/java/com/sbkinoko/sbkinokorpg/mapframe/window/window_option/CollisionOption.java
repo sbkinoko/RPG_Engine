@@ -24,7 +24,7 @@ class CollisionOption extends Option {
     void useBtA() {
         OptionConst.changeCollision();
         mapFrame.getBgcMatrix().reDraw();
-        mapFrame.player.reDraw();
+        mapFrame.reDrawPlayer();
         mapFrame.getMapViewModel().getNpcMatrix().reDraw();
     }
 }

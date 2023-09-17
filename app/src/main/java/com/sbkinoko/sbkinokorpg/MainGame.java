@@ -211,7 +211,6 @@ public class MainGame extends AppCompatActivity {
         mapFrame.setBattleSystem(battleSystem);
         mapFrame.setButtonsFrame(controllerFrame);
 
-        player.setMapFrame(mapFrame);
     }
 
 

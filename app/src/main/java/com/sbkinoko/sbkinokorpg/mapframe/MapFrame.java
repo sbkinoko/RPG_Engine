@@ -91,7 +91,6 @@ public class MapFrame {
 
     private final ImageView black;
 
-
     private final MapViewModel mapViewModel;
 
     public MapViewModel getMapViewModel() {
@@ -124,13 +123,13 @@ public class MapFrame {
         this.playerView = new PlayerView(
                 context,
                 player.getPlayerSize(),
+                player.getMoveState(),
                 new PlayerImageTouchListener(
                         player,
                         this,
                         controllerFrame
                 )
         );
-        player.setPlayerView(playerView);
 
         this.controllerFrame = controllerFrame;
 
@@ -330,6 +329,8 @@ public class MapFrame {
         mapBackGroundCellMatrix.roadBackGround(roadPoint[Y_axis], roadPoint[X_axis]);
 
         player.goCenter();
+        playerView.setImageViewPosition(
+                player.getPlayerPosition());
 
         mapChangeTime = System.currentTimeMillis();
 
@@ -362,6 +363,10 @@ public class MapFrame {
     private final int ImageChangeTime = GameParams.ImageChangeTime;
     private double lastImageChangeTime;
 
+    public void reDrawPlayer() {
+        playerView.reDraw();
+    }
+
     public void reDraw(double lastCallTime) {
         if (cantMove) return;
         boolean _cantMove = !(lastCallTime - mapChangeTime > GameParams.canMoveTime);
@@ -375,7 +380,12 @@ public class MapFrame {
 
         if (lastCallTime - lastImageChangeTime > ImageChangeTime
         ) {
-            player.changeImage();
+            player.setDir();
+            playerView.changeImage(
+                    player.canAction(),
+                    player.getActionViewPosition(),
+                    player.getDir()
+            );
             checkAction();
             lastImageChangeTime = lastCallTime;
         }
@@ -408,6 +418,10 @@ public class MapFrame {
         }
 
         player.moveInMap(getActualMoveDist(scroll));
+
+        playerView.setImageViewPosition(
+                player.getPlayerPosition()
+        );
 
         mapBackGroundCellMatrix.setAllInFlag();
 
@@ -523,6 +537,11 @@ public class MapFrame {
         } else {
             player.setCanNotMove_Axis(Y_axis);
         }
+    }
+
+    public void setPlayerMoveState(MoveState moveState) {
+        player.setMoveState(moveState);
+        playerView.setMoveStateImage(player.getMoveState());
     }
 
 
