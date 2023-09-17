@@ -80,6 +80,7 @@ public class Player {
 
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
+        playerView.setMoveStateImage(moveState);
     }
 
     public void reDraw() {
@@ -398,7 +399,9 @@ public class Player {
 
     public void setMoveState(MoveState moveState) {
         this.moveState = moveState;
-        playerView.setMoveStateImage(moveState);
+        if(playerView != null) {
+            playerView.setMoveStateImage(moveState);
+        }
     }
 
     int[] distanceToGoal;
