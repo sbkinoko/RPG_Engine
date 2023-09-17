@@ -81,9 +81,7 @@ public class PlayerView {
         ));
 
         imageView.setOnTouchListener(playerImageTouchListener);
-
-        setMoveStateImage(moveState);
-
+        
         touchActionView = new TextView(context);
         touchActionView.setLayoutParams(new ViewGroup.LayoutParams(
                 playerSize,
@@ -92,6 +90,7 @@ public class PlayerView {
         touchActionView.setOnTouchListener(playerImageTouchListener);
 
         res = context.getResources();
+        setMoveStateImage(moveState);
     }
 
     public void reDraw() {
