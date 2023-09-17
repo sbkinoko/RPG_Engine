@@ -91,7 +91,6 @@ public class MapFrame {
 
     private final ImageView black;
 
-
     private final MapViewModel mapViewModel;
 
     public MapViewModel getMapViewModel() {
@@ -538,6 +537,11 @@ public class MapFrame {
         } else {
             player.setCanNotMove_Axis(Y_axis);
         }
+    }
+
+    public void setPlayerMoveState(MoveState moveState) {
+        player.setMoveState(moveState);
+        playerView.setMoveStateImage(player.getMoveState());
     }
 
 

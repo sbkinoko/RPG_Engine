@@ -48,10 +48,10 @@ public class MapEvent {
                 mapFrame.startBattle(0, 3, false);
                 break;
             case setGround:
-                player.setMoveState(MoveState.MoveState_Ground);
+                mapFrame.setPlayerMoveState(MoveState.MoveState_Ground);
                 break;
             case setWater:
-                player.setMoveState(MoveState.MoveState_Water);
+                mapFrame.setPlayerMoveState(MoveState.MoveState_Water);
                 break;
         }
     }
@@ -137,13 +137,13 @@ public class MapEvent {
                 break;
 
             case MapACTION_GO_WATER:
-                player.setMoveState(MoveState.MoveState_Water);
+                mapFrame.setPlayerMoveState(MoveState.MoveState_Water);
                 moveToOtherArea();
                 texts = new String[]{"水上に出た"};
                 break;
 
             case MapACTION_GO_GROUND:
-                player.setMoveState(MoveState.MoveState_Ground);
+                mapFrame.setPlayerMoveState(MoveState.MoveState_Ground);
                 moveToOtherArea();
                 texts = new String[]{"陸に戻った"};
                 break;
@@ -196,7 +196,7 @@ public class MapEvent {
     }
 
     public void goSky() {
-        player.setMoveState(MoveState.MoveState_Sky);
+        mapFrame.setPlayerMoveState(MoveState.MoveState_Sky);
         mapFrame.getBgcMatrix().setBGImage();
         Log.d("msg", "とんだよ");
     }
@@ -204,14 +204,14 @@ public class MapEvent {
     public void goGround() {
         String[] txt;
         player.setV(new int[]{0, 0});
-        player.setMoveState(MoveState.MoveState_Ground);
+        mapFrame.setPlayerMoveState(MoveState.MoveState_Ground);
         mapFrame.checkAfterPosition();
         if (player.getCanMoveDir()[X_axis] && player.getCanMoveDir()[Y_axis]) {
             txt = new String[]{"地上に降りた"};
             mapFrame.getBgcMatrix().setBGImage();
         } else {
             txt = new String[]{"地上に降りられないよ"};
-            player.setMoveState(MoveState.MoveState_Sky);
+            mapFrame.setPlayerMoveState(MoveState.MoveState_Sky);
         }
         mapFrame.getMapTextBoxWindow().openMenu(txt);
     }

@@ -20,6 +20,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 public class PlayerView {
 
     private final ImageView imageView;
+    private MoveState moveState;
 
     public ImageView getImageView() {
         return imageView;
@@ -100,7 +101,8 @@ public class PlayerView {
         }
     }
 
-    void setMoveStateImage(MoveState moveState) {
+    public void setMoveStateImage(MoveState moveState) {
+        this.moveState = moveState;
         getImageView().setBackground(
                 ResourcesCompat.getDrawable(
                         res,

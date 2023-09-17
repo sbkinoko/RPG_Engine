@@ -392,9 +392,6 @@ public class Player {
 
     public void setMoveState(MoveState moveState) {
         this.moveState = moveState;
-        if (playerView != null) {
-            playerView.setMoveStateImage(moveState);
-        }
     }
 
     int[] distanceToGoal;
