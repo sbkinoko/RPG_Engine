@@ -127,8 +127,6 @@ public class ControllerFrame {
         btM.setOnTouchListener(buttonTouchListener);
         btM.setLayoutParams(btLayout);
         controllerFL.addView(btM);
-
-
     }
 
     public void setMapFrame(MapFrame mapFrame1) {
