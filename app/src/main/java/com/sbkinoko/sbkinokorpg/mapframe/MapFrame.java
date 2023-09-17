@@ -123,6 +123,7 @@ public class MapFrame {
         this.playerView = new PlayerView(
                 context,
                 player.getPlayerSize(),
+                player.getMoveState(),
                 new PlayerImageTouchListener(
                         player,
                         this,

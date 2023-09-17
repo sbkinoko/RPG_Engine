@@ -20,7 +20,6 @@ import com.sbkinoko.sbkinokorpg.mapframe.player.image.PlayerImageFactory;
 public class PlayerView {
 
     private final ImageView imageView;
-    private MoveState moveState;
 
     public ImageView getImageView() {
         return imageView;
@@ -69,6 +68,7 @@ public class PlayerView {
 
     public PlayerView(Context context,
                       int playerSize,
+                      MoveState moveState,
                       PlayerImageTouchListener playerImageTouchListener) {
         imageView = new ImageView(context);
         int firstImage =
@@ -81,6 +81,8 @@ public class PlayerView {
         ));
 
         imageView.setOnTouchListener(playerImageTouchListener);
+
+        setMoveStateImage(moveState);
 
         touchActionView = new TextView(context);
         touchActionView.setLayoutParams(new ViewGroup.LayoutParams(
@@ -102,7 +104,6 @@ public class PlayerView {
     }
 
     public void setMoveStateImage(MoveState moveState) {
-        this.moveState = moveState;
         getImageView().setBackground(
                 ResourcesCompat.getDrawable(
                         res,
