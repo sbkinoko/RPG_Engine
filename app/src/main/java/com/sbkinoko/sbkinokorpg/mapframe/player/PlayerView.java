@@ -25,7 +25,7 @@ public class PlayerView {
         return imageView;
     }
 
-    void setImageViewPosition(int[] position) {
+    public void setImageViewPosition(int[] position) {
         imageView.setX(position[X_axis]);
         imageView.setY(position[Y_axis]);
     }
@@ -91,7 +91,7 @@ public class PlayerView {
         res = context.getResources();
     }
 
-    void reDraw() {
+    public void reDraw() {
         if (OptionConst.collisionDrawFlag) {
             imageView.setBackground(ResourcesCompat.getDrawable
                     (res, R.drawable.character_frame, null));

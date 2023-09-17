@@ -399,7 +399,7 @@ public class Player {
 
     public void setMoveState(MoveState moveState) {
         this.moveState = moveState;
-        if(playerView != null) {
+        if (playerView != null) {
             playerView.setMoveStateImage(moveState);
         }
     }
@@ -539,7 +539,6 @@ public class Player {
     public void moveInMap(int[] moveDist) {
         setCollisionPoints(moveDist);//実際に動いた距離を入れる
         moveImage();
-
         movedDistSum += (int) Math.sqrt(Math.pow(moveDist[X_axis], 2) + Math.pow(moveDist[Y_axis], 2));
     }
 
@@ -561,11 +560,13 @@ public class Player {
         moveCellPoint();
 
         Log.d("msg", "CellY " + BGC[Y_axis] + " :CellX " + BGC[X_axis]);
+    }
+
+    public int[] getPlayerPosition() {
         int[] imageViewPosition = new int[2];
         imageViewPosition[X_axis] = points[X_axis][0];
         imageViewPosition[Y_axis] = points[Y_axis][0];
-
-        playerView.setImageViewPosition(imageViewPosition);
+        return imageViewPosition;
     }
 
     public void changeImage() {

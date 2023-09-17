@@ -330,6 +330,8 @@ public class MapFrame {
         mapBackGroundCellMatrix.roadBackGround(roadPoint[Y_axis], roadPoint[X_axis]);
 
         player.goCenter();
+        playerView.setImageViewPosition(
+                player.getPlayerPosition());
 
         mapChangeTime = System.currentTimeMillis();
 
@@ -361,6 +363,10 @@ public class MapFrame {
 
     private final int ImageChangeTime = GameParams.ImageChangeTime;
     private double lastImageChangeTime;
+
+    public void reDrawPlayer(){
+        playerView.reDraw();
+    }
 
     public void reDraw(double lastCallTime) {
         if (cantMove) return;
@@ -408,6 +414,10 @@ public class MapFrame {
         }
 
         player.moveInMap(getActualMoveDist(scroll));
+
+        playerView.setImageViewPosition(
+                player.getPlayerPosition()
+        );
 
         mapBackGroundCellMatrix.setAllInFlag();
 
