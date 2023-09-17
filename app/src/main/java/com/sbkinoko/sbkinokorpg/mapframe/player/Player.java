@@ -37,8 +37,6 @@ public class Player {
     }
 
 
-    private PlayerView playerView;
-
     private int[][] haveItem;
     private final int[][] EQP = new int[][]{
             {1, 1},
@@ -73,11 +71,6 @@ public class Player {
         bagRepository = EntryPoints.get(context.getApplicationContext(), MyEntryPoints.class)
                 .bagRepository();
 
-    }
-
-    public void setPlayerView(PlayerView playerView) {
-        this.playerView = playerView;
-        playerView.setMoveStateImage(moveState);
     }
 
     /**

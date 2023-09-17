@@ -130,7 +130,6 @@ public class MapFrame {
                         controllerFrame
                 )
         );
-        player.setPlayerView(playerView);
 
         this.controllerFrame = controllerFrame;
 
