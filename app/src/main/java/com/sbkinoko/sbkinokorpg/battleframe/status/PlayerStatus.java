@@ -17,7 +17,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.battle_params.SPD;
 import com.sbkinoko.sbkinokorpg.dataList.List_Equipment;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
-import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
 
 import dagger.hilt.EntryPoints;
