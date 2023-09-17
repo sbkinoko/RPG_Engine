@@ -13,7 +13,6 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
-import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
@@ -46,12 +45,6 @@ public class Player {
             {5, 1},
             {6, 1},
     };
-
-    public MapFrame mapFrame;
-
-    public void setMapFrame(MapFrame mapFrame1) {
-        this.mapFrame = mapFrame1;
-    }
 
     BagRepository bagRepository;
 
