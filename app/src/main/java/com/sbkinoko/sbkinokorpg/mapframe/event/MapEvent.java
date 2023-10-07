@@ -80,8 +80,8 @@ public class MapEvent {
 
             case BATTLE_EVENT:
                 int battleID = ((EventBattle) eventData).getBattleID();
-                mapFrame.getMapTextBoxWindow().openMenu(eventData.getTxt());
                 mapFrame.startBattle(0, battleID, false);
+                player.setNowEventFlag(npc.getUsingFlagID());
                 break;
 
             case OPEN_CHOICE:

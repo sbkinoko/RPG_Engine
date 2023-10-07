@@ -201,14 +201,15 @@ public class BattleFrame {
     /**
      * battleFrameからMapFrameへの移動
      */
-    public void closeBattleFrame() {
+    public void closeBattleFrame(boolean isWin,boolean isEvent) {
         for (ImageView imageView : iv) {
             imageView.setVisibility(View.GONE);
         }
 
         player.setInMap();
         setVisibility(View.GONE);
-        mapFrame.getFrameLayout().setVisibility(View.VISIBLE);
+
+        mapFrame.openFromBattle(isWin,isEvent);
 
     }
 

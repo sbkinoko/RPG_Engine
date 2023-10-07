@@ -61,6 +61,7 @@ public class BattleSystem {
     boolean battleEndFlag = false;
     boolean winFlag = false;
 
+    //イベントかどうかの判定
     private boolean canEscape;
 
     public boolean isNotEscapable() {
@@ -175,14 +176,13 @@ public class BattleSystem {
             getPlayer(i).addExp(getEXP());
         }
 
-        battleFrame.battleEndWindow.openMenu("魔物の群れ", winFlag);
+        battleFrame.battleEndWindow.openMenu("魔物の群れ", winFlag, !canEscape);
         battleFrame.battleEndWindow.addItem(dropItem);
 
-        if (!winFlag) {
-            players = MapWindow_Save.getStatusData(context);
-            //ゲームオーバーになったときの処理
-            //そのまま完全復活かセーブデータからか
-        }
+    }
+
+    public void processForGameOver() {
+        players = MapWindow_Save.getStatusData(context);
     }
 
     public void checkNextStep() {

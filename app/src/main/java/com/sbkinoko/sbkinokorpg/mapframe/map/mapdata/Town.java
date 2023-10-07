@@ -62,11 +62,13 @@ public class Town extends MapData {
                                 new EventChoice(1, 1, new String[]{"gao1"},
                                         new ChoiceData[]{
                                                 new ChoiceData(2, "たたかう"),
-                                                new ChoiceData(5, "たたかわない"),
+                                                new ChoiceData(6, "たたかわない"),
                                         }),
                                 new EventTalk(2, 3, new String[]{"gao2"}, true),
-                                new EventBattle(3, 1, new String[]{"gao!"}, 1),
-                                new EventTalk(5, 1, new String[]{"gao……"}, false)
+                                new EventBattle(3,  1),
+                                new EventTalk(4, 1, new String[]{"gao!(負けたが戦えてうれしいようだ)"}, false),
+                                new EventTalk(5, 1, new String[]{"gao!(勝ててうれしいようだ)"}, false),
+                                new EventTalk(6, 1, new String[]{"gao……"}, false)
                         }
                 ),
                 new NPCData(3.0, 4.0, 1.0, 2,
