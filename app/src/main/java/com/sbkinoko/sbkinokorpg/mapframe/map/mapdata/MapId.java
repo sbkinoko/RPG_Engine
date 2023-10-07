@@ -12,7 +12,15 @@ public enum MapId {
         public MapData getMapData() {
             return new Town();
         }
-    };
+    },
+    Town2(true){
+        @Override
+        public MapData getMapData() {
+            return new Town2();
+        }
+    }
+
+    ;
 
     boolean canBeLastTown;
 
