@@ -6,10 +6,13 @@ import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.RandomMons;
 import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 
 public class TestField extends MapData {
-    public static final int MAP_ID = 0;
+
+    @Override
+    public MapId getMapId() {
+        return MapId.Test;
+    }
 
     public TestField() {
-        map_id = MAP_ID;
         map = new int[][][]{//マスの見た目とそれ以外の情報(立ち入り(見た目)、モンスターの生息)
                 {{00, 01}, {00, 01}, {02, 01}, {01, 01}, {02, 01},/**/{02, 01}, {00, 01}, {00, 01}, {01, 01}, {00, 01}/**/},
                 {{00, 01}, {00, 01}, {01, 01}, {01, 01}, {00, 01},/**/{03, 04}, {03, 04}, {03, 04}, {01, 01}, {00, 01}/**/},

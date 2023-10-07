@@ -340,7 +340,6 @@ public class MapFrame {
 
         loadFinishFlag = true;
 
-
     }
 
     private void loadBackGroundWithSave(int[] roadPoint) {
