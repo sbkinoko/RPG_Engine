@@ -26,6 +26,7 @@ import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapId;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.TestField;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.player.PlayerImageTouchListener;
@@ -320,7 +321,15 @@ public class MapFrame {
 
     //todo loadPointクラスを作る
     private void loadBackGround(int[] roadPoint) {
-        mapViewModel.setNowMap(MainGame.mapDataList[roadPoint[2]]);
+        MapData nextMap = MainGame.mapDataList[roadPoint[2]];
+        MapId nextMapId = MapId.convertIntToMapId(roadPoint[2]);
+        if(nextMapId.isCanBeLastTown()
+        && player != null){
+            //todo セーブ処理を後で書く
+            player.setLastTownId(nextMapId);
+            Toast.makeText(context,"update LastTown"+nextMapId,Toast.LENGTH_SHORT).show();
+        }
+        mapViewModel.setNowMap(nextMap);
         mapBackGroundCellMatrix.setNowMap(mapViewModel.getNowMap());
 
         //fixme mapDataにループの情報を持たせる
