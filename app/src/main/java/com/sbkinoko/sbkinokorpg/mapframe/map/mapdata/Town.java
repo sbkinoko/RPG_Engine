@@ -19,7 +19,8 @@ import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveLeft;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveRight;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveUp;
 
-public class Town extends MapData {
+public class Town extends MapData
+        implements DefeatedWarp {
 
     @Override
     public MapId getMapId() {
@@ -110,6 +111,11 @@ public class Town extends MapData {
         appGroundMonster = new AppMonster[]{
                 new FixMons(new int[]{0, 2, 0})
         };
+    }
+
+    @Override
+    public int[] getDefeatedWarpPoint() {
+        return new int[]{2,0,getMapId().ordinal()};
     }
 }
 
