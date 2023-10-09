@@ -20,10 +20,13 @@ import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveRight;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveUp;
 
 public class Town extends MapData {
-    public static final int MAP_ID = 1;
+
+    @Override
+    public MapId getMapId() {
+        return MapId.Town;
+    }
 
     public Town() {
-        map_id = MAP_ID;
         map = new int[][][]{
                 {{05, 00}, {05, 00}, {05, 00}, {05, 00}, {05, 00}, {05, 00}},
                 {{05, 00}, {00, 00}, {07, 00}, {07, 00}, {00, 00}, {05, 00}},

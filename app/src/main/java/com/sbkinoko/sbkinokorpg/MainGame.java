@@ -269,19 +269,18 @@ public class MainGame extends AppCompatActivity {
                 null);
         cursor.moveToFirst();
 
-        int itemID;
         int cIndex;
         for (int i = 0; i < MapData.MAP_NUM; i++) {
             cIndex = cursor.getColumnIndex(MyDataBaseHelper.MAP_ID);
-            itemID = cursor.getInt(cIndex);
+            int mapID = cursor.getInt(cIndex);
 
-            MapData tmpMap = MapData.getMapData(itemID);
+            MapData tmpMap = MapData.getMapData(mapID);
 
             assert tmpMap != null;
             if (tmpMap.getTreasureBoxes() != null) {
                 for (int j = 0; j < tmpMap.getTreasureBoxes().length; j++) {
                     cIndex = cursor.getColumnIndex(MyDataBaseHelper.TREASURE_BOX + j);
-                    itemID = cursor.getInt(cIndex);
+                    int itemID = cursor.getInt(cIndex);
                     tmpMap.getTreasureBoxes()[j] = itemID;
                 }
             }

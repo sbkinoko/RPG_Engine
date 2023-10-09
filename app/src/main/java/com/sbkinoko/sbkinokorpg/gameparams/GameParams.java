@@ -1,6 +1,6 @@
 package com.sbkinoko.sbkinokorpg.gameparams;
 
-import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.TestField;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapId;
 
 public class GameParams {
     public static final float playerSize = (float) 0.4;
@@ -38,7 +38,7 @@ public class GameParams {
     public final static int
             startY = 5,
             startX = 5,
-            startMap = TestField.MAP_ID;
+            startMap = MapId.Test.ordinal();
 
     public static int fps = 30;
     public static int FrameLate = 1000 / fps;//ミリ秒　(33)で秒間30フレーム 40→25fps

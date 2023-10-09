@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapId;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPC;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCMatrix;
@@ -67,8 +68,8 @@ public class MapViewModel {
         return nowMap.getHeight();
     }
 
-    public int getMapID() {
-        return nowMap.getMapID();
+    public MapId getMapID() {
+        return nowMap.getMapId();
     }
 
     void setNowMap(MapData mapData) {

@@ -343,7 +343,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         int y = MapXY[Y_axis];
         float playerX = mapFrame.relativePlayerPoint()[X_axis];
         float playerY = mapFrame.relativePlayerPoint()[Y_axis];
-        int mapNumber = mapFrame.getMapViewModel().getMapID();
+        int mapNumber = mapFrame.getMapViewModel().getMapID().ordinal();
         Log.d("msg", x + ":" + y + " X" + playerX + " Y" + playerY);
 
         ContentValues values = new ContentValues();
