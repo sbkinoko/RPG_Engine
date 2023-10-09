@@ -21,6 +21,7 @@ import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.BattleResult;
 import com.sbkinoko.sbkinokorpg.gameparams.EscapeFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
@@ -222,13 +223,16 @@ public class MapFrame {
         return groupOfWindows;
     }
 
-    public void openFromBattle(boolean isWin, EventBattleFlag eventBattleFlag) {
+    public void openFromBattle(
+            EventBattleFlag eventBattleFlag,
+            BattleResult battleResult
+    ) {
         frameLayout.setVisibility(View.VISIBLE);
         if (eventBattleFlag.isEventBattle()) {
-            player.proceedNowEventFlag(isWin);
+            player.proceedNowEventFlag(battleResult == BattleResult.Win);
             doAction();
         } else {
-            if (!isWin) {
+            if (battleResult == BattleResult.Lose) {
                 //fixme map battleで使う処理をbattleに任せきりなのはよくない
                 battleSystem.processForGameOver();
                 //ゲームオーバーになったときの処理
@@ -240,7 +244,7 @@ public class MapFrame {
             }
         }
 
-        Toast.makeText(context, "" + isWin, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "" + battleResult, Toast.LENGTH_SHORT).show();
     }
 
     public void clickActiveWindow(View view, MotionEvent event) {

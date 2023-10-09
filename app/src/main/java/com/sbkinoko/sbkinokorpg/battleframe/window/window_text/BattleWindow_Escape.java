@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
+import com.sbkinoko.sbkinokorpg.gameparams.BattleResult;
 import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 
 import java.util.Random;
@@ -42,8 +43,9 @@ public class BattleWindow_Escape extends BattleTxtWindow {
         }
 
         if (escapeFlag) {
-            battleFrame.closeBattleFrame(true, EventBattleFlag.NotEvent);
+            battleFrame.closeBattleFrame( EventBattleFlag.NotEvent, BattleResult.Escape);
         }
+
         battleFrame.battleEscapeWindow.closeMenu();
         battleFrame.battleMenuWindow.openMenu();
     }

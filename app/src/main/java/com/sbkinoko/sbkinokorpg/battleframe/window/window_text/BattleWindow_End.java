@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
+import com.sbkinoko.sbkinokorpg.gameparams.BattleResult;
 import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
@@ -22,7 +23,7 @@ public class BattleWindow_End extends BattleTxtWindow {
     int exp, money;
     int maxLines = 2;
 
-    private boolean isWin;
+    private BattleResult battleResult;
 
     public BattleWindow_End(Context context, MapFrame mapFrame1, Player player1, BattleSystem battleSystem) {
         super(context, battleSystem);
@@ -52,7 +53,7 @@ public class BattleWindow_End extends BattleTxtWindow {
     @Override
     public void useBtA() {
         if (maxPageNum <= pageNum) {
-            battleFrame.closeBattleFrame(isWin, eventBattleFlag);
+            battleFrame.closeBattleFrame(eventBattleFlag, battleResult);
             this.closeMenu();
             return;
         }
@@ -128,20 +129,21 @@ public class BattleWindow_End extends BattleTxtWindow {
     }
 
     private EventBattleFlag eventBattleFlag;
-    public void openMenu(String name, boolean isWin,EventBattleFlag eventBattleFlag) {
+
+    public void openMenu(String name, BattleResult battleResult, EventBattleFlag eventBattleFlag) {
         super.openMenu();
         pageNum = 0;
         maxPageNum = 0;
-        this.isWin = isWin;
+        this.battleResult = battleResult;
         this.eventBattleFlag = eventBattleFlag;
-        menuTV[0].setText(getText(this.isWin, name));
-        if (this.isWin) {
+        menuTV[0].setText(getText(this.battleResult, name));
+        if (this.battleResult == BattleResult.Win) {
             maxPageNum = 1;
         }
     }
 
-    private String getText(boolean winFlag, String name) {
-        if (winFlag) {
+    private String getText(BattleResult battleResult, String name) {
+        if (battleResult == BattleResult.Win) {
             return name + "との\n戦闘に勝った";
         } else {
             return name + "との\n戦闘に負けた";
