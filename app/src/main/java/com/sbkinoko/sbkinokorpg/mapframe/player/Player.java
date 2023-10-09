@@ -591,6 +591,7 @@ public class Player {
         this.nowEventFlag = nowEventFlag;
     }
 
+    //逃げた場合にも対応
     public void proceedNowEventFlag(boolean isWin) {
         if (nowEventFlag == -1) return;
 
