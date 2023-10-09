@@ -219,6 +219,24 @@ public class MapFrame {
         return groupOfWindows;
     }
 
+    public void openFromBattle(boolean isWin, boolean isEvent) {
+        frameLayout.setVisibility(View.VISIBLE);
+        if (isEvent) {
+            player.proceedNowEventFlag(isWin);
+            doAction();
+        }else{
+            if (!isWin) {
+                //fixme map battleで使う処理をbattleに任せきりなのはよくない
+                battleSystem.processForGameOver();
+                //ゲームオーバーになったときの処理
+                //そのまま完全復活かセーブデータからか
+
+            }
+        }
+
+        Toast.makeText(context, "" + isWin, Toast.LENGTH_SHORT).show();
+    }
+
     public void clickActiveWindow(View view, MotionEvent event) {
         if (openingWindow == amountID) {
             getAmountWindow().OnBtClicked(view, event);
@@ -323,11 +341,11 @@ public class MapFrame {
     private void loadBackGround(int[] roadPoint) {
         MapData nextMap = MainGame.mapDataList[roadPoint[2]];
         MapId nextMapId = MapId.convertIntToMapId(roadPoint[2]);
-        if(nextMapId.isCanBeLastTown()
-        && player != null){
+        if (nextMapId.isCanBeLastTown()
+                && player != null) {
             //todo セーブ処理を後で書く
             player.setLastTownId(nextMapId);
-            Toast.makeText(context,"update LastTown"+nextMapId,Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "update LastTown" + nextMapId, Toast.LENGTH_SHORT).show();
         }
         mapViewModel.setNowMap(nextMap);
         mapBackGroundCellMatrix.setNowMap(mapViewModel.getNowMap());

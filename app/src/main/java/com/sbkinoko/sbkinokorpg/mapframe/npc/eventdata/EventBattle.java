@@ -5,9 +5,9 @@ import com.sbkinoko.sbkinokorpg.mapframe.event.EventIDList;
 public class EventBattle extends EventData {
     private final int battleID;
 
-    public EventBattle(int keyStep, int afterStep, String[] txt,
+    public EventBattle(int keyStep,
                        int battleID) {
-        super(keyStep, afterStep, txt);
+        super(keyStep, keyStep, null);
         this.battleID = battleID;
     }
 

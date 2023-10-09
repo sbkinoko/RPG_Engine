@@ -41,7 +41,7 @@ public class BattleWindow_Escape extends BattleTxtWindow {
         }
 
         if (escapeFlag) {
-            battleFrame.closeBattleFrame();
+            battleFrame.closeBattleFrame(true,false);
         }
         battleFrame.battleEscapeWindow.closeMenu();
         battleFrame.battleMenuWindow.openMenu();

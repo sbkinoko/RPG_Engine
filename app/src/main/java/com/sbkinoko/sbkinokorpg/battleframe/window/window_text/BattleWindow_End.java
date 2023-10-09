@@ -21,6 +21,8 @@ public class BattleWindow_End extends BattleTxtWindow {
     int exp, money;
     int maxLines = 2;
 
+    private boolean isWin;
+
     public BattleWindow_End(Context context, MapFrame mapFrame1, Player player1, BattleSystem battleSystem) {
         super(context, battleSystem);
 
@@ -49,7 +51,7 @@ public class BattleWindow_End extends BattleTxtWindow {
     @Override
     public void useBtA() {
         if (maxPageNum <= pageNum) {
-            battleFrame.closeBattleFrame();
+            battleFrame.closeBattleFrame(isWin,isEventBattle);
             this.closeMenu();
             return;
         }
@@ -124,13 +126,15 @@ public class BattleWindow_End extends BattleTxtWindow {
         useBtA();
     }
 
-    public void openMenu(String name, boolean flag) {
+    private boolean isEventBattle;
+    public void openMenu(String name, boolean isWin,boolean isEventBattle) {
         super.openMenu();
         pageNum = 0;
         maxPageNum = 0;
-        menuTV[0].setText(getText(flag, name));
-
-        if (flag) {
+        this.isWin = isWin;
+        this.isEventBattle = isEventBattle;
+        menuTV[0].setText(getText(this.isWin, name));
+        if (this.isWin) {
             maxPageNum = 1;
         }
     }

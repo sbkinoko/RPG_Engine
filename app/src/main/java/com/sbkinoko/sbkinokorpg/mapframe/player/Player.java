@@ -582,7 +582,23 @@ public class Player {
         this.lastTownId = lastTownId;
     }
 
-    public MapId getLastTownId(){
+    public MapId getLastTownId() {
         return lastTownId;
+    }
+
+    private int nowEventFlag;
+    public void setNowEventFlag(int nowEventFlag){
+        this.nowEventFlag = nowEventFlag;
+    }
+
+    public void proceedNowEventFlag(boolean isWin) {
+        if (nowEventFlag == -1) return;
+
+        if (isWin) {
+            eventFlag[nowEventFlag]++;
+        } else {
+            eventFlag[nowEventFlag] += 2;
+        }
+        nowEventFlag = -1;
     }
 }
