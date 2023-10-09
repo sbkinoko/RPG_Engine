@@ -12,6 +12,7 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
 import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
+import com.sbkinoko.sbkinokorpg.gameparams.EscapeFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
@@ -62,11 +63,10 @@ public class BattleSystem {
     boolean battleEndFlag = false;
     boolean winFlag = false;
 
-    //イベントかどうかの判定
-    private boolean canEscape;
+    private EscapeFlag canEscape;
 
     public boolean isNotEscapable() {
-        return !canEscape;
+        return !canEscape.caeEscapeBattle();
     }
 
     private PlayerStatus[] players;
@@ -108,10 +108,10 @@ public class BattleSystem {
     /**
      * @param monsters   出現したモンスターのid
      * @param bgImage    背景画像
-     * @param _canEscape 逃走可能かどうか
+     * @param escapeFlag 逃走可能かどうか
      */
-    public void startBattle(int[] monsters, int bgImage, boolean _canEscape) {
-        canEscape = _canEscape;
+    public void startBattle(int[] monsters, int bgImage, EscapeFlag escapeFlag) {
+        canEscape = escapeFlag;
         battleEndFlag = false;
         winFlag = false;
 
@@ -177,7 +177,8 @@ public class BattleSystem {
             getPlayer(i).addExp(getEXP());
         }
         EventBattleFlag eventBattleFlag;
-        if(canEscape){
+
+        if(canEscape.caeEscapeBattle()){
             eventBattleFlag = EventBattleFlag.NotEvent;
         }else{
             eventBattleFlag = EventBattleFlag.Event;

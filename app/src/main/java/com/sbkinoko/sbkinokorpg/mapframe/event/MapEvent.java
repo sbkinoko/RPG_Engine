@@ -9,6 +9,7 @@ import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInField;
+import com.sbkinoko.sbkinokorpg.gameparams.EscapeFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.MapBackgroundCell;
@@ -45,7 +46,7 @@ public class MapEvent {
                 roadMap(mapFrame.getNowMap().getCellType(mapY, mapX));
                 break;
             case startBattle:
-                mapFrame.startBattle(0, 3, false);
+                mapFrame.startBattle(0, 3, EscapeFlag.CanNot);
                 break;
             case setGround:
                 mapFrame.setPlayerMoveState(MoveState.MoveState_Ground);
@@ -80,7 +81,7 @@ public class MapEvent {
 
             case BATTLE_EVENT:
                 int battleID = ((EventBattle) eventData).getBattleID();
-                mapFrame.startBattle(0, battleID, false);
+                mapFrame.startBattle(0, battleID, EscapeFlag.CanNot);
                 player.setNowEventFlag(npc.getUsingFlagID());
                 break;
 

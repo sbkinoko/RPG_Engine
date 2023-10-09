@@ -21,6 +21,7 @@ import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.EscapeFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
@@ -226,13 +227,13 @@ public class MapFrame {
         if (eventBattleFlag.isEventBattle()) {
             player.proceedNowEventFlag(isWin);
             doAction();
-        }else{
+        } else {
             if (!isWin) {
                 //fixme map battleで使う処理をbattleに任せきりなのはよくない
                 battleSystem.processForGameOver();
                 //ゲームオーバーになったときの処理
                 //そのまま完全復活かセーブデータからか
-                if(player.getLastTownId() != null) {
+                if (player.getLastTownId() != null) {
                     int[] loadPoint = ((DefeatedWarp) (player.getLastTownId().getMapData())).getDefeatedWarpPoint();
                     loadMap(loadPoint);
                 }
@@ -616,7 +617,7 @@ public class MapFrame {
         if (isAppMons(cellType)) {
             startBattle(cellType,
                     monsType,
-                    true);
+                    EscapeFlag.Can);
         }
     }
 
@@ -624,7 +625,7 @@ public class MapFrame {
         return OptionConst.encounter < MakeCellFactory.make(cellType, context, player).getMonsRnd();
     }
 
-    public void startBattle(int CELL_TYPE, int battleID, boolean canEscape) {
+    public void startBattle(int CELL_TYPE, int battleID, EscapeFlag escapeFlag) {
         int[] appMonsData = getAppMonsData(battleID);
 
         if (appMonsData == null) {
@@ -634,7 +635,7 @@ public class MapFrame {
         battleSystem.startBattle(
                 appMonsData,
                 MakeCellFactory.make(CELL_TYPE, context, player).getBattleBG(),
-                canEscape
+                escapeFlag
         );//対戦モンスターの決定
     }
 
