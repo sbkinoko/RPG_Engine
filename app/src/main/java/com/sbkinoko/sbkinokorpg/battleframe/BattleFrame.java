@@ -25,6 +25,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.window.window_text.BattleWindow_Atta
 import com.sbkinoko.sbkinokorpg.battleframe.window.window_text.BattleWindow_End;
 import com.sbkinoko.sbkinokorpg.battleframe.window.window_text.BattleWindow_Escape;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.window.GameWindow;
@@ -201,7 +202,7 @@ public class BattleFrame {
     /**
      * battleFrameからMapFrameへの移動
      */
-    public void closeBattleFrame(boolean isWin,boolean isEvent) {
+    public void closeBattleFrame(boolean isWin, EventBattleFlag eventBattleFlag) {
         for (ImageView imageView : iv) {
             imageView.setVisibility(View.GONE);
         }
@@ -209,7 +210,7 @@ public class BattleFrame {
         player.setInMap();
         setVisibility(View.GONE);
 
-        mapFrame.openFromBattle(isWin,isEvent);
+        mapFrame.openFromBattle(isWin,eventBattleFlag);
 
     }
 

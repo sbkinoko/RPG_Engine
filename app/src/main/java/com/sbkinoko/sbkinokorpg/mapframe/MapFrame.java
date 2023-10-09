@@ -21,6 +21,7 @@ import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
@@ -220,9 +221,9 @@ public class MapFrame {
         return groupOfWindows;
     }
 
-    public void openFromBattle(boolean isWin, boolean isEvent) {
+    public void openFromBattle(boolean isWin, EventBattleFlag eventBattleFlag) {
         frameLayout.setVisibility(View.VISIBLE);
-        if (isEvent) {
+        if (eventBattleFlag.isEventBattle()) {
             player.proceedNowEventFlag(isWin);
             doAction();
         }else{

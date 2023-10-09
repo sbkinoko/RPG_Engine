@@ -12,6 +12,7 @@ import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
 import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
+import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
@@ -175,8 +176,14 @@ public class BattleSystem {
         for (int i = 0; i < GameParams.PLAYER_NUM; i++) {
             getPlayer(i).addExp(getEXP());
         }
+        EventBattleFlag eventBattleFlag;
+        if(canEscape){
+            eventBattleFlag = EventBattleFlag.isNotEvent;
+        }else{
+            eventBattleFlag = EventBattleFlag.isEvent;
+        }
 
-        battleFrame.battleEndWindow.openMenu("魔物の群れ", winFlag, !canEscape);
+        battleFrame.battleEndWindow.openMenu("魔物の群れ", winFlag, eventBattleFlag);
         battleFrame.battleEndWindow.addItem(dropItem);
 
     }
