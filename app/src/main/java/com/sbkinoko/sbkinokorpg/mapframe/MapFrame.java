@@ -25,6 +25,7 @@ import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.DefeatedWarp;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapId;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.TestField;
@@ -230,7 +231,10 @@ public class MapFrame {
                 battleSystem.processForGameOver();
                 //ゲームオーバーになったときの処理
                 //そのまま完全復活かセーブデータからか
-
+                if(player.getLastTownId() != null) {
+                    int[] loadPoint = ((DefeatedWarp) (player.getLastTownId().getMapData())).getDefeatedWarpPoint();
+                    loadMap(loadPoint);
+                }
             }
         }
 
