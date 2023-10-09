@@ -20,6 +20,8 @@ public class MakeCellFactory {
                 break;
             case 21:
             case 20:
+            case 22:
+            case 23:
                 makeCell = new MakeCell_Town();
                 break;
             case 30:

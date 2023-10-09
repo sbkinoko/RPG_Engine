@@ -19,6 +19,7 @@ import com.sbkinoko.sbkinokorpg.game_item.action_item.skill.SkillData;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.skill.SuccessiveSkillData;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.skill.WarpSkillData;
 import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapChangeDataList;
 import com.sbkinoko.sbkinokorpg.mylibrary.ArrayToProb;
 
 public class List_Skill extends List_Item {
@@ -49,7 +50,7 @@ public class List_Skill extends List_Item {
                     0, 10, maxMonsNum, 7,
                     false, new ArrayToProb(new int[][]{{30, 2}, {50, 3}, {20, 4}})),
             new WarpSkillData("キャンプ", canInField, 0,
-                    new int[]{20, 21, 22, -1}),
+                    new int[]{20, 21, MapChangeDataList.InFrontOfEnemy, -1}),
 
             new SkillData("全体回復", canInEither, EffectType.EFFECT_TYPE_HEAL, 0, 10, maxMonsNum, 50),//10
             new SkillData("攻撃アップ", canInBattle, EffectType.EFFECT_TYPE_BUFF, STATUS_ATK, 1, 1, 0),

@@ -23,6 +23,8 @@ public class MapChangeDataList {
         }
     }
 
+    public static final int InFrontOfEnemy = 100;
+
     public static MapChangeData getMapChangeData(int id) {
         switch (id) {
             case 20:
@@ -30,6 +32,10 @@ public class MapChangeDataList {
             case 21:
                 return new MapChangeData(0, 9, 5, "町の外");
             case 22:
+                return new MapChangeData(2, 0, 2, "町の中2");
+            case 23:
+                return new MapChangeData(0, 9, 6, "町の外2");
+            case InFrontOfEnemy:
                 return new MapChangeData(0, 4, 5, "敵の前");
         }
         throw new RuntimeException();
