@@ -1,8 +1,8 @@
 package com.sbkinoko.sbkinokorpg.gameparams;
 
 public enum EventBattleFlag {
-    isEvent(true),
-    isNotEvent(false),
+    Event(true),
+    NotEvent(false),
     ;
 
     boolean eventFlag;

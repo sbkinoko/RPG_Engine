@@ -178,9 +178,9 @@ public class BattleSystem {
         }
         EventBattleFlag eventBattleFlag;
         if(canEscape){
-            eventBattleFlag = EventBattleFlag.isNotEvent;
+            eventBattleFlag = EventBattleFlag.NotEvent;
         }else{
-            eventBattleFlag = EventBattleFlag.isEvent;
+            eventBattleFlag = EventBattleFlag.Event;
         }
 
         battleFrame.battleEndWindow.openMenu("魔物の群れ", winFlag, eventBattleFlag);
