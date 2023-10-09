@@ -25,7 +25,7 @@ import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
-import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
 import com.sbkinoko.sbkinokorpg.window.MenuWindowInterface;
 

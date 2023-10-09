@@ -8,7 +8,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.npc.NPC;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCMatrix;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
-import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 
 import dagger.hilt.EntryPoints;
 

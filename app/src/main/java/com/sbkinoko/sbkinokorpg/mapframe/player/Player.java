@@ -15,7 +15,7 @@ import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
-import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.repository.bagrepository.BagRepository;
 
 import java.util.Arrays;

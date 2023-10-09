@@ -48,7 +48,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shoppin
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForEQPTo;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseItem;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.use_status.StrategyForUseSkill;
-import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
 
 import dagger.hilt.EntryPoints;

@@ -7,7 +7,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.GroupOfWindows;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.amount.AmountBuy;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.StrategyForList;
 import com.sbkinoko.sbkinokorpg.mapframe.window.window_set.list_strategy.shopping.for_sell.sell_item.ShoppingItemData;
-import com.sbkinoko.sbkinokorpg.repository.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.repository.bagrepository.BagRepository;
 
 import dagger.hilt.EntryPoints;

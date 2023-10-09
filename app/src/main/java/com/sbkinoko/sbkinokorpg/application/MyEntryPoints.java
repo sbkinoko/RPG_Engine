@@ -1,4 +1,4 @@
-package com.sbkinoko.sbkinokorpg.repository;
+package com.sbkinoko.sbkinokorpg.application;
 
 import com.sbkinoko.sbkinokorpg.repository.bagrepository.BagRepository;
 import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
