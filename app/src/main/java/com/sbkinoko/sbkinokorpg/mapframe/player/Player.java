@@ -9,13 +9,14 @@ import android.content.Context;
 import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
-import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapId;
 import com.sbkinoko.sbkinokorpg.repository.bagrepository.BagRepository;
 
 import java.util.Arrays;
@@ -24,7 +25,6 @@ import dagger.hilt.EntryPoints;
 
 public class Player {
     private final int cellLength;
-
     final double cvSize;
     final double prm1;
     int movedDistSum = 0;
@@ -574,5 +574,15 @@ public class Player {
                 break;
         }
         return offset;
+    }
+
+    private MapId lastTownId;
+
+    public void setLastTownId(MapId lastTownId) {
+        this.lastTownId = lastTownId;
+    }
+
+    public MapId getLastTownId(){
+        return lastTownId;
     }
 }
