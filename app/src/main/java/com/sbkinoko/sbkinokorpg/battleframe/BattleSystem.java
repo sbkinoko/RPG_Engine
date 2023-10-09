@@ -105,13 +105,19 @@ public class BattleSystem {
         return battleFrame;
     }
 
+    private EventBattleFlag eventBattleFlag;
+
     /**
      * @param monsters   出現したモンスターのid
      * @param bgImage    背景画像
      * @param escapeFlag 逃走可能かどうか
      */
-    public void startBattle(int[] monsters, int bgImage, EscapeFlag escapeFlag) {
+    public void startBattle(int[] monsters,
+                            int bgImage,
+                            EscapeFlag escapeFlag,
+                            EventBattleFlag eventBattleFlag) {
         canEscape = escapeFlag;
+        this.eventBattleFlag = eventBattleFlag;
         battleEndFlag = false;
         winFlag = false;
 
@@ -176,13 +182,7 @@ public class BattleSystem {
         for (int i = 0; i < GameParams.PLAYER_NUM; i++) {
             getPlayer(i).addExp(getEXP());
         }
-        EventBattleFlag eventBattleFlag;
 
-        if(canEscape.caeEscapeBattle()){
-            eventBattleFlag = EventBattleFlag.NotEvent;
-        }else{
-            eventBattleFlag = EventBattleFlag.Event;
-        }
 
         battleFrame.battleEndWindow.openMenu("魔物の群れ", winFlag, eventBattleFlag);
         battleFrame.battleEndWindow.addItem(dropItem);

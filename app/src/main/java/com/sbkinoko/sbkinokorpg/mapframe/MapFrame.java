@@ -617,7 +617,8 @@ public class MapFrame {
         if (isAppMons(cellType)) {
             startBattle(cellType,
                     monsType,
-                    EscapeFlag.Can);
+                    EscapeFlag.Can,
+                    EventBattleFlag.NotEvent);
         }
     }
 
@@ -625,7 +626,12 @@ public class MapFrame {
         return OptionConst.encounter < MakeCellFactory.make(cellType, context, player).getMonsRnd();
     }
 
-    public void startBattle(int CELL_TYPE, int battleID, EscapeFlag escapeFlag) {
+    public void startBattle(
+            int CELL_TYPE,
+            int battleID,
+            EscapeFlag escapeFlag,
+            EventBattleFlag eventBattleFlag
+    ) {
         int[] appMonsData = getAppMonsData(battleID);
 
         if (appMonsData == null) {
@@ -635,7 +641,8 @@ public class MapFrame {
         battleSystem.startBattle(
                 appMonsData,
                 MakeCellFactory.make(CELL_TYPE, context, player).getBattleBG(),
-                escapeFlag
+                escapeFlag,
+                eventBattleFlag
         );//対戦モンスターの決定
     }
 
