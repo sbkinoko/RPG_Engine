@@ -218,18 +218,21 @@ public class MapBackgroundCell {
     }
 
     public void setData(MapData map) {
-        int cellType;
-        int y = mapPoint[Y_axis], x = mapPoint[X_axis];
-        if (x < 0 || map.getWidth() <= x ||
-                y < 0 || map.getHeight() <= y) {
-            cellType = 0;
-        } else {
-            cellType = map.getCellType(y, x);
-        }
+        int cellType = getCellType(map);
 
         MakeCellFactory.make(cellType, context, player).setCellInf(this, map);
 
         reDraw();
+    }
+
+    private int getCellType(MapData map) {
+        if (map.isOutOfMap(mapPoint)) {
+            return map.getOutSideCell();
+        }
+
+        int y = mapPoint[Y_axis];
+        int x = mapPoint[X_axis];
+        return map.getCellType(y, x);
     }
 
     public void reDraw() {

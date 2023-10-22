@@ -1,5 +1,8 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
+
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.AppMonster;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
 
@@ -70,6 +73,18 @@ public abstract class MapData {
 
     public static MapData getMapData(int mapId_int) {
         return MapId.convertIntToMapId(mapId_int).getMapData();
+    }
+
+    public boolean isOutOfMap(int[] mapPoint){
+        int y = mapPoint[Y_axis];
+        int x = mapPoint[X_axis];
+
+        return x < 0 || getWidth() <= x ||
+                y < 0 || getHeight() <= y;
+    }
+
+    public int getOutSideCell(){
+        return 0;
     }
 
 }
