@@ -124,7 +124,7 @@ public class PlayerView {
         throw new RuntimeException("moveStateが不適{" + moveState + "}");
     }
 
-    // todo booleanでもいいものをintにする理由を考える
+    // 将来アニメーションを滑らかにしたときに困るからintにしておく
     private int imageType = 0;
 
     public void changeImage(
