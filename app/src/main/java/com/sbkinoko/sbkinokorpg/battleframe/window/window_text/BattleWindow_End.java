@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
+import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
@@ -51,7 +52,7 @@ public class BattleWindow_End extends BattleTxtWindow {
     @Override
     public void useBtA() {
         if (maxPageNum <= pageNum) {
-            battleFrame.closeBattleFrame(isWin,isEventBattle);
+            battleFrame.closeBattleFrame(isWin, eventBattleFlag);
             this.closeMenu();
             return;
         }
@@ -126,13 +127,13 @@ public class BattleWindow_End extends BattleTxtWindow {
         useBtA();
     }
 
-    private boolean isEventBattle;
-    public void openMenu(String name, boolean isWin,boolean isEventBattle) {
+    private EventBattleFlag eventBattleFlag;
+    public void openMenu(String name, boolean isWin,EventBattleFlag eventBattleFlag) {
         super.openMenu();
         pageNum = 0;
         maxPageNum = 0;
         this.isWin = isWin;
-        this.isEventBattle = isEventBattle;
+        this.eventBattleFlag = eventBattleFlag;
         menuTV[0].setText(getText(this.isWin, name));
         if (this.isWin) {
             maxPageNum = 1;
