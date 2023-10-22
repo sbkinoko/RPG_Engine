@@ -11,6 +11,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.item.SuccessiveItem;
 import com.sbkinoko.sbkinokorpg.game_item.action_item.use_item.UseItemInBattle;
+import com.sbkinoko.sbkinokorpg.gameparams.BattleResult;
 import com.sbkinoko.sbkinokorpg.gameparams.EffectType;
 import com.sbkinoko.sbkinokorpg.gameparams.EscapeFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
@@ -61,7 +62,7 @@ public class BattleSystem {
     }
 
     boolean battleEndFlag = false;
-    boolean winFlag = false;
+    BattleResult winFlag = BattleResult.Lose;
 
     private EscapeFlag canEscape;
 
@@ -119,7 +120,7 @@ public class BattleSystem {
         canEscape = escapeFlag;
         this.eventBattleFlag = eventBattleFlag;
         battleEndFlag = false;
-        winFlag = false;
+        winFlag = BattleResult.Lose;
 
         whoseTurn = 0;
         whoseActionSelect = 0;
@@ -302,7 +303,7 @@ public class BattleSystem {
 
     //todo getメソッドを利用する
     int actingID;
-    boolean _isWin;
+    BattleResult _isWin;
 
     private int getActingID() {
         return speedList[whoseTurn][0];
@@ -319,16 +320,16 @@ public class BattleSystem {
 
         actingID = speedList[whoseTurn][0];
         if (isPlayer(actingID)) {//プレイヤーが攻撃
-            _isWin = true;
+            _isWin = BattleResult.Win;
         } else {//モンスターが攻撃
             actingID = getMonsterID(actingID);
-            _isWin = false;
+            _isWin = BattleResult.Lose;
         }
     }
 
-    private void battleStep(int actingID, boolean isWin) {
+    private void battleStep(int actingID, BattleResult isWin) {
         Status[] atkStatus, defStatus;
-        if (isWin) {
+        if (isWin == BattleResult.Win) {
             atkStatus = players;
             defStatus = statusMonsters;
         } else {
@@ -386,7 +387,7 @@ public class BattleSystem {
 
     UseItemInBattle useItem;
 
-    void atkStep(int actingID, Status[] atkStatus, Status[] defStatus, boolean isWin) {
+    void atkStep(int actingID, Status[] atkStatus, Status[] defStatus, BattleResult isWin) {
         Status nowStatus = atkStatus[actingID];
         battleFrame.battleAttackWindow.openMenu(nowStatus.getActionTxt());
         useItem = new UseItemInBattle();
@@ -425,7 +426,7 @@ public class BattleSystem {
 
     boolean skipATKStep = false;
 
-    private void beforeATKStep(Status nowPlayer, Status[] atkStatus, boolean isWin) {
+    private void beforeATKStep(Status nowPlayer, Status[] atkStatus, BattleResult isWin) {
         condition = condition.getNextCondition();
         if (condition == null
                 || skipATKStep) {
@@ -445,7 +446,7 @@ public class BattleSystem {
         beforeATKStep(nowPlayer, atkStatus, isWin);
     }
 
-    private void afterATKStep(Status nowPlayer, Status[] atkStatus, boolean isWin) {
+    private void afterATKStep(Status nowPlayer, Status[] atkStatus, BattleResult isWin) {
         condition = condition.getNextCondition();
         if (condition == null) {
             incStep();
@@ -460,7 +461,7 @@ public class BattleSystem {
         afterATKStep(nowPlayer, atkStatus, isWin);
     }
 
-    private boolean hasConditionAction(Status nowPlayer, Status[] atkStatus, boolean isWin) {
+    private boolean hasConditionAction(Status nowPlayer, Status[] atkStatus,BattleResult isWin) {
         if (!stepType.isNeedStep(condition)) {
             return false;
         }
@@ -472,7 +473,7 @@ public class BattleSystem {
             _condition = _condition.getSameTypeNextCondition();
         }
         battleFrame.battleWindow_Top.reloadTv();
-        chekExtermination(atkStatus, !isWin);
+        chekExtermination(atkStatus, isWin.not());
 
         if (condition.isSkipATKStep()) {
             skipATKStep = true;
@@ -496,10 +497,11 @@ public class BattleSystem {
         }
     }
 
-    private void chekExtermination(Status[] checkStatus, boolean _win) {
+    //fixme typo
+    private void chekExtermination(Status[] checkStatus, BattleResult _batlteResult) {
         battleEndFlag = isExterminated(checkStatus);
         if (battleEndFlag) {
-            winFlag = _win;
+            winFlag = _batlteResult;
         }
     }
 

@@ -5,6 +5,8 @@ public enum EscapeFlag {
     CanNot(false),
     ;
 
+    //fixme　booleanを持たせるのをやめて比較にする
+    //例)　escapeFlag == EscapeFlag.Win とか
     boolean escapeFlag;
 
     EscapeFlag(boolean escapeFlag) {
