@@ -11,7 +11,7 @@ class MakeCell_Type_TreasureBox extends MakeCell {
     @Override
     public int[] getObjectImg() {
         String imgId2;
-        if (nowMap.getTreasureBoxes()[nowMap.getTreasureBoxId(y, x)] == 0) {
+        if (nowMap.getTreasureBoxes()[nowMap.getTreasureBoxId(mapPoint)] == 0) {
             imgId2 = "ob_98_0";
         } else {
             imgId2 = "ob_98_1";

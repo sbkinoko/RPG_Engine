@@ -51,7 +51,7 @@ public class MapBackGroundCellMatrix {
         }
     }
 
-    public int[] getPlayerMapXY() {
+    public MapPoint getPlayerMapXY() {
         return getBGC_player_in().getMapPoint();
     }
 
@@ -84,9 +84,9 @@ public class MapBackGroundCellMatrix {
                 tmpPoint[X_axis] = x * MainGame.cellLength;
                 tmpBGCell.setViewPoint(tmpPoint);
 
-                int[] mapPoint = new int[2];
-                mapPoint[Y_axis] = mapY - (GameParams.visibleCellNum - 1) / 2 + y;
-                mapPoint[X_axis] = mapX - (GameParams.visibleCellNum - 1) / 2 + x;
+                int mapPointY = mapY - (GameParams.visibleCellNum - 1) / 2 + y;
+                int mapPointX = mapX - (GameParams.visibleCellNum - 1) / 2 + x;
+                MapPoint mapPoint =new MapPoint(mapPointY,mapPointX);
                 tmpBGCell.setMapPoint(mapPoint);
             }
         }

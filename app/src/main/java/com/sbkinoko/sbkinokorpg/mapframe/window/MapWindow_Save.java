@@ -23,6 +23,7 @@ import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
+import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
@@ -338,9 +339,9 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
     }
 
     private void savePlayerData(boolean autoSaveFlag) {
-        int[] MapXY = mapFrame.getBgcMatrix().getPlayerMapXY();
-        int x = MapXY[X_axis];
-        int y = MapXY[Y_axis];
+        MapPoint mapPoint = mapFrame.getBgcMatrix().getPlayerMapXY();
+        int x = mapPoint.getX();
+        int y = mapPoint.getY();
         float playerX = mapFrame.relativePlayerPoint()[X_axis];
         float playerY = mapFrame.relativePlayerPoint()[Y_axis];
         int mapNumber = mapFrame.getMapViewModel().getMapID().ordinal();
