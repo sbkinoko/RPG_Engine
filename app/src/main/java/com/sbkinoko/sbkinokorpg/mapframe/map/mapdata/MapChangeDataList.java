@@ -1,5 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 
+import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.CellIdList.Cell24;
+
 public class MapChangeDataList {
     public static class MapChangeData {
         int mapID, mapX, mapY;
@@ -30,6 +32,7 @@ public class MapChangeDataList {
             case 20:
                 return new MapChangeData(1, 0, 2, "町の中");
             case 21:
+            case Cell24:
                 return new MapChangeData(0, 9, 5, "町の外");
             case 22:
                 return new MapChangeData(2, 0, 2, "町の中2");

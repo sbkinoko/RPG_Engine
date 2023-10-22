@@ -9,6 +9,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
 public abstract class MapData {
 
     public abstract MapId getMapId();
+
     public static final int MAP_NUM = MapId.values().length;
     public static final int SKY_MONS = 50;
     protected int[][][] map = new int[][][]{};
@@ -30,6 +31,9 @@ public abstract class MapData {
     }
 
     public int getCellType(int y, int x) {
+        if (isOutOfMap(new int[]{y, x})) {
+            return getOutSideCell();
+        }
         return map[y][x][0];
     }
 
@@ -75,7 +79,7 @@ public abstract class MapData {
         return MapId.convertIntToMapId(mapId_int).getMapData();
     }
 
-    public boolean isOutOfMap(int[] mapPoint){
+    public boolean isOutOfMap(int[] mapPoint) {
         int y = mapPoint[Y_axis];
         int x = mapPoint[X_axis];
 
@@ -83,7 +87,7 @@ public abstract class MapData {
                 y < 0 || getHeight() <= y;
     }
 
-    public int getOutSideCell(){
+    public int getOutSideCell() {
         return 0;
     }
 

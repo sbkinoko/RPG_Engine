@@ -590,11 +590,6 @@ public class MapFrame {
             return;
         }
 
-        if (mapBackGroundCellMatrix.getBGC_player_in().isOutOfMapRange(mapViewModel.getNowMap())) {
-            return;//範囲外なのでイベントはない
-        }
-
-
         //全身が入ったときのマスの処理
         if (player.isAllPartIn()
                 && player.isMoved()) {
