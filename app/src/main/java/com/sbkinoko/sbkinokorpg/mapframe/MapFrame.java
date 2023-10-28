@@ -479,19 +479,18 @@ public class MapFrame {
         if (actualScroll[Axis.X.id] && actualScroll[Axis.Y.id]) {
             for (int y = 0; y < GameParams.allCellNum; y++) {
                 for (int x = 0; x < GameParams.allCellNum; x++) {
-                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.X.id);
-                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.Y.id);
+                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.X);
+                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.Y);
                 }
             }
             return;
         }
 
-        // fixme axisクラスを使う
-        int axis;
+        Axis axis;
         if (actualScroll[Axis.X.id]) {
-            axis = Axis.X.id;
+            axis = Axis.X;
         } else {
-            axis = Axis.Y.id;
+            axis = Axis.Y;
         }
 
         for (int y = 0; y < GameParams.allCellNum; y++) {

@@ -1,7 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 
 public class MapPoint {
     private int x;
@@ -29,19 +28,18 @@ public class MapPoint {
         this.x = x;
     }
 
-    public int getAxisPoint(int axis) {
-        // fixme enumに変更
+    public int getAxisPoint(Axis axis) {
         switch (axis) {
-            case X_axis:
+            case X:
                 return x;
-            case Y_axis:
+            case Y:
                 return y;
             default:
                 throw new RuntimeException("軸の値が不正です");
         }
     }
 
-    public void applyLoop(int axis, int mapLength) {
+    public void applyLoop(Axis axis, int mapLength) {
         if (getAxisPoint(axis) < 0) {
             movePositionOfAxis(axis, mapLength);
         } else if (mapLength <= getAxisPoint(axis)) {
@@ -49,13 +47,12 @@ public class MapPoint {
         }
     }
 
-    public void movePositionOfAxis(int axis, int diff) {
-        // fixme enumに変換
+    public void movePositionOfAxis(Axis axis, int diff) {
         switch (axis) {
-            case X_axis:
+            case X:
                 x += diff;
                 break;
-            case Y_axis:
+            case Y:
                 y += diff;
                 break;
             default:
