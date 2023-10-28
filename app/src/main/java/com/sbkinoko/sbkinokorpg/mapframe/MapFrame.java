@@ -27,6 +27,7 @@ import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEvent;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MakeCellFactory;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.DefeatedWarp;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapChangeData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapId;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.TestField;
@@ -226,6 +227,7 @@ public class MapFrame {
             BattleResult battleResult
     ) {
         frameLayout.setVisibility(View.VISIBLE);
+        // すべてのイベントバトルに敗北イベントを作成
         if (eventBattleFlag.isEventBattle()) {
             player.proceedNowEventFlag(battleResult == BattleResult.Win);
             doAction();
@@ -236,7 +238,8 @@ public class MapFrame {
                 //ゲームオーバーになったときの処理
                 //そのまま完全復活かセーブデータからか
                 if (player.getLastTownId() != null) {
-                    int[] loadPoint = ((DefeatedWarp) (player.getLastTownId().getMapData())).getDefeatedWarpPoint();
+                    DefeatedWarp lastTown = ((DefeatedWarp) (player.getLastTownId().getMapData()));
+                    MapChangeData loadPoint = lastTown.getDefeatedWarpPoint();
                     loadMap(loadPoint);
                 }
             }
@@ -279,13 +282,13 @@ public class MapFrame {
         return loopFlag;
     }
 
-    public void loadFirstMap(int[] roadPoint, float[] relativeCenter) {
-        loadMap(roadPoint);
+    public void loadFirstMap(MapChangeData loadPoint, float[] relativeCenter) {
+        loadMap(loadPoint);
         player.setRelativePoint(relativeCenter);
         mapViewModel.checkNPCPosition();
     }
 
-    public void loadMap(int[] loadPoint) {
+    public void loadMap(MapChangeData loadPoint) {
         beforeLoadBackground();
         MainGame.tapHandler().post(() -> loadBackGround(loadPoint));
     }
@@ -346,9 +349,11 @@ public class MapFrame {
     private boolean loadFinishFlag = false;
 
     //todo loadPointクラスを作る
-    private void loadBackGround(int[] roadPoint) {
-        MapData nextMap = MainGame.mapDataList[roadPoint[2]];
-        MapId nextMapId = MapId.convertIntToMapId(roadPoint[2]);
+    private void loadBackGround(MapChangeData loadPoint) {
+
+        MapData nextMap = MainGame.mapDataList[loadPoint.mapID];
+        MapId nextMapId = MapId.convertIntToMapId(loadPoint.mapID);
+
         if (nextMapId.isCanBeLastTown()
                 && player != null) {
             //todo セーブ処理を後で書く
@@ -361,7 +366,7 @@ public class MapFrame {
         //fixme mapDataにループの情報を持たせる
         loopFlag = (mapViewModel.getNowMap() instanceof TestField);
 
-        mapBackGroundCellMatrix.roadBackGround(roadPoint[Axis.Y.id], roadPoint[Axis.X.id]);
+        mapBackGroundCellMatrix.roadBackGround(loadPoint.mapY, loadPoint.mapX);
 
         player.goCenter();
         playerView.setImageViewPosition(
@@ -377,14 +382,14 @@ public class MapFrame {
 
     }
 
-    private void loadBackGroundWithSave(int[] roadPoint) {
+    private void loadBackGroundWithSave(MapChangeData roadPoint) {
         loadBackGround(roadPoint);
         mapSaveWindow.save(true);
     }
 
 
     //必ずせーぶされるのでどうするか考える
-    public void moveMap(int[] loadPoint) {
+    public void moveMap(MapChangeData loadPoint) {
         beforeLoadBackground();
         MainGame.tapHandler().post(() -> loadBackGroundWithSave(loadPoint));
     }
@@ -479,19 +484,18 @@ public class MapFrame {
         if (actualScroll[Axis.X.id] && actualScroll[Axis.Y.id]) {
             for (int y = 0; y < GameParams.allCellNum; y++) {
                 for (int x = 0; x < GameParams.allCellNum; x++) {
-                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.X.id);
-                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.Y.id);
+                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.X);
+                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.Y);
                 }
             }
             return;
         }
 
-        // fixme axisクラスを使う
-        int axis;
+        Axis axis;
         if (actualScroll[Axis.X.id]) {
-            axis = Axis.X.id;
+            axis = Axis.X;
         } else {
-            axis = Axis.Y.id;
+            axis = Axis.Y;
         }
 
         for (int y = 0; y < GameParams.allCellNum; y++) {

@@ -3,32 +3,12 @@ package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.CellIdList.Cell24;
 
 public class MapChangeDataList {
-    public static class MapChangeData {
-        int mapID, mapX, mapY;
-        String mapName;
-
-        MapChangeData(int mapID, int mapX, int mapY, String mapName) {
-            this.mapID = mapID;
-            this.mapX = mapX;
-            this.mapY = mapY;
-            this.mapName = mapName;
-        }
-
-        public int[] getDataForRoad() {
-            return new int[]{
-                    mapY, mapX, mapID
-            };
-        }
-
-        public String getName() {
-            return mapName;
-        }
-    }
 
     public static final int InFrontOfEnemy = 100;
 
     public static MapChangeData getMapChangeData(int id) {
         switch (id) {
+            //fixme マジックナンバーやめる
             case 20:
                 return new MapChangeData(1, 0, 2, "町の中");
             case 21:

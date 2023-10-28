@@ -42,7 +42,7 @@ public class MapEvent {
             case mapChange:
                 int mapX = mapFrame.getBgcMatrix().getPlayerMapXY().getX();
                 int mapY = mapFrame.getBgcMatrix().getPlayerMapXY().getY();
-                roadMap(mapFrame.getNowMap().getCellType(mapY, mapX));
+                loadMap(mapFrame.getNowMap().getCellType(mapY, mapX));
                 break;
             case startBattle:
                 mapFrame.startBattle(0, 3,
@@ -169,7 +169,7 @@ public class MapEvent {
 
     public void doWarp(int townID, GroupOfWindows groupOfWindows) {
         groupOfWindows.getWindowDetail().closeMenu();
-        roadMap(townID);
+        loadMap(townID);
 
         mapFrame.getMapTextBoxWindow().openMenu(new String[]{"ワープした"});
         UseItemInField.useInField(
@@ -193,8 +193,8 @@ public class MapEvent {
         mapFrame.window_explanation.setText(1, itemName);
     }
 
-    public void roadMap(int cellType) {
-        mapFrame.moveMap(MapChangeDataList.getMapChangeData(cellType).getDataForRoad());
+    public void loadMap(int cellType) {
+        mapFrame.moveMap(MapChangeDataList.getMapChangeData(cellType));
     }
 
     public void goSky() {
