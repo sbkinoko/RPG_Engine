@@ -24,6 +24,7 @@ import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapChangeData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
@@ -68,21 +69,51 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         frameLayout.setX((float) MainGame.playWindowSize / 2);
     }
 
-    public static int[] getSaveData(Player player) {
-        int[] returnData;
-
-        returnData = getPlayerData(player);
+    public static void getSaveData(Player player) {
+        getPlayerData(player);
 
         getEventData(player);
 
         getItemData(player);
-
-        return returnData;
     }
 
-    static int[] getPlayerData(Player player) {
+    static void getPlayerData(Player player) {
         Cursor cursor;
-        int[] returnData = new int[3];
+
+        cursor = MainGame.DataBase.query(
+                MyDataBaseHelper.getPlayerTableName(),
+                MyDataBaseHelper.PlayerColNames,
+                null,
+                null,
+                null,
+                null,
+                null);
+        cursor.moveToLast();
+        int colID;
+
+        float[] startPoint = new float[2];
+        colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_X);
+        startPoint[Axis.X.id] = cursor.getFloat(colID);
+
+        colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_Y);
+        startPoint[Axis.Y.id] = cursor.getFloat(colID);
+
+        player.setRelativePoint(startPoint);
+
+        colID = cursor.getColumnIndex(MyDataBaseHelper.MOVE_STATE);
+        int intMoveState = cursor.getInt(colID);
+        MoveState moveState = MoveState.convertIntToMoveState(intMoveState);
+        player.setMoveState(moveState);
+
+        colID = cursor.getColumnIndex(MyDataBaseHelper.MONEY);
+        player.setMoney(cursor.getInt(colID));
+
+        cursor.close();
+    }
+
+    public static MapChangeData getLoadPoint() {
+        Cursor cursor;
+        int x,y,mapID;
 
         cursor = MainGame.DataBase.query(
                 MyDataBaseHelper.getPlayerTableName(),
@@ -96,34 +127,19 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         int colID;
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.CELL_X);
-        returnData[Axis.X.id] = cursor.getInt(colID);
+        x = cursor.getInt(colID);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.CELL_Y);
-        returnData[Axis.Y.id] = cursor.getInt(colID);
-
-        float[] startPoint = new float[2];
-        colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_X);
-        startPoint[Axis.X.id] = cursor.getFloat(colID);
-
-        colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_Y);
-        startPoint[Axis.Y.id] = cursor.getFloat(colID);
-
-        player.setRelativePoint(startPoint);
+        y = cursor.getInt(colID);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.MAP_NUMBER);
-        returnData[2] = cursor.getInt(colID);
-
-        colID = cursor.getColumnIndex(MyDataBaseHelper.MOVE_STATE);
-        int intMoveState = cursor.getInt(colID);
-        MoveState moveState = MoveState.convertIntToMoveState(intMoveState);
-        player.setMoveState(moveState);
-
-        colID = cursor.getColumnIndex(MyDataBaseHelper.MONEY);
-        player.setMoney(cursor.getInt(colID));
+        mapID = cursor.getInt(colID);
 
         cursor.close();
-        return returnData;
+
+        return new MapChangeData(mapID,x,y,"");
     }
+
 
     static void getEventData(Player player) {
         for (int i = 0; i < MapData.eventFlagNum; i++) {

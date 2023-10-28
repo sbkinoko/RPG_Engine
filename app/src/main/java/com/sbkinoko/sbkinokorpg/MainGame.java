@@ -22,6 +22,7 @@ import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
+import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapChangeData;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 import com.sbkinoko.sbkinokorpg.mapframe.window.MapWindow_Save;
@@ -86,7 +87,7 @@ public class MainGame extends AppCompatActivity {
 
     Runnable runnable;
 
-    int[] roadPoint = new int[3];
+    MapChangeData loadPoint;
     MapData mapData;
     public static MapData[] mapDataList = new MapData[MapData.MAP_NUM];
 
@@ -128,15 +129,15 @@ public class MainGame extends AppCompatActivity {
 
         player = new Player(cellLength, this);
 
-        roadData();
+        loadData();
 
         setMapData();
 
-        mapData = mapDataList[roadPoint[2]];
+        mapData = mapDataList[loadPoint.mapID];
 
         controllerFrame = new ControllerFrame(player, this, config, frameWidth, frameHeight);
 
-        mapFrame = new MapFrame(this, config, player, frameWidth, frameHeight,controllerFrame);
+        mapFrame = new MapFrame(this, config, player, frameWidth, frameHeight, controllerFrame);
 
         battleFrame = new BattleFrame(this, config, frameWidth, frameHeight);
 
@@ -155,7 +156,7 @@ public class MainGame extends AppCompatActivity {
         LL.addView(controllerFrame.getControllerFL());
         LL.addView(fpsView);
 
-        mapFrame.loadFirstMap(roadPoint, relativeCenter);
+        mapFrame.loadFirstMap(loadPoint, relativeCenter);
 
         GameParams.setPlayerNum(battleSystem.getPlayerNum());
 
@@ -214,7 +215,7 @@ public class MainGame extends AppCompatActivity {
     }
 
 
-    private void roadData() {
+    private void loadData() {
         myDataBaseHelper = new MyDataBaseHelper(this);
         DataBase = myDataBaseHelper.getReadableDatabase();
 
@@ -246,7 +247,9 @@ public class MainGame extends AppCompatActivity {
             MapWindow_Save.addData();
         }
 
-        roadPoint = MapWindow_Save.getSaveData(player);
+        MapWindow_Save.getSaveData(player);
+        loadPoint = MapWindow_Save.getLoadPoint();
+
         player.addAllItem();
     }
 

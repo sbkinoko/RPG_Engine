@@ -116,8 +116,8 @@ public class Town extends MapData
     }
 
     @Override
-    public int[] getDefeatedWarpPoint() {
-        return new int[]{2,0,getMapId().ordinal()};
+    public MapChangeData getDefeatedWarpPoint() {
+        return new MapChangeData(getMapId().ordinal(),0,2);
     }
 
     @Override
