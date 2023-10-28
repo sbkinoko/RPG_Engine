@@ -1,6 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe.collisionview;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
 import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData.objectHeight_Non;
 
 import android.content.Context;
@@ -56,9 +55,9 @@ public class CollisionView extends View {
         }
 
         //今見ている四角形に全身が入っているか
-        return getX() + getWidth() * corners[0] <= player.getPoints()[X_axis][0]
+        return getX() + getWidth() * corners[0] <= player.getPoints()[Axis.X.id][0]
                 && getY() + getHeight() * corners[1] <= player.getPoints()[Axis.Y.id][0]
-                && player.getPoints()[X_axis][1] <= getX() + getWidth() * corners[4]
+                && player.getPoints()[Axis.X.id][1] <= getX() + getWidth() * corners[4]
                 && player.getPoints()[Axis.Y.id][1] <= getY() + getHeight() * corners[5];
     }
 
@@ -139,15 +138,15 @@ public class CollisionView extends View {
             return false;//移動してもぶつからない
         }
 
-        //V[X_axis]= 0;
+        //V[Axis.X.id]= 0;
         V[Axis.Y.id] = player.getV()[Axis.Y.id];
         player.setCollisionPoints(V);//x取り消し　縦だけチェック
         tmpFlag[Axis.Y.id] = this.isColliding();
 
-        V[X_axis] = player.getV()[X_axis];
+        V[Axis.X.id] = player.getV()[Axis.X.id];
         V[Axis.Y.id] = 0;
         player.setCollisionPoints(V);//y取り消し　横だけチェック
-        tmpFlag[X_axis] = this.isColliding();
+        tmpFlag[Axis.X.id] = this.isColliding();
 
         player.setCollisionPoints(player.getV());
 
@@ -155,12 +154,12 @@ public class CollisionView extends View {
             player.setCanNotMove_Axis(Axis.Y.id);
         }
 
-        if (tmpFlag[X_axis]) {//x方向だけ移動できない
-            player.setCanNotMove_Axis(X_axis);
+        if (tmpFlag[Axis.X.id]) {//x方向だけ移動できない
+            player.setCanNotMove_Axis(Axis.X.id);
         }
 
         //どっちもOKだったらそのセル番号を保存
-        return !tmpFlag[X_axis] && !tmpFlag[Axis.Y.id];
+        return !tmpFlag[Axis.X.id] && !tmpFlag[Axis.Y.id];
     }
 
 
@@ -227,8 +226,8 @@ public class CollisionView extends View {
 
         int largeY = player.getCollisionPoints()[Axis.Y.id][1];
         int smallY = player.getCollisionPoints()[Axis.Y.id][0];
-        int smallX = player.getCollisionPoints()[X_axis][0];
-        int largeX = player.getCollisionPoints()[X_axis][1];
+        int smallX = player.getCollisionPoints()[Axis.X.id][0];
+        int largeX = player.getCollisionPoints()[Axis.X.id][1];
 
         if (x1 == x2) {
             return Y1 <= largeY
@@ -257,15 +256,15 @@ public class CollisionView extends View {
     }
 
     private boolean isSideCrossing(double a, double b, double X1, double X2, int side) {
-        return player.getCollisionPoints()[Axis.Y.id][0] <= a * player.getCollisionPoints()[X_axis][side] + b
-                && a * player.getCollisionPoints()[X_axis][side] + b <= player.getCollisionPoints()[Axis.Y.id][1]
-                && X1 <= player.getCollisionPoints()[X_axis][side]
-                && player.getCollisionPoints()[X_axis][side] <= X2;
+        return player.getCollisionPoints()[Axis.Y.id][0] <= a * player.getCollisionPoints()[Axis.X.id][side] + b
+                && a * player.getCollisionPoints()[Axis.X.id][side] + b <= player.getCollisionPoints()[Axis.Y.id][1]
+                && X1 <= player.getCollisionPoints()[Axis.X.id][side]
+                && player.getCollisionPoints()[Axis.X.id][side] <= X2;
     }
 
     private boolean isUpDownCrossing(double a, double b, double Y1, double Y2, int ud) {
-        return player.getCollisionPoints()[X_axis][0] <= (player.getCollisionPoints()[Axis.Y.id][ud] - b) / a
-                && (player.getCollisionPoints()[Axis.Y.id][ud] - b) / a <= player.getCollisionPoints()[X_axis][1]
+        return player.getCollisionPoints()[Axis.X.id][0] <= (player.getCollisionPoints()[Axis.Y.id][ud] - b) / a
+                && (player.getCollisionPoints()[Axis.Y.id][ud] - b) / a <= player.getCollisionPoints()[Axis.X.id][1]
                 && Y1 <= player.getCollisionPoints()[Axis.Y.id][ud]
                 && player.getCollisionPoints()[Axis.Y.id][ud] <= Y2;
     }

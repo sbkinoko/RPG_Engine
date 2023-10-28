@@ -1,7 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-
 import android.content.Context;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -81,7 +79,7 @@ public class MapBackGroundCellMatrix {
                 tmpBGCell = mapBackgroundCells[y][x];
                 float[] tmpPoint = new float[2];
                 tmpPoint[Axis.Y.id] = y * MainGame.cellLength;
-                tmpPoint[X_axis] = x * MainGame.cellLength;
+                tmpPoint[Axis.X.id] = x * MainGame.cellLength;
                 tmpBGCell.setViewPoint(tmpPoint);
 
                 int mapPointY = mapY - (GameParams.visibleCellNum - 1) / 2 + y;
@@ -123,7 +121,7 @@ public class MapBackGroundCellMatrix {
      * @return 要求したBGC
      */
     public MapBackgroundCell getBGC(int[] point) {
-        return mapBackgroundCells[point[Axis.Y.id]][point[X_axis]];
+        return mapBackgroundCells[point[Axis.Y.id]][point[Axis.X.id]];
     }
 
     /**
@@ -136,10 +134,11 @@ public class MapBackGroundCellMatrix {
     }
 
     public MapBackgroundCell getBGC_player_in() {
+        // fixme 前もって変数を抽出する
         Log.d("msg", "matrix getPlayerBGC "
                 + player.getBackGroundCell()[Axis.Y.id] + ":"
-                + player.getBackGroundCell()[X_axis]);
-        return mapBackgroundCells[player.getBackGroundCell()[Axis.Y.id]][player.getBackGroundCell()[X_axis]];
+                + player.getBackGroundCell()[Axis.X.id]);
+        return mapBackgroundCells[player.getBackGroundCell()[Axis.Y.id]][player.getBackGroundCell()[Axis.X.id]];
     }
 
     abstract private static class BGC_Strategy implements BGCStrategyInterface {
@@ -154,7 +153,7 @@ public class MapBackGroundCellMatrix {
     private boolean doProcessForAllCells() {
         int tmpCellY, tmpCellX,
                 preCellY = player.getBackGroundCell()[Axis.Y.id],
-                preCellX = player.getBackGroundCell()[X_axis];
+                preCellX = player.getBackGroundCell()[Axis.X.id];
         MapBackgroundCell tmpBGC;
 
         for (int i = -checkArea; i <= checkArea; i++) {

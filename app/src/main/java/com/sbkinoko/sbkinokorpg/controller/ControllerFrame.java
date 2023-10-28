@@ -1,7 +1,5 @@
 package com.sbkinoko.sbkinokorpg.controller;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -301,7 +299,7 @@ public class ControllerFrame {
             float Vy = sin * vParam * moveRatio;
 
             int[] V = new int[2];
-            V[X_axis] = (int) Vx;
+            V[Axis.X.id] = (int) Vx;
             V[Axis.Y.id] = (int) Vy;
 
             player.setCanMove(true);

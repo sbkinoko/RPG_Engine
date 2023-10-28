@@ -1,7 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe.window;
 
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.PLAYER_NUM;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -97,14 +96,14 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         int colID;
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.CELL_X);
-        returnData[X_axis] = cursor.getInt(colID);
+        returnData[Axis.X.id] = cursor.getInt(colID);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.CELL_Y);
         returnData[Axis.Y.id] = cursor.getInt(colID);
 
         float[] startPoint = new float[2];
         colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_X);
-        startPoint[X_axis] = cursor.getFloat(colID);
+        startPoint[Axis.X.id] = cursor.getFloat(colID);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_Y);
         startPoint[Axis.Y.id] = cursor.getFloat(colID);
@@ -184,7 +183,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
     }
 
     static private void addPlayerData() {
-        float playerX = MainGame.relativeCenter[X_axis];
+        float playerX = MainGame.relativeCenter[Axis.X.id];
         float playerY = MainGame.relativeCenter[Axis.Y.id];
         Log.d("msg", GameParams.startX + ":" + GameParams.startY + " X" + playerX + " Y" + playerY);
 
@@ -342,7 +341,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         MapPoint mapPoint = mapFrame.getBgcMatrix().getPlayerMapXY();
         int x = mapPoint.getX();
         int y = mapPoint.getY();
-        float playerX = mapFrame.relativePlayerPoint()[X_axis];
+        float playerX = mapFrame.relativePlayerPoint()[Axis.X.id];
         float playerY = mapFrame.relativePlayerPoint()[Axis.Y.id];
         int mapNumber = mapFrame.getMapViewModel().getMapID().ordinal();
         Log.d("msg", x + ":" + y + " X" + playerX + " Y" + playerY);

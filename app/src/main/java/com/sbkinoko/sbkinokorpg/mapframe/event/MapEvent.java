@@ -1,7 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe.event;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-
 import android.util.Log;
 
 import com.sbkinoko.sbkinokorpg.OptionConst;
@@ -210,7 +208,7 @@ public class MapEvent {
         player.setV(new int[]{0, 0});
         mapFrame.setPlayerMoveState(MoveState.MoveState_Ground);
         mapFrame.checkAfterPosition();
-        if (player.getCanMoveDir()[X_axis] && player.getCanMoveDir()[Axis.Y.id]) {
+        if (player.getCanMoveDir()[Axis.X.id] && player.getCanMoveDir()[Axis.Y.id]) {
             txt = new String[]{"地上に降りた"};
             mapFrame.getBgcMatrix().setBGImage();
         } else {
@@ -227,7 +225,7 @@ public class MapEvent {
                 return Axis.Y.id;
             case Up://上下を向いている時
             case Down:
-                return X_axis;
+                return Axis.X.id;
         }
         throw new RuntimeException();
     }
@@ -238,22 +236,22 @@ public class MapEvent {
 
         getGoal_d(goal, d);
 
-        if (canNotGoToGoal(goal[X_axis], goal[Axis.Y.id])) {
+        if (canNotGoToGoal(goal[Axis.X.id], goal[Axis.Y.id])) {
             int axis = getDirAxis();
 
             goal[axis] = player.getPlayerSize();
-            if (canNotGoToGoal(goal[X_axis], goal[Axis.Y.id])) {
+            if (canNotGoToGoal(goal[Axis.X.id], goal[Axis.Y.id])) {
                 goal[axis] *= -1;
             }
             d[axis] = goal[axis];
         }
 
-        int[] goalPoint = decideGoal(goal[X_axis], d[X_axis], goal[Axis.Y.id], d[Axis.Y.id]);
-        double dr = Math.sqrt(Math.pow(goalPoint[X_axis], 2) + Math.pow(goalPoint[Axis.Y.id], 2));
+        int[] goalPoint = decideGoal(goal[Axis.X.id], d[Axis.X.id], goal[Axis.Y.id], d[Axis.Y.id]);
+        double dr = Math.sqrt(Math.pow(goalPoint[Axis.X.id], 2) + Math.pow(goalPoint[Axis.Y.id], 2));
 
         int[] tmpV = new int[2];
         int v_value = OptionConst.getActualV();
-        tmpV[X_axis] = (int) ((goalPoint[X_axis] * v_value) / dr);
+        tmpV[Axis.X.id] = (int) ((goalPoint[Axis.X.id] * v_value) / dr);
         tmpV[Axis.Y.id] = (int) ((goalPoint[Axis.Y.id] * v_value) / dr);
         player.setV(tmpV);
         player.setDistanceToGoal(goalPoint);
@@ -263,16 +261,16 @@ public class MapEvent {
         int dist = (int) (player.getPlayerSize() * (1 + GameParams.actionOffset));
         switch (player.getDir()) {
             case Right:
-                goal[X_axis] = dist;
-                d[X_axis] = goal[X_axis];
+                goal[Axis.X.id] = dist;
+                d[Axis.X.id] = goal[Axis.X.id];
                 break;
             case Down:
                 goal[Axis.Y.id] = dist;
                 d[Axis.Y.id] = goal[Axis.Y.id];
                 break;
             case Left:
-                goal[X_axis] = -dist;
-                d[X_axis] = goal[X_axis];
+                goal[Axis.X.id] = -dist;
+                d[Axis.X.id] = goal[Axis.X.id];
                 break;
             case Up:
                 goal[Axis.Y.id] = -dist;
@@ -298,14 +296,14 @@ public class MapEvent {
             }
         }
         int[] tmpAP = new int[2];
-        tmpAP[X_axis] = goalX;
+        tmpAP[Axis.X.id] = goalX;
         tmpAP[Axis.Y.id] = goalY;
         return tmpAP;
     }
 
     private boolean canNotGoToGoal(int dX, int dY) {
         int[] tmpAP = new int[2];
-        tmpAP[X_axis] = dX;
+        tmpAP[Axis.X.id] = dX;
         tmpAP[Axis.Y.id] = dY;
         player.setCollisionPoints(tmpAP);
 

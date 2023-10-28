@@ -1,7 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -363,7 +361,7 @@ public class MapFrame {
         //fixme mapDataにループの情報を持たせる
         loopFlag = (mapViewModel.getNowMap() instanceof TestField);
 
-        mapBackGroundCellMatrix.roadBackGround(roadPoint[Axis.Y.id], roadPoint[X_axis]);
+        mapBackGroundCellMatrix.roadBackGround(roadPoint[Axis.Y.id], roadPoint[Axis.X.id]);
 
         player.goCenter();
         playerView.setImageViewPosition(
@@ -478,19 +476,20 @@ public class MapFrame {
             return;
         }
 
-        if (actualScroll[X_axis] && actualScroll[Axis.Y.id]) {
+        if (actualScroll[Axis.X.id] && actualScroll[Axis.Y.id]) {
             for (int y = 0; y < GameParams.allCellNum; y++) {
                 for (int x = 0; x < GameParams.allCellNum; x++) {
-                    mapBackGroundCellMatrix.getBGC(y, x).scroll(X_axis);
+                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.X.id);
                     mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.Y.id);
                 }
             }
             return;
         }
 
+        // fixme axisクラスを使う
         int axis;
-        if (actualScroll[X_axis]) {
-            axis = X_axis;
+        if (actualScroll[Axis.X.id]) {
+            axis = Axis.X.id;
         } else {
             axis = Axis.Y.id;
         }
@@ -508,8 +507,8 @@ public class MapFrame {
      */
     private int[] getActualMoveDist(boolean[] scroll) {
         int[] tmpV = {0, 0};
-        if (player.getCanMoveDir()[X_axis] && !scroll[X_axis]) {
-            tmpV[X_axis] = player.getV()[X_axis];
+        if (player.getCanMoveDir()[Axis.X.id] && !scroll[Axis.X.id]) {
+            tmpV[Axis.X.id] = player.getV()[Axis.X.id];
         }
         if (player.getCanMoveDir()[Axis.Y.id] && !scroll[Axis.Y.id]) {
             tmpV[Axis.Y.id] = player.getV()[Axis.Y.id];
@@ -522,7 +521,7 @@ public class MapFrame {
      * @return どちらかがtrueならtrueを返す
      */
     private boolean isFlagTrue(boolean[] flags) {
-        return flags[X_axis] || flags[Axis.Y.id];
+        return flags[Axis.X.id] || flags[Axis.Y.id];
     }
 
     /**
@@ -546,7 +545,7 @@ public class MapFrame {
         boolean reCheckFlag = mapBackGroundCellMatrix.checkCellsCollision();
         int npc_ID = mapViewModel.getNpcMatrix().getNPCCollision();
 
-        if (player.getCanMoveDir()[X_axis] && player.getCanMoveDir()[Axis.Y.id]) {
+        if (player.getCanMoveDir()[Axis.X.id] && player.getCanMoveDir()[Axis.Y.id]) {
             if (isColliding(reCheckFlag, npc_ID)) {
                 setMoveDir();
             }
@@ -568,8 +567,8 @@ public class MapFrame {
     }
 
     private void setMoveDir() {
-        if (Math.abs(player.getV()[X_axis]) < Math.abs(player.getV()[Axis.Y.id])) {
-            player.setCanNotMove_Axis(X_axis);
+        if (Math.abs(player.getV()[Axis.X.id]) < Math.abs(player.getV()[Axis.Y.id])) {
+            player.setCanNotMove_Axis(Axis.X.id);
         } else {
             player.setCanNotMove_Axis(Axis.Y.id);
         }
@@ -795,14 +794,14 @@ public class MapFrame {
 
                     MainGame.removeTapHandler(runnable);
                     player.setCanMove(true);
-                    mapTapped[X_axis] = e.getX();
+                    mapTapped[Axis.X.id] = e.getX();
                     mapTapped[Axis.Y.id] = e.getY();
 
                     runnable = () -> {
 
                         float distance;
                         distance = (float) Math.sqrt(
-                                Math.pow((mapTapped[X_axis] - player.getCenter()[X_axis]), 2)
+                                Math.pow((mapTapped[Axis.X.id] - player.getCenter()[Axis.X.id]), 2)
                                         + Math.pow((mapTapped[Axis.Y.id] - player.getCenter()[Axis.Y.id]), 2)
                         );
                         int vParam = OptionConst.getActualV();

@@ -1,7 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe.npc;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -85,7 +83,7 @@ public class NPC {
         this.npcData = npcData;
 
         int[] point = new int[2];
-        point[X_axis] = getNPCPoint(npcData.getPoint()[X_axis], mapPoint.getX());
+        point[Axis.X.id] = getNPCPoint(npcData.getPoint()[Axis.X.id], mapPoint.getX());
         point[Axis.Y.id] = getNPCPoint(npcData.getPoint()[Axis.Y.id], mapPoint.getY());
         setPoint(point);
     }
@@ -134,15 +132,15 @@ public class NPC {
     }
 
     private void setPoint(int[] point) {
-        iv.setX(point[X_axis]);
-        cv.setX(point[X_axis]);
+        iv.setX(point[Axis.X.id]);
+        cv.setX(point[Axis.X.id]);
         iv.setY(point[Axis.Y.id]);
         cv.setY(point[Axis.Y.id]);
     }
 
     public void moveAccompaniedByPlayer(int[] v) {
         int[] point = new int[2];
-        point[X_axis] = (int) iv.getX() - v[X_axis];
+        point[Axis.X.id] = (int) iv.getX() - v[Axis.X.id];
         point[Axis.Y.id] = (int) iv.getY() - v[Axis.Y.id];
         setPoint(point);
     }
@@ -170,13 +168,13 @@ public class NPC {
 
     public void move() {
         int[] point = new int[2];
-        point[X_axis] = (int) iv.getX() + npcData.getNpcMove().getV()[X_axis];
+        point[Axis.X.id] = (int) iv.getX() + npcData.getNpcMove().getV()[Axis.X.id];
         point[Axis.Y.id] = (int) iv.getY() + npcData.getNpcMove().getV()[Axis.Y.id];
         setPoint(point);
     }
 
     public boolean willBeColliding() {
-        cv.setX((int) iv.getX() + npcData.getNpcMove().getV()[X_axis]);
+        cv.setX((int) iv.getX() + npcData.getNpcMove().getV()[Axis.X.id]);
         cv.setY((int) iv.getY() + npcData.getNpcMove().getV()[Axis.Y.id]);
         boolean flag = cv.isColliding();
         cv.setX(iv.getX());

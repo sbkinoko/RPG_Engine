@@ -1,7 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe.player;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.ViewGroup;
@@ -26,7 +24,7 @@ public class PlayerView {
     }
 
     public void setImageViewPosition(int[] position) {
-        imageView.setX(position[X_axis]);
+        imageView.setX(position[Axis.X.id]);
         imageView.setY(position[Axis.Y.id]);
     }
 
@@ -57,7 +55,7 @@ public class PlayerView {
     }
 
     void setActionViewPosition(int[] position) {
-        touchActionView.setX(position[X_axis]);
+        touchActionView.setX(position[Axis.X.id]);
         touchActionView.setY(position[Axis.Y.id]);
     }
 
