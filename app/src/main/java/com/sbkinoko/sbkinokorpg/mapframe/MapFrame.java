@@ -227,6 +227,7 @@ public class MapFrame {
             BattleResult battleResult
     ) {
         frameLayout.setVisibility(View.VISIBLE);
+        // すべてのイベントバトルに敗北イベントを作成
         if (eventBattleFlag.isEventBattle()) {
             player.proceedNowEventFlag(battleResult == BattleResult.Win);
             doAction();
@@ -352,6 +353,7 @@ public class MapFrame {
 
         MapData nextMap = MainGame.mapDataList[loadPoint.mapID];
         MapId nextMapId = MapId.convertIntToMapId(loadPoint.mapID);
+
         if (nextMapId.isCanBeLastTown()
                 && player != null) {
             //todo セーブ処理を後で書く
