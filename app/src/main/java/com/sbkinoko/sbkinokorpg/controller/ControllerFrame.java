@@ -1,8 +1,5 @@
 package com.sbkinoko.sbkinokorpg.controller;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -20,6 +17,7 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
@@ -301,8 +299,8 @@ public class ControllerFrame {
             float Vy = sin * vParam * moveRatio;
 
             int[] V = new int[2];
-            V[X_axis] = (int) Vx;
-            V[Y_axis] = (int) Vy;
+            V[Axis.X.id] = (int) Vx;
+            V[Axis.Y.id] = (int) Vy;
 
             player.setCanMove(true);
             player.setV(V);

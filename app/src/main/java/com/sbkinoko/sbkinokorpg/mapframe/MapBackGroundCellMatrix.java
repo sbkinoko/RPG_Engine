@@ -1,14 +1,12 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
-
 import android.content.Context;
 import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
@@ -80,8 +78,8 @@ public class MapBackGroundCellMatrix {
             for (int x = 0; x < GameParams.allCellNum; x++) {
                 tmpBGCell = mapBackgroundCells[y][x];
                 float[] tmpPoint = new float[2];
-                tmpPoint[Y_axis] = y * MainGame.cellLength;
-                tmpPoint[X_axis] = x * MainGame.cellLength;
+                tmpPoint[Axis.Y.id] = y * MainGame.cellLength;
+                tmpPoint[Axis.X.id] = x * MainGame.cellLength;
                 tmpBGCell.setViewPoint(tmpPoint);
 
                 int mapPointY = mapY - (GameParams.visibleCellNum - 1) / 2 + y;
@@ -123,7 +121,7 @@ public class MapBackGroundCellMatrix {
      * @return 要求したBGC
      */
     public MapBackgroundCell getBGC(int[] point) {
-        return mapBackgroundCells[point[Y_axis]][point[X_axis]];
+        return mapBackgroundCells[point[Axis.Y.id]][point[Axis.X.id]];
     }
 
     /**
@@ -136,10 +134,11 @@ public class MapBackGroundCellMatrix {
     }
 
     public MapBackgroundCell getBGC_player_in() {
+        // fixme 前もって変数を抽出する
         Log.d("msg", "matrix getPlayerBGC "
-                + player.getBackGroundCell()[Y_axis] + ":"
-                + player.getBackGroundCell()[X_axis]);
-        return mapBackgroundCells[player.getBackGroundCell()[Y_axis]][player.getBackGroundCell()[X_axis]];
+                + player.getBackGroundCell()[Axis.Y.id] + ":"
+                + player.getBackGroundCell()[Axis.X.id]);
+        return mapBackgroundCells[player.getBackGroundCell()[Axis.Y.id]][player.getBackGroundCell()[Axis.X.id]];
     }
 
     abstract private static class BGC_Strategy implements BGCStrategyInterface {
@@ -153,8 +152,8 @@ public class MapBackGroundCellMatrix {
      */
     private boolean doProcessForAllCells() {
         int tmpCellY, tmpCellX,
-                preCellY = player.getBackGroundCell()[Y_axis],
-                preCellX = player.getBackGroundCell()[X_axis];
+                preCellY = player.getBackGroundCell()[Axis.Y.id],
+                preCellX = player.getBackGroundCell()[Axis.X.id];
         MapBackgroundCell tmpBGC;
 
         for (int i = -checkArea; i <= checkArea; i++) {

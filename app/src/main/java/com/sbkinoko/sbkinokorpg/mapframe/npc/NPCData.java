@@ -1,8 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe.npc;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
-
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventData;
 
 public class NPCData {
@@ -15,8 +13,8 @@ public class NPCData {
 
 
     public NPCData(double pointY, double pointX, double size, int flagID, EventData[] eventData) {
-        this.point[X_axis] = pointX;
-        this.point[Y_axis] = pointY;
+        this.point[Axis.X.id] = pointX;
+        this.point[Axis.Y.id] = pointY;
         npcMove = null;
         this.size = size;
         this.flagID = flagID;
@@ -26,8 +24,8 @@ public class NPCData {
 
     public NPCData(double pointY, double pointX, double size, int flagID, NPC_Move npcMove,
                    EventData[] eventData) {
-        this.point[X_axis] = pointX;
-        this.point[Y_axis] = pointY;
+        this.point[Axis.X.id] = pointX;
+        this.point[Axis.Y.id] = pointY;
 
         this.size = size;
         this.flagID = flagID;

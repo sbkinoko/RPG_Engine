@@ -30,6 +30,7 @@ public class MapPoint {
     }
 
     public int getAxisPoint(int axis) {
+        // fixme enumに変更
         switch (axis) {
             case X_axis:
                 return x;
@@ -49,6 +50,7 @@ public class MapPoint {
     }
 
     public void movePositionOfAxis(int axis, int diff) {
+        // fixme enumに変換
         switch (axis) {
             case X_axis:
                 x += diff;

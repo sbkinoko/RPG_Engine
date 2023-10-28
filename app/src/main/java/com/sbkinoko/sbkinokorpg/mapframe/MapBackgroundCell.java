@@ -1,8 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
-
 import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -10,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionView;
 import com.sbkinoko.sbkinokorpg.mapframe.event.AutoActionList;
@@ -24,7 +22,7 @@ public class MapBackgroundCell {
             ov;//ObjectView
     private CollisionView[] cvs;
     private final TextView tv;
-    private MapPoint mapPoint ;
+    private MapPoint mapPoint;
     private final int[] cell = new int[2];
     private final MapFrame mapFrame;
     private final float[][] viewPoint = new float[2][2];
@@ -58,8 +56,8 @@ public class MapBackgroundCell {
                 MainGame.cellLength
         ));
 
-        this.cell[Y_axis] = cellY;
-        this.cell[X_axis] = cellX;
+        this.cell[Axis.Y.id] = cellY;
+        this.cell[Axis.X.id] = cellX;
 
         this.cvs = new CollisionView[1];
         cvs[0] = new CollisionView(context, MapObjectEventData.GroundCollision, player1);
@@ -70,8 +68,8 @@ public class MapBackgroundCell {
     }
 
     public void setText() {
-        String CellPointTxt = "cellY:" + cell[Y_axis] +
-                "\ncellX:" + cell[X_axis] +
+        String CellPointTxt = "cellY:" + cell[Axis.Y.id] +
+                "\ncellX:" + cell[Axis.X.id] +
                 "\nMapY:" + mapPoint.getY() +
                 "\nMapX:" + mapPoint.getX();
         tv.setText(CellPointTxt);
@@ -79,8 +77,8 @@ public class MapBackgroundCell {
 
     public void setMapPoint(MapPoint mapPoint) {
         this.mapPoint = mapPoint;
-        modifyPointByLoop(X_axis);
-        modifyPointByLoop(Y_axis);
+        modifyPointByLoop(Axis.X.id);
+        modifyPointByLoop(Axis.Y.id);
     }
 
     public MapPoint getMapPoint() {
@@ -92,7 +90,7 @@ public class MapBackgroundCell {
      * @param d    移動量
      */
     private void moveMapPoint(int axis, int d) {
-        mapPoint.movePositionOfAxis(axis,d);
+        mapPoint.movePositionOfAxis(axis, d);
         modifyPointByLoop(axis);
     }
 
@@ -101,7 +99,9 @@ public class MapBackgroundCell {
      */
     public void scroll(int axis) {
         int dir = 0;
-        float[] afterViewPoint = {getViewPoint()[Y_axis][0], getViewPoint()[X_axis][0]};
+        float[] afterViewPoint = {
+                getViewPoint()[Axis.Y.id][0],
+                getViewPoint()[Axis.X.id][0]};
 
         afterViewPoint[axis] -= player.getV()[axis];
 
@@ -135,11 +135,11 @@ public class MapBackgroundCell {
 
         int mapLength = getMapLength(axis);
 
-        mapPoint.applyLoop(axis,mapLength);
+        mapPoint.applyLoop(axis, mapLength);
     }
 
     private int getMapLength(int axis) {
-        if (axis == X_axis) {
+        if (axis == Axis.X.id) {
             return mapFrame.getMapViewModel().getMapWidth();
         } else {
             return mapFrame.getMapViewModel().getMapHeight();
@@ -190,23 +190,23 @@ public class MapBackgroundCell {
     }
 
     public void setViewPoint(float[] points) {
-        this.iv.setX(points[X_axis]);
-        this.ov.setX(points[X_axis]);
-        this.tv.setX(points[X_axis]);
+        this.iv.setX(points[Axis.X.id]);
+        this.ov.setX(points[Axis.X.id]);
+        this.tv.setX(points[Axis.X.id]);
 
-        this.iv.setY(points[Y_axis]);
-        this.ov.setY(points[Y_axis]);
-        this.tv.setY(points[Y_axis]);
+        this.iv.setY(points[Axis.Y.id]);
+        this.ov.setY(points[Axis.Y.id]);
+        this.tv.setY(points[Axis.Y.id]);
 
         for (CollisionView cv : cvs) {
-            cv.setX(points[X_axis]);
-            cv.setY(points[Y_axis]);
+            cv.setX(points[Axis.X.id]);
+            cv.setY(points[Axis.Y.id]);
         }
 
-        viewPoint[X_axis][0] = points[X_axis];
-        viewPoint[X_axis][1] = points[X_axis] + MainGame.cellLength;
-        viewPoint[Y_axis][0] = points[Y_axis];
-        viewPoint[Y_axis][1] = points[Y_axis] + MainGame.cellLength;
+        viewPoint[Axis.X.id][0] = points[Axis.X.id];
+        viewPoint[Axis.X.id][1] = points[Axis.X.id] + MainGame.cellLength;
+        viewPoint[Axis.Y.id][0] = points[Axis.Y.id];
+        viewPoint[Axis.Y.id][1] = points[Axis.Y.id] + MainGame.cellLength;
     }
 
     public float[][] getViewPoint() {
@@ -249,20 +249,20 @@ public class MapBackgroundCell {
      * @return playerの全身が入っていたらtrue
      */
     public boolean isAllOfPlayerIn() {
-        return this.iv.getX() <= this.player.getCollisionPoints()[X_axis][0] &&
-                this.player.getCollisionPoints()[X_axis][1] <= this.iv.getX() + MainGame.cellLength &&
-                this.iv.getY() <= this.player.getCollisionPoints()[Y_axis][0] &&
-                this.player.getCollisionPoints()[Y_axis][1] <= this.iv.getY() + MainGame.cellLength;
+        return this.iv.getX() <= this.player.getCollisionPoints()[Axis.X.id][0] &&
+                this.player.getCollisionPoints()[Axis.X.id][1] <= this.iv.getX() + MainGame.cellLength &&
+                this.iv.getY() <= this.player.getCollisionPoints()[Axis.Y.id][0] &&
+                this.player.getCollisionPoints()[Axis.Y.id][1] <= this.iv.getY() + MainGame.cellLength;
     }
 
     /**
      * @return playerの一部が入っていたらtrue
      */
     public boolean isPartOfPlayerIn() {
-        return this.iv.getX() <= this.player.getCollisionPoints()[X_axis][1]
-                && this.player.getCollisionPoints()[X_axis][0] <= this.iv.getX() + MainGame.cellLength
-                && this.iv.getY() <= this.player.getCollisionPoints()[Y_axis][1]
-                && this.player.getCollisionPoints()[Y_axis][0] <= this.iv.getY() + MainGame.cellLength;
+        return this.iv.getX() <= this.player.getCollisionPoints()[Axis.X.id][1]
+                && this.player.getCollisionPoints()[Axis.X.id][0] <= this.iv.getX() + MainGame.cellLength
+                && this.iv.getY() <= this.player.getCollisionPoints()[Axis.Y.id][1]
+                && this.player.getCollisionPoints()[Axis.Y.id][0] <= this.iv.getY() + MainGame.cellLength;
     }
 
     public boolean canNotMove() {
