@@ -3,6 +3,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.npc;
 import android.content.Context;
 import android.widget.FrameLayout;
 
+import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionView;
 import com.sbkinoko.sbkinokorpg.mapframe.event.MapEventID;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
@@ -20,7 +21,7 @@ public class NPCMatrix {
         this.frameLayout = frameLayout;
     }
 
-    public void setNpcList(NPCData[] npcData, int[] mapPoint) {
+    public void setNpcList(NPCData[] npcData, MapPoint mapPoint) {
         int length = npcData.length;
         npcList = new NPC[length];
         npcFlag = true;
@@ -28,7 +29,8 @@ public class NPCMatrix {
         for (int i = 0; i < length; i++) {
             npcList[i] = new NPC(player, frameLayout, context);
             npcList[i].addNPCImage(npcData[i].getSize());
-            npcList[i].setData(npcData[i],
+            npcList[i].setData(
+                    npcData[i],
                     mapPoint
             );
         }

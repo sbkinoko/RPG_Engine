@@ -46,7 +46,7 @@ public class MapViewModel {
         npcMatrix.avoidPlayer();
     }
 
-    void resetNPC(int[] playerMapPoint) {
+    void resetNPC(MapPoint playerMapPoint) {
         npcMatrix.remove();
         NPCData[] npcData = nowMap.getNpcData();
 

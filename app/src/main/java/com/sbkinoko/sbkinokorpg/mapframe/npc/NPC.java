@@ -14,6 +14,7 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
+import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionView;
 import com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventData;
@@ -76,7 +77,7 @@ public class NPC {
     EventData[] eventData;
     private int eventNum;
 
-    public void setData(NPCData npcData, int[] mapPoint) {
+    public void setData(NPCData npcData, MapPoint mapPoint) {
         //name = (String) npcData[0][1][0];
         usingFlagID = npcData.getFlagID();
         eventNum = npcData.getEventData().length;
@@ -84,8 +85,8 @@ public class NPC {
         this.npcData = npcData;
 
         int[] point = new int[2];
-        point[X_axis] = getNPCPoint(X_axis, npcData.getPoint(), mapPoint);
-        point[Y_axis] = getNPCPoint(Y_axis, npcData.getPoint(), mapPoint);
+        point[X_axis] = getNPCPoint(npcData.getPoint()[X_axis], mapPoint.getX());
+        point[Y_axis] = getNPCPoint(npcData.getPoint()[Y_axis], mapPoint.getY());
         setPoint(point);
     }
 
@@ -150,9 +151,9 @@ public class NPC {
         return this.cv;
     }
 
-    private int getNPCPoint(int axis, double[] relativePoint, int[] cellPoint) {
+    private int getNPCPoint(double relativePoint, int cellPoint) {
         int offset = (GameParams.visibleCellNum - 1) / 2;
-        return (int) ((relativePoint[axis] - cellPoint[axis] + offset) * MainGame.cellLength - this.npcSize / 2);
+        return (int) ((relativePoint - cellPoint + offset) * MainGame.cellLength - this.npcSize / 2);
     }
 
     public boolean isNextEventFlag() {

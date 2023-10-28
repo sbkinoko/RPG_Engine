@@ -24,7 +24,7 @@ public class MapBackgroundCell {
             ov;//ObjectView
     private CollisionView[] cvs;
     private final TextView tv;
-    private int[] mapPoint = new int[2];
+    private MapPoint mapPoint ;
     private final int[] cell = new int[2];
     private final MapFrame mapFrame;
     private final float[][] viewPoint = new float[2][2];
@@ -72,18 +72,18 @@ public class MapBackgroundCell {
     public void setText() {
         String CellPointTxt = "cellY:" + cell[Y_axis] +
                 "\ncellX:" + cell[X_axis] +
-                "\nMapY:" + mapPoint[Y_axis] +
-                "\nMapX:" + mapPoint[X_axis];
+                "\nMapY:" + mapPoint.getY() +
+                "\nMapX:" + mapPoint.getX();
         tv.setText(CellPointTxt);
     }
 
-    public void setMapPoint(int[] mapPoint1) {
-        mapPoint = mapPoint1;
+    public void setMapPoint(MapPoint mapPoint) {
+        this.mapPoint = mapPoint;
         modifyPointByLoop(X_axis);
         modifyPointByLoop(Y_axis);
     }
 
-    public int[] getMapPoint() {
+    public MapPoint getMapPoint() {
         return mapPoint;
     }
 
@@ -92,7 +92,7 @@ public class MapBackgroundCell {
      * @param d    移動量
      */
     private void moveMapPoint(int axis, int d) {
-        mapPoint[axis] += d;
+        mapPoint.movePositionOfAxis(axis,d);
         modifyPointByLoop(axis);
     }
 
@@ -135,11 +135,7 @@ public class MapBackgroundCell {
 
         int mapLength = getMapLength(axis);
 
-        if (mapPoint[axis] < 0) {
-            mapPoint[axis] += mapLength;
-        } else if (mapLength <= mapPoint[axis]) {
-            mapPoint[axis] -= mapLength;
-        }
+        mapPoint.applyLoop(axis,mapLength);
     }
 
     private int getMapLength(int axis) {
@@ -218,21 +214,19 @@ public class MapBackgroundCell {
     }
 
     public void setData(MapData map) {
-        int cellType = getCellType(map,mapPoint);
+        int cellType = getCellType(map);
 
         MakeCellFactory.make(cellType, context, player).setCellInf(this, map);
 
         reDraw();
     }
 
-    private int getCellType(MapData map,int[] mapPoint) {
+    private int getCellType(MapData map) {
         if (map.isOutOfMap(mapPoint)) {
             return map.getOutSideCell();
         }
 
-        int y = mapPoint[Y_axis];
-        int x = mapPoint[X_axis];
-        return map.getCellType(y, x);
+        return map.getCellType(mapPoint);
     }
 
     public void reDraw() {
@@ -285,12 +279,7 @@ public class MapBackgroundCell {
      * @return マップの範囲外ならtrue
      */
     public boolean isOutOfMapRange(MapData nowMap) {
-        int[] tmpBGCMapPoint = getMapPoint();
-        int mapX = tmpBGCMapPoint[X_axis];
-        int mapY = tmpBGCMapPoint[Y_axis];
-
-        return mapX < 0 || nowMap.getWidth() <= mapX
-                || mapY < 0 || nowMap.getHeight() <= mapY;
+        return nowMap.isOutOfMap(mapPoint);
     }
 
     /**

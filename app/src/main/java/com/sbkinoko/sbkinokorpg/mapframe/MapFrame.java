@@ -599,8 +599,8 @@ public class MapFrame {
     }
 
     private void encounterMons() {
-        int mapX = mapBackGroundCellMatrix.getPlayerMapXY()[X_axis];
-        int mapY = mapBackGroundCellMatrix.getPlayerMapXY()[Y_axis];
+        int mapX = mapBackGroundCellMatrix.getPlayerMapXY().getX();
+        int mapY = mapBackGroundCellMatrix.getPlayerMapXY().getY();
         // map.isOutOfMapを使えそう
         if (mapX < 0
                 || mapViewModel.getNowMap().getMap()[0].length <= mapX

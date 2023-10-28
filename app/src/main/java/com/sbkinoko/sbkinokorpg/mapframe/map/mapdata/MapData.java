@@ -3,6 +3,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
+import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.AppMonster;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
 
@@ -22,8 +23,8 @@ public abstract class MapData {
         return map.length;
     }
 
-    public int getTreasureBoxId(int y, int x) {
-        return map[y][x][1];
+    public int getTreasureBoxId(MapPoint mapPoint) {
+        return map[mapPoint.getY()][mapPoint.getX()][1];
     }
 
     public int[][][] getMap() {
@@ -35,6 +36,13 @@ public abstract class MapData {
             return getOutSideCell();
         }
         return map[y][x][0];
+    }
+
+    public int getCellType(MapPoint mapPoint) {
+        if (isOutOfMap(mapPoint)) {
+            return getOutSideCell();
+        }
+        return map[mapPoint.getY()][mapPoint.getX()][0];
     }
 
     public int getMonsType(int y, int x) {
@@ -82,6 +90,14 @@ public abstract class MapData {
     public boolean isOutOfMap(int[] mapPoint) {
         int y = mapPoint[Y_axis];
         int x = mapPoint[X_axis];
+
+        return x < 0 || getWidth() <= x ||
+                y < 0 || getHeight() <= y;
+    }
+
+    public boolean isOutOfMap(MapPoint mapPoint) {
+        int y = mapPoint.getY();
+        int x = mapPoint.getX();
 
         return x < 0 || getWidth() <= x ||
                 y < 0 || getHeight() <= y;

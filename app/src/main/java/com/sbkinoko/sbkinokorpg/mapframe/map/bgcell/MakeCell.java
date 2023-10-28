@@ -1,7 +1,5 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.bgcell;
 
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.MapObjectEventData.GroundCollision;
 
 import android.content.Context;
@@ -11,6 +9,7 @@ import android.widget.ImageView;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.mapframe.MapBackgroundCell;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
+import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionData;
 import com.sbkinoko.sbkinokorpg.mapframe.collisionview.CollisionView;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
@@ -18,7 +17,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
 
 public abstract class MakeCell {
     MapData nowMap;
-    int x, y;
+    MapPoint mapPoint;
     CollisionView[] cvs;
     Resources res;
     Context context;
@@ -42,8 +41,7 @@ public abstract class MakeCell {
                 bgv = bgc.getIV(),
                 obv = bgc.getOV();
 
-        x = bgc.getMapPoint()[X_axis];
-        y = bgc.getMapPoint()[Y_axis];
+        mapPoint = bgc.getMapPoint();
         this.nowMap = nowMap;
 
         int imgId1 = getBGImg(cellType);
@@ -100,7 +98,7 @@ public abstract class MakeCell {
 
         int imgId2 = res.getIdentifier("ob" + imgName, "drawable", context.getPackageName());
         if (imgId2 == 0) {
-            connectType = checkConnect(nowMap.getMap(), cellType, y, x);
+            connectType = checkConnect(nowMap.getMap(), cellType, mapPoint);
             if (connectType < 10) {
                 imgName += ("_0" + connectType);
             } else {
@@ -128,7 +126,8 @@ public abstract class MakeCell {
 
     private void checkAround(int[][][] nowMap, ImageView iv) {
         // Log.d("msg", "CellINF Check Around");
-        int tmpY = y, tmpX = x;
+        int tmpY = mapPoint.getY();
+        int tmpX = mapPoint.getX();
         int[][] cellTypes = {
                 {-1, 0},
                 {-1, 0},
@@ -200,7 +199,9 @@ public abstract class MakeCell {
     }
 
 
-    private int checkConnect(int[][][] nowMap, int cellType, int CELL_Y, int CELL_X) {
+    private int checkConnect(int[][][] nowMap, int cellType, MapPoint mapPoint) {
+        int CELL_Y = mapPoint.getY();
+        int CELL_X = mapPoint.getX();
         //Log.d("msg", "CellInf Check Connect");
         int tmpY, tmpX;
         int[][] cellConnection =

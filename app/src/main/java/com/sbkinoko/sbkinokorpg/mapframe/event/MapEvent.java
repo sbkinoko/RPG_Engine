@@ -42,8 +42,8 @@ public class MapEvent {
             case non:
                 return;
             case mapChange:
-                int mapX = mapFrame.getBgcMatrix().getPlayerMapXY()[X_axis];
-                int mapY = mapFrame.getBgcMatrix().getPlayerMapXY()[Y_axis];
+                int mapX = mapFrame.getBgcMatrix().getPlayerMapXY().getX();
+                int mapY = mapFrame.getBgcMatrix().getPlayerMapXY().getY();
                 roadMap(mapFrame.getNowMap().getCellType(mapY, mapX));
                 break;
             case startBattle:
@@ -124,8 +124,8 @@ public class MapEvent {
             case MapACTION_TREASURE_BOX:
                 int itemID;
                 int boxID = nowMap.getTreasureBoxId(
-                        actionBGC.getMapPoint()[Y_axis],
-                        actionBGC.getMapPoint()[X_axis]);
+                        actionBGC.getMapPoint()
+                );
 
                 if (nowMap.getTreasureBoxes()[boxID] > 0) {
                     texts = new String[2];
