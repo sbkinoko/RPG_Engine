@@ -590,11 +590,6 @@ public class MapFrame {
             return;
         }
 
-        if (mapBackGroundCellMatrix.getBGC_player_in().isOutOfMapRange(mapViewModel.getNowMap())) {
-            return;//範囲外なのでイベントはない
-        }
-
-
         //全身が入ったときのマスの処理
         if (player.isAllPartIn()
                 && player.isMoved()) {
@@ -606,6 +601,7 @@ public class MapFrame {
     private void encounterMons() {
         int mapX = mapBackGroundCellMatrix.getPlayerMapXY()[X_axis];
         int mapY = mapBackGroundCellMatrix.getPlayerMapXY()[Y_axis];
+        // map.isOutOfMapを使えそう
         if (mapX < 0
                 || mapViewModel.getNowMap().getMap()[0].length <= mapX
                 || mapY < 0

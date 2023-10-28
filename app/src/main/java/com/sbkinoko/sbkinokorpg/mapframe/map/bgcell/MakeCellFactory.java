@@ -1,5 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.bgcell;
 
+import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.CellIdList.Cell24;
+
 import android.content.Context;
 
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
@@ -23,6 +25,9 @@ public class MakeCellFactory {
             case 22:
             case 23:
                 makeCell = new MakeCell_Town();
+                break;
+            case Cell24:
+                makeCell = new Cell24_Town1_out();
                 break;
             case 30:
                 makeCell = new MakeCell_LeftBridge();

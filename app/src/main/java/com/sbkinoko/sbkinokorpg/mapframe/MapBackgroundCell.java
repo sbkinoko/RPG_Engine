@@ -79,8 +79,8 @@ public class MapBackgroundCell {
 
     public void setMapPoint(int[] mapPoint1) {
         mapPoint = mapPoint1;
-        checkLoop(X_axis);
-        checkLoop(Y_axis);
+        modifyPointByLoop(X_axis);
+        modifyPointByLoop(Y_axis);
     }
 
     public int[] getMapPoint() {
@@ -93,7 +93,7 @@ public class MapBackgroundCell {
      */
     private void moveMapPoint(int axis, int d) {
         mapPoint[axis] += d;
-        checkLoop(axis);
+        modifyPointByLoop(axis);
     }
 
     /**
@@ -128,7 +128,7 @@ public class MapBackgroundCell {
         return cell;
     }
 
-    private void checkLoop(int axis) {
+    private void modifyPointByLoop(int axis) {
         if (!MapFrame.getLoopFlag()) {
             return;
         }
@@ -218,18 +218,21 @@ public class MapBackgroundCell {
     }
 
     public void setData(MapData map) {
-        int cellType;
-        int y = mapPoint[Y_axis], x = mapPoint[X_axis];
-        if (x < 0 || map.getWidth() <= x ||
-                y < 0 || map.getHeight() <= y) {
-            cellType = 0;
-        } else {
-            cellType = map.getCellType(y, x);
-        }
+        int cellType = getCellType(map,mapPoint);
 
         MakeCellFactory.make(cellType, context, player).setCellInf(this, map);
 
         reDraw();
+    }
+
+    private int getCellType(MapData map,int[] mapPoint) {
+        if (map.isOutOfMap(mapPoint)) {
+            return map.getOutSideCell();
+        }
+
+        int y = mapPoint[Y_axis];
+        int x = mapPoint[X_axis];
+        return map.getCellType(y, x);
     }
 
     public void reDraw() {

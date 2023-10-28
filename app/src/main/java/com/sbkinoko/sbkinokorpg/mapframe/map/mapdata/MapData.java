@@ -1,11 +1,15 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
+import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
+
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.AppMonster;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
 
 public abstract class MapData {
 
     public abstract MapId getMapId();
+
     public static final int MAP_NUM = MapId.values().length;
     public static final int SKY_MONS = 50;
     protected int[][][] map = new int[][][]{};
@@ -27,6 +31,9 @@ public abstract class MapData {
     }
 
     public int getCellType(int y, int x) {
+        if (isOutOfMap(new int[]{y, x})) {
+            return getOutSideCell();
+        }
         return map[y][x][0];
     }
 
@@ -70,6 +77,18 @@ public abstract class MapData {
 
     public static MapData getMapData(int mapId_int) {
         return MapId.convertIntToMapId(mapId_int).getMapData();
+    }
+
+    public boolean isOutOfMap(int[] mapPoint) {
+        int y = mapPoint[Y_axis];
+        int x = mapPoint[X_axis];
+
+        return x < 0 || getWidth() <= x ||
+                y < 0 || getHeight() <= y;
+    }
+
+    public int getOutSideCell() {
+        return 0;
     }
 
 }

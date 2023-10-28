@@ -35,6 +35,8 @@ public abstract class MakeCell {
         this.player = player;
     }
 
+
+    //fixme　makeCellのメソッドではなさそう
     public void setCellInf(MapBackgroundCell bgc, MapData nowMap) {
         ImageView
                 bgv = bgc.getIV(),

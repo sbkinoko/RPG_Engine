@@ -1,5 +1,7 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 
+import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.CellIdList.Cell24;
+
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.AppMonster;
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.FixMons;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
@@ -116,6 +118,11 @@ public class Town extends MapData
     @Override
     public int[] getDefeatedWarpPoint() {
         return new int[]{2,0,getMapId().ordinal()};
+    }
+
+    @Override
+    public int getOutSideCell() {
+        return Cell24;
     }
 }
 
