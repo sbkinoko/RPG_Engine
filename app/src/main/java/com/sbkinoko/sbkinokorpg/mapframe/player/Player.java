@@ -1,7 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe.player;
 
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.whereBattle;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.whereMap;
 
@@ -11,6 +10,7 @@ import android.util.Log;
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
@@ -48,7 +48,7 @@ public class Player {
     BagRepository bagRepository;
 
     public Player(int cellLength, Context context) {
-        this.v[Y_axis] = 0;
+        this.v[Axis.Y.id] = 0;
         this.v[X_axis] = 0;
         this.playerSize = (int) (cellLength * GameParams.playerSize);
 
@@ -205,13 +205,13 @@ public class Player {
     public void goCenter() {
         canMove = false;
         movedFlag = false;
-        points[Y_axis][0] = (int) (cellLength * (((GameParams.visibleCellNum - 1) / 2) + relativePoint[Y_axis] / cellLength));//Xの位置*cellの長さ+  1/2cellの長さ
+        points[Axis.Y.id][0] = (int) (cellLength * (((GameParams.visibleCellNum - 1) / 2) + relativePoint[Axis.Y.id] / cellLength));//Xの位置*cellの長さ+  1/2cellの長さ
         points[X_axis][0] = (int) (cellLength * (((GameParams.visibleCellNum - 1) / 2) + relativePoint[X_axis] / cellLength));
-        collisionPoints[Y_axis][0] = points[Y_axis][0];
+        collisionPoints[Axis.Y.id][0] = points[Axis.Y.id][0];
         collisionPoints[X_axis][0] = points[X_axis][0];
-        nextBGC[Y_axis] = (GameParams.visibleCellNum - 1) / 2;
+        nextBGC[Axis.Y.id] = (GameParams.visibleCellNum - 1) / 2;
         nextBGC[X_axis] = (GameParams.visibleCellNum - 1) / 2;
-        BGC[Y_axis] = (GameParams.visibleCellNum - 1) / 2;
+        BGC[Axis.Y.id] = (GameParams.visibleCellNum - 1) / 2;
         BGC[X_axis] = (GameParams.visibleCellNum - 1) / 2;
 
         moveImage();
@@ -222,8 +222,8 @@ public class Player {
     }
 
     public void setCollisionPoints(int[] v) {
-        collisionPoints[Y_axis][0] = points[Y_axis][0] + v[Y_axis];
-        collisionPoints[Y_axis][1] = collisionPoints[Y_axis][0] + playerSize;
+        collisionPoints[Axis.Y.id][0] = points[Axis.Y.id][0] + v[Axis.Y.id];
+        collisionPoints[Axis.Y.id][1] = collisionPoints[Axis.Y.id][0] + playerSize;
         collisionPoints[X_axis][0] = points[X_axis][0] + v[X_axis];
         collisionPoints[X_axis][1] = collisionPoints[X_axis][0] + playerSize;
     }
@@ -235,7 +235,7 @@ public class Player {
     public int[] getCenter() {
         int[] center = new int[2];
         center[X_axis] = points[X_axis][0] + playerSize / 2;
-        center[Y_axis] = points[Y_axis][0] + playerSize / 2;
+        center[Axis.Y.id] = points[Axis.Y.id][0] + playerSize / 2;
         return center;
     }
 
@@ -244,19 +244,19 @@ public class Player {
     }
 
     public int getAfterCenterY() {
-        return collisionPoints[Y_axis][0] + playerSize / 2;
+        return collisionPoints[Axis.Y.id][0] + playerSize / 2;
     }
 
     private Dir dir = Dir.Down;
 
     public void setDir() {
-        if (v[Y_axis] >= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Y_axis])) {
+        if (v[Axis.Y.id] >= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Axis.Y.id])) {
             dir = Dir.Down;
-        } else if (v[X_axis] >= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Y_axis])) {
+        } else if (v[X_axis] >= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Axis.Y.id])) {
             dir = Dir.Right;
-        } else if (v[X_axis] <= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Y_axis])) {
+        } else if (v[X_axis] <= 0 && Math.abs(v[X_axis]) >= Math.abs(v[Axis.Y.id])) {
             dir = Dir.Left;
-        } else if (v[X_axis] <= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Y_axis])) {
+        } else if (v[X_axis] <= 0 && Math.abs(v[X_axis]) <= Math.abs(v[Axis.Y.id])) {
             dir = Dir.Up;
         }
     }
@@ -267,19 +267,19 @@ public class Player {
         switch (dir) {
             case Right:
                 touchActionViewPosition[X_axis] = points[X_axis][0] + playerSize;
-                touchActionViewPosition[Y_axis] = points[Y_axis][0];
+                touchActionViewPosition[Axis.Y.id] = points[Axis.Y.id][0];
                 break;
             case Down:
                 touchActionViewPosition[X_axis] = points[X_axis][0];
-                touchActionViewPosition[Y_axis] = points[Y_axis][0] + playerSize;
+                touchActionViewPosition[Axis.Y.id] = points[Axis.Y.id][0] + playerSize;
                 break;
             case Left:
                 touchActionViewPosition[X_axis] = points[X_axis][0] - playerSize;
-                touchActionViewPosition[Y_axis] = points[Y_axis][0];
+                touchActionViewPosition[Axis.Y.id] = points[Axis.Y.id][0];
                 break;
             case Up:
                 touchActionViewPosition[X_axis] = points[X_axis][0];
-                touchActionViewPosition[Y_axis] = points[Y_axis][0] - playerSize;
+                touchActionViewPosition[Axis.Y.id] = points[Axis.Y.id][0] - playerSize;
                 break;
         }
 
@@ -405,7 +405,7 @@ public class Player {
         }
 
         //goalまでの距離が0になったので移動を停止
-        if (distanceToGoal[X_axis] == 0 && distanceToGoal[Y_axis] == 0) {
+        if (distanceToGoal[X_axis] == 0 && distanceToGoal[Axis.Y.id] == 0) {
             autoMovingFlag = false;
             canMove = false;
             setCollisionPoints(v);
@@ -504,7 +504,8 @@ public class Player {
 
     private void moveCellPoint() {
         if (!movedFlag) {
-            if (BGC[X_axis] != nextBGC[X_axis] || BGC[Y_axis] != nextBGC[Y_axis]) {
+            if (BGC[X_axis] != nextBGC[X_axis]
+                    || BGC[Axis.Y.id] != nextBGC[Axis.Y.id]) {
                 movedFlag = true;
             }
         }
@@ -514,7 +515,8 @@ public class Player {
     public void moveInMap(int[] moveDist) {
         setCollisionPoints(moveDist);//実際に動いた距離を入れる
         moveImage();
-        movedDistSum += (int) Math.sqrt(Math.pow(moveDist[X_axis], 2) + Math.pow(moveDist[Y_axis], 2));
+        double y2 =  Math.pow(moveDist[Axis.Y.id], 2);
+        movedDistSum += (int) Math.sqrt(Math.pow(moveDist[X_axis], 2) +y2);
     }
 
     public boolean isEncounterMons() {
@@ -528,19 +530,19 @@ public class Player {
     public void moveImage() {
         points[X_axis][0] = collisionPoints[X_axis][0];
         points[X_axis][1] = collisionPoints[X_axis][1];
-        points[Y_axis][0] = collisionPoints[Y_axis][0];
-        points[Y_axis][1] = collisionPoints[Y_axis][1];
+        points[Axis.Y.id][0] = collisionPoints[Axis.Y.id][0];
+        points[Axis.Y.id][1] = collisionPoints[Axis.Y.id][1];
         isAllPartIn = nextAllInFlag;
 
         moveCellPoint();
 
-        Log.d("msg", "CellY " + BGC[Y_axis] + " :CellX " + BGC[X_axis]);
+        Log.d("msg", "CellY " + BGC[Axis.Y.id] + " :CellX " + BGC[X_axis]);
     }
 
     public int[] getPlayerPosition() {
         int[] imageViewPosition = new int[2];
         imageViewPosition[X_axis] = points[X_axis][0];
-        imageViewPosition[Y_axis] = points[Y_axis][0];
+        imageViewPosition[Axis.Y.id] = points[Axis.Y.id][0];
         return imageViewPosition;
     }
 
@@ -564,13 +566,13 @@ public class Player {
                 offset[X_axis] = GameParams.actionOffset;
                 break;
             case Down:
-                offset[Y_axis] = GameParams.actionOffset;
+                offset[Axis.Y.id] = GameParams.actionOffset;
                 break;
             case Left:
                 offset[X_axis] = -GameParams.actionOffset;
                 break;
             case Up:
-                offset[Y_axis] = -GameParams.actionOffset;
+                offset[Axis.Y.id] = -GameParams.actionOffset;
                 break;
         }
         return offset;

@@ -1,7 +1,6 @@
 package com.sbkinoko.sbkinokorpg.mapframe;
 
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -21,6 +20,7 @@ import com.sbkinoko.sbkinokorpg.OptionConst;
 import com.sbkinoko.sbkinokorpg.R;
 import com.sbkinoko.sbkinokorpg.battleframe.BattleSystem;
 import com.sbkinoko.sbkinokorpg.controller.ControllerFrame;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.gameparams.BattleResult;
 import com.sbkinoko.sbkinokorpg.gameparams.EscapeFlag;
 import com.sbkinoko.sbkinokorpg.gameparams.EventBattleFlag;
@@ -363,7 +363,7 @@ public class MapFrame {
         //fixme mapDataにループの情報を持たせる
         loopFlag = (mapViewModel.getNowMap() instanceof TestField);
 
-        mapBackGroundCellMatrix.roadBackGround(roadPoint[Y_axis], roadPoint[X_axis]);
+        mapBackGroundCellMatrix.roadBackGround(roadPoint[Axis.Y.id], roadPoint[X_axis]);
 
         player.goCenter();
         playerView.setImageViewPosition(
@@ -478,11 +478,11 @@ public class MapFrame {
             return;
         }
 
-        if (actualScroll[X_axis] && actualScroll[Y_axis]) {
+        if (actualScroll[X_axis] && actualScroll[Axis.Y.id]) {
             for (int y = 0; y < GameParams.allCellNum; y++) {
                 for (int x = 0; x < GameParams.allCellNum; x++) {
                     mapBackGroundCellMatrix.getBGC(y, x).scroll(X_axis);
-                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Y_axis);
+                    mapBackGroundCellMatrix.getBGC(y, x).scroll(Axis.Y.id);
                 }
             }
             return;
@@ -492,7 +492,7 @@ public class MapFrame {
         if (actualScroll[X_axis]) {
             axis = X_axis;
         } else {
-            axis = Y_axis;
+            axis = Axis.Y.id;
         }
 
         for (int y = 0; y < GameParams.allCellNum; y++) {
@@ -511,8 +511,8 @@ public class MapFrame {
         if (player.getCanMoveDir()[X_axis] && !scroll[X_axis]) {
             tmpV[X_axis] = player.getV()[X_axis];
         }
-        if (player.getCanMoveDir()[Y_axis] && !scroll[Y_axis]) {
-            tmpV[Y_axis] = player.getV()[Y_axis];
+        if (player.getCanMoveDir()[Axis.Y.id] && !scroll[Axis.Y.id]) {
+            tmpV[Axis.Y.id] = player.getV()[Axis.Y.id];
         }
         return tmpV;
     }
@@ -522,7 +522,7 @@ public class MapFrame {
      * @return どちらかがtrueならtrueを返す
      */
     private boolean isFlagTrue(boolean[] flags) {
-        return flags[X_axis] || flags[Y_axis];
+        return flags[X_axis] || flags[Axis.Y.id];
     }
 
     /**
@@ -546,7 +546,7 @@ public class MapFrame {
         boolean reCheckFlag = mapBackGroundCellMatrix.checkCellsCollision();
         int npc_ID = mapViewModel.getNpcMatrix().getNPCCollision();
 
-        if (player.getCanMoveDir()[X_axis] && player.getCanMoveDir()[Y_axis]) {
+        if (player.getCanMoveDir()[X_axis] && player.getCanMoveDir()[Axis.Y.id]) {
             if (isColliding(reCheckFlag, npc_ID)) {
                 setMoveDir();
             }
@@ -568,10 +568,10 @@ public class MapFrame {
     }
 
     private void setMoveDir() {
-        if (Math.abs(player.getV()[X_axis]) < Math.abs(player.getV()[Y_axis])) {
+        if (Math.abs(player.getV()[X_axis]) < Math.abs(player.getV()[Axis.Y.id])) {
             player.setCanNotMove_Axis(X_axis);
         } else {
-            player.setCanNotMove_Axis(Y_axis);
+            player.setCanNotMove_Axis(Axis.Y.id);
         }
     }
 
@@ -796,14 +796,14 @@ public class MapFrame {
                     MainGame.removeTapHandler(runnable);
                     player.setCanMove(true);
                     mapTapped[X_axis] = e.getX();
-                    mapTapped[Y_axis] = e.getY();
+                    mapTapped[Axis.Y.id] = e.getY();
 
                     runnable = () -> {
 
                         float distance;
                         distance = (float) Math.sqrt(
                                 Math.pow((mapTapped[X_axis] - player.getCenter()[X_axis]), 2)
-                                        + Math.pow((mapTapped[Y_axis] - player.getCenter()[Y_axis]), 2)
+                                        + Math.pow((mapTapped[Axis.Y.id] - player.getCenter()[Axis.Y.id]), 2)
                         );
                         int vParam = OptionConst.getActualV();
 

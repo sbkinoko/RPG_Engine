@@ -1,9 +1,9 @@
 package com.sbkinoko.sbkinokorpg.mapframe.npc;
 
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import com.sbkinoko.sbkinokorpg.OptionConst;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveData;
 
 public class NPC_Move {
@@ -20,7 +20,7 @@ public class NPC_Move {
 
         for (int i = 0; i < MOVE_PATTERN_NUM; i++) {
             vList[i][X_axis] = (int) (moveData[i].getV()[X_axis] * OptionConst.V * 0.8);
-            vList[i][Y_axis] = (int) (moveData[i].getV()[Y_axis] * OptionConst.V * 0.8);
+            vList[i][Axis.Y.id] = (int) (moveData[i].getV()[Axis.Y.id] * OptionConst.V * 0.8);
             frames[i] = moveData[i].getFrame();
         }
     }

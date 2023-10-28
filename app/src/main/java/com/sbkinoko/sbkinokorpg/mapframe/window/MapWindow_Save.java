@@ -2,7 +2,6 @@ package com.sbkinoko.sbkinokorpg.mapframe.window;
 
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.PLAYER_NUM;
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,18 +14,19 @@ import android.widget.Toast;
 
 import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.MyDataBaseHelper;
+import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.battleframe.status.PlayerStatus;
 import com.sbkinoko.sbkinokorpg.battleframe.status.Status;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.JobStatus;
 import com.sbkinoko.sbkinokorpg.dataList.player_status.List_JobStatus;
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
 import com.sbkinoko.sbkinokorpg.mapframe.MapFrame;
 import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
 import com.sbkinoko.sbkinokorpg.mapframe.map.mapdata.MapData;
 import com.sbkinoko.sbkinokorpg.mapframe.player.Player;
-import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.repository.playertool.PlayerToolRepository;
 import com.sbkinoko.sbkinokorpg.window.MenuWindowInterface;
 
@@ -100,14 +100,14 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         returnData[X_axis] = cursor.getInt(colID);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.CELL_Y);
-        returnData[Y_axis] = cursor.getInt(colID);
+        returnData[Axis.Y.id] = cursor.getInt(colID);
 
         float[] startPoint = new float[2];
         colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_X);
         startPoint[X_axis] = cursor.getFloat(colID);
 
         colID = cursor.getColumnIndex(MyDataBaseHelper.PLAYER_Y);
-        startPoint[Y_axis] = cursor.getFloat(colID);
+        startPoint[Axis.Y.id] = cursor.getFloat(colID);
 
         player.setRelativePoint(startPoint);
 
@@ -185,7 +185,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
 
     static private void addPlayerData() {
         float playerX = MainGame.relativeCenter[X_axis];
-        float playerY = MainGame.relativeCenter[Y_axis];
+        float playerY = MainGame.relativeCenter[Axis.Y.id];
         Log.d("msg", GameParams.startX + ":" + GameParams.startY + " X" + playerX + " Y" + playerY);
 
         ContentValues values = new ContentValues();
@@ -343,7 +343,7 @@ public class MapWindow_Save extends MapGameWindow implements MenuWindowInterface
         int x = mapPoint.getX();
         int y = mapPoint.getY();
         float playerX = mapFrame.relativePlayerPoint()[X_axis];
-        float playerY = mapFrame.relativePlayerPoint()[Y_axis];
+        float playerY = mapFrame.relativePlayerPoint()[Axis.Y.id];
         int mapNumber = mapFrame.getMapViewModel().getMapID().ordinal();
         Log.d("msg", x + ":" + y + " X" + playerX + " Y" + playerY);
 

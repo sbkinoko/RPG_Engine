@@ -1,8 +1,8 @@
 package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 
 import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.X_axis;
-import static com.sbkinoko.sbkinokorpg.gameparams.GameParams.Y_axis;
 
+import com.sbkinoko.sbkinokorpg.gameparams.Axis;
 import com.sbkinoko.sbkinokorpg.mapframe.MapPoint;
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.AppMonster;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
@@ -88,7 +88,7 @@ public abstract class MapData {
     }
 
     public boolean isOutOfMap(int[] mapPoint) {
-        int y = mapPoint[Y_axis];
+        int y = mapPoint[Axis.Y.id];
         int x = mapPoint[X_axis];
 
         return x < 0 || getWidth() <= x ||
