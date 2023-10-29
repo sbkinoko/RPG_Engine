@@ -215,7 +215,6 @@ public class BattleFrame {
         setVisibility(View.GONE);
 
         mapFrame.openFromBattle(eventBattleFlag, battleResult);
-
     }
 
     boolean Shaving;

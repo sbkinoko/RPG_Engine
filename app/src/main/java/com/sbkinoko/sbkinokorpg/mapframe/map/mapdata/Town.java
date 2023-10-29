@@ -2,6 +2,7 @@ package com.sbkinoko.sbkinokorpg.mapframe.map.mapdata;
 
 import static com.sbkinoko.sbkinokorpg.mapframe.map.bgcell.CellIdList.Cell24;
 
+import com.sbkinoko.sbkinokorpg.gameparams.EscapeFlag;
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.AppMonster;
 import com.sbkinoko.sbkinokorpg.mapframe.map.appmonsterlist.FixMons;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.NPCData;
@@ -68,10 +69,19 @@ public class Town extends MapData
                                                 new ChoiceData(6, "たたかわない"),
                                         }),
                                 new EventTalk(2, 3, new String[]{"gao2"}, true),
-                                new EventBattle(3,  1),
+                                new EventBattle(3, 1, EscapeFlag.CanNot),
                                 new EventTalk(4, 1, new String[]{"gao!(負けたが戦えてうれしいようだ)"}, false),
                                 new EventTalk(5, 1, new String[]{"gao!(勝ててうれしいようだ)"}, false),
                                 new EventTalk(6, 1, new String[]{"gao……"}, false)
+                        }
+                ),
+                new NPCData(1.0, 4.0, 1.0, 2,
+                        new EventData[]{
+                                new EventTalk(1, 2, new String[]{"逃げられる戦い"}, true),
+                                new EventBattle(2, 1, EscapeFlag.Can),
+                                new EventTalk(3, 1, new String[]{"gao!(負けたが戦えてうれしいようだ)"}, false),
+                                new EventTalk(4, 1, new String[]{"gao!(勝ててうれしいようだ)"}, false),
+                                new EventTalk(5, 1, new String[]{"gao?(体調がわるかったの？)"}, false),
                         }
                 ),
                 new NPCData(3.0, 4.0, 1.0, 2,
@@ -117,7 +127,7 @@ public class Town extends MapData
 
     @Override
     public MapChangeData getDefeatedWarpPoint() {
-        return new MapChangeData(getMapId().ordinal(),0,2);
+        return new MapChangeData(getMapId().ordinal(), 0, 2);
     }
 
     @Override

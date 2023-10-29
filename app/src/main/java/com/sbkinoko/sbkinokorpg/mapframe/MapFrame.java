@@ -229,7 +229,7 @@ public class MapFrame {
         frameLayout.setVisibility(View.VISIBLE);
         // すべてのイベントバトルに敗北イベントを作成
         if (eventBattleFlag.isEventBattle()) {
-            player.proceedNowEventFlag(battleResult == BattleResult.Win);
+            player.proceedNowEventFlag(battleResult);
             doAction();
         } else {
             if (battleResult == BattleResult.Lose) {
@@ -582,7 +582,6 @@ public class MapFrame {
         player.setMoveState(moveState);
         playerView.setMoveStateImage(player.getMoveState());
     }
-
 
     public void checkCellEvent() {
         if (!isAllMenuClosed()) {
