@@ -252,4 +252,9 @@ public class PlayerStatus extends Status {
         }
         return tmpList;
     }
+
+    public void allRecover(){
+        setHP(Integer.MAX_VALUE);
+        setMP(Integer.MAX_VALUE);
+    }
 }
