@@ -15,7 +15,11 @@ import java.util.Random;
 
 public class BattleWindow_Escape extends BattleTxtWindow {
     boolean escapeFlag = false;
+    EventBattleFlag eventBattleFlag;
 
+    public void setEscapeFlag(EventBattleFlag eventBattleFlag){
+        this.eventBattleFlag = eventBattleFlag;
+    }
 
     public BattleWindow_Escape(Context context, BattleSystem battleSystem) {
         super(context, battleSystem);
@@ -43,7 +47,7 @@ public class BattleWindow_Escape extends BattleTxtWindow {
         }
 
         if (escapeFlag) {
-            battleFrame.closeBattleFrame( EventBattleFlag.NotEvent, BattleResult.Escape);
+            battleFrame.closeBattleFrame(eventBattleFlag, BattleResult.Escape);
         }
 
         battleFrame.battleEscapeWindow.closeMenu();

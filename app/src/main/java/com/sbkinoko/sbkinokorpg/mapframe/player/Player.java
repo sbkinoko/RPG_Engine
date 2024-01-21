@@ -10,6 +10,7 @@ import com.sbkinoko.sbkinokorpg.MainGame;
 import com.sbkinoko.sbkinokorpg.application.MyEntryPoints;
 import com.sbkinoko.sbkinokorpg.dataList.item.List_Tool;
 import com.sbkinoko.sbkinokorpg.gameparams.Axis;
+import com.sbkinoko.sbkinokorpg.gameparams.BattleResult;
 import com.sbkinoko.sbkinokorpg.gameparams.Dir;
 import com.sbkinoko.sbkinokorpg.gameparams.GameParams;
 import com.sbkinoko.sbkinokorpg.gameparams.MoveState;
@@ -592,15 +593,23 @@ public class Player {
         this.nowEventFlag = nowEventFlag;
     }
 
-    //逃げた場合にも対応
-    public void proceedNowEventFlag(boolean isWin) {
+    public void proceedNowEventFlag(BattleResult battleResult) {
         if (nowEventFlag == -1) return;
-
-        if (isWin) {
-            eventFlag[nowEventFlag]++;
-        } else {
-            eventFlag[nowEventFlag] += 2;
+        final int  proceedNum;
+        switch (battleResult){
+            case Win:
+                proceedNum = 1;
+                break;
+            case Lose:
+                proceedNum = 2;
+                break;
+            case Escape:
+                proceedNum = 3;
+                break;
+            default:
+                throw new RuntimeException("Battle Result が不正です");
         }
-        nowEventFlag = -1;
+
+        eventFlag[nowEventFlag] += proceedNum;
     }
 }

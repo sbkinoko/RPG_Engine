@@ -117,8 +117,9 @@ public class BattleSystem {
                             int bgImage,
                             EscapeFlag escapeFlag,
                             EventBattleFlag eventBattleFlag) {
-        canEscape = escapeFlag;
+        this.canEscape = escapeFlag;
         this.eventBattleFlag = eventBattleFlag;
+        battleFrame.battleEscapeWindow.setEscapeFlag(eventBattleFlag);
         battleEndFlag = false;
         winFlag = BattleResult.Lose;
 
@@ -461,7 +462,7 @@ public class BattleSystem {
         afterATKStep(nowPlayer, atkStatus, isWin);
     }
 
-    private boolean hasConditionAction(Status nowPlayer, Status[] atkStatus,BattleResult isWin) {
+    private boolean hasConditionAction(Status nowPlayer, Status[] atkStatus, BattleResult isWin) {
         if (!stepType.isNeedStep(condition)) {
             return false;
         }

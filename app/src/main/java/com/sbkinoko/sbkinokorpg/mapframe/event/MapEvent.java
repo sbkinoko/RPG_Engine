@@ -46,7 +46,7 @@ public class MapEvent {
                 break;
             case startBattle:
                 mapFrame.startBattle(0, 3,
-                        EscapeFlag.CanNot, EventBattleFlag.Event);
+                        EscapeFlag.CanNot, EventBattleFlag.NotEvent);
                 break;
             case setGround:
                 mapFrame.setPlayerMoveState(MoveState.MoveState_Ground);
@@ -79,12 +79,21 @@ public class MapEvent {
                 }
                 break;
 
-            case BATTLE_EVENT:
+            case BATTLE_EVENT_NOT_ESCAPE: {
                 int battleID = ((EventBattle) eventData).getBattleID();
                 mapFrame.startBattle(0, battleID,
                         EscapeFlag.CanNot, EventBattleFlag.Event);
                 player.setNowEventFlag(npc.getUsingFlagID());
                 break;
+            }
+
+            case BATTLE_EVENT_CAN_ESCAPE: {
+                int battleID = ((EventBattle) eventData).getBattleID();
+                mapFrame.startBattle(0, battleID,
+                        EscapeFlag.Can, EventBattleFlag.Event);
+                player.setNowEventFlag(npc.getUsingFlagID());
+                break;
+            }
 
             case OPEN_CHOICE:
                 mapFrame.getMapTextBoxWindow().openMenu();//最後に表示していた文章をもう一回表示する
