@@ -192,7 +192,7 @@ public class BattleSystem {
     }
 
     public void processForGameOver() {
-        players = MapWindow_Save.getStatusData(context);
+        players[0].setHP(1);
     }
 
     public void checkNextStep() {

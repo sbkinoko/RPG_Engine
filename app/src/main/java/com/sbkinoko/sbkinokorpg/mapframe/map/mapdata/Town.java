@@ -16,6 +16,7 @@ import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventJob;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventSell;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventShopping;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventTalk;
+import com.sbkinoko.sbkinokorpg.mapframe.npc.eventdata.EventTalkAndHeal;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveData;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveDown;
 import com.sbkinoko.sbkinokorpg.mapframe.npc.movedata.MoveLeft;
@@ -80,7 +81,7 @@ public class Town extends MapData
                                 new EventTalk(1, 2, new String[]{"逃げられる戦い"}, true),
                                 new EventBattle(2, 1, EscapeFlag.Can),
                                 new EventTalk(3, 1, new String[]{"gao!(負けたが戦えてうれしいようだ)"}, false),
-                                new EventTalk(4, 1, new String[]{"gao!(勝ててうれしいようだ)"}, false),
+                                new EventTalkAndHeal(4, 1, new String[]{"gao!(勝ててうれしいようだ)"}, false),
                                 new EventTalk(5, 1, new String[]{"gao?(体調がわるかったの？)"}, false),
                         }
                 ),

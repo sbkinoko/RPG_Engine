@@ -67,6 +67,15 @@ public class MapEvent {
                     player.setNextEventFlag(true);
                 }
                 break;
+            case TALK_AND_HEAL:
+                for(PlayerStatus playerStatus:mapFrame.battleSystem.getPlayers()){
+                    playerStatus.allRecover();
+                }
+                mapFrame.getMapTextBoxWindow().openMenu(eventData.getTxt());
+                if (((EventTalk) eventData).isNextTalk()) {
+                    player.setNextEventFlag(true);
+                }
+                break;
 
             case ITEM_EVENT:
                 EventItemGet eventItemGet = (EventItemGet) eventData;
@@ -106,6 +115,7 @@ public class MapEvent {
                 WindowDetail shoppingList = mapFrame.getMapWindow_list_detail();
                 shoppingList.openMenuWithSetting((EventShopping) eventData);
                 break;
+
             case SELL_EVENT:
                 mapFrame.getSelectSellItemKind().openMenu();
                 break;
